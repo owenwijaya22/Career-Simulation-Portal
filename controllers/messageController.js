@@ -33,20 +33,20 @@ exports.addMessage = async (req, res) => {
      * This message can then be rendered successfully.
      */
     if (data)
-      return res.json(200).json({
+      return res.status(200).json({
         status: 'success',
         data: {
           message: 'Chat Added Successfully',
         },
       });
-    return res.json(400).json({
+    return res.status(400).json({
       status: 'failed',
       message: 'Chat was not added into the database',
     });
   } catch (err) {
-    res.json(404).json({
+    res.status(404).json({
       status: 'failed',
-      message: err,
+      message: 'Failed to retrieve messages: ' + err.message,
     });
   }
 };
