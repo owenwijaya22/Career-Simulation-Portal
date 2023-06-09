@@ -22,7 +22,7 @@ const messageModel = mongoose.Schema({
     select: false,
   },
   roomId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'ChatRoom',
     required: [true, 'A message must have a chat room'],
   },
