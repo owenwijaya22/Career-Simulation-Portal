@@ -73,27 +73,22 @@ const roomData = [
     createdAt: new Date("2023-05-01T10:20:30Z"),
     prompt: "Discuss the latest tech news and trends",
   }
-  // Add more room objects here...
 ];
 
-// Insert rooms data into the rooms collection
-const roomIds = await db.rooms.insertMany(roomData).then(result => result.insertedIds);
-
-// Use the inserted room IDs to create messages data
 const messageData = [
   {
     to: 'JaneDoe',
     from: 'JohnDoe',
     message: 'Hello, how are you?',
     timestamp: new Date("2023-06-10T07:34:00Z"),
-    roomId: roomIds[0] // Reference the first room in the rooms collection
+    roomId: ObjectID("60d663bb2ef4853f70fc3a4c")
   },
   {
     to: 'JohnDoe',
     from: 'JaneDoe',
     message: 'I am good. How about you?',
     timestamp: new Date("2023-06-10T07:36:00Z"),
-    roomId: roomIds[0] // Reference the first room in the rooms collection
+    roomId: ObjectID("60d663bb2ef4853f70fc3a4c")
   },
 ];
 
