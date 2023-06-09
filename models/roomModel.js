@@ -1,15 +1,29 @@
-const mongoose = require('mongoose');
-
-const roomModel = mongoose.Schema({
-  name: {
-    type: String,
-    trim: true,
-    required: [true, 'A room must have a name'],
-  },
-  users: [{
+const roomSchema = new mongoose.Schema({
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-  }],
+    required: true
+  },
+  chatName: {
+    type: String,
+    required: true
+  },
+  latestMessage: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  prompt: {
+    type: String,
+    required: true
+  },
+  members: [{
+    // keep track of which users are in which room
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 });
 
-module.exports = mongoose.model('Room', roomModel);
+module.exports = mongoose.model('Room', roomSchema);
