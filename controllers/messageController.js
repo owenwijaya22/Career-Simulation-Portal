@@ -27,8 +27,7 @@ exports.addMessage = async (req, res) => {
       roomId: roomId,
     });
     /**
-     * ChatGPT feature can be added in this function.
-     * So when user sends the message, openAI API call is made.
+     * Connecting to Python server
      * The answer returned can be transmitted back to the chat client.
      * This message can then be rendered successfully.
      */
