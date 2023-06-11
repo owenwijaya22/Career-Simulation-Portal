@@ -8,4 +8,4 @@ const {
 router.route('/:roomId').get(getAllMessage);
 router.route('/').post(addMessage);
 
-module.exports = messageRouter;
+module.exports = router;
