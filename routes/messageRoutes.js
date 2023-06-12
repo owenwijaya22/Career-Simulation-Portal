@@ -5,7 +5,7 @@ const {
   addMessage,
 } = require('../controllers/messageController');
 
-router.route('/:roomId').get(getAllMessage);
-router.route('/').post(addMessage);
+messageRouter.route('/:roomId').get(getAllMessage);
+messageRouter.route('/').post(addMessage);
 
 module.exports = messageRouter;
