@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 dotenv.config({ path: './config.env' });
 
 mongoose
-  .connect('mongodb://db:27017/chats', {
+  .connect('mongodb://db:27017/chats?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
