@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const roomRouter = require('express').Router();
 
 const {
     createRoom,

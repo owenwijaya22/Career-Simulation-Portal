@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const messageRouter = require('express').Router();
 
 const {
   getAllMessage,
