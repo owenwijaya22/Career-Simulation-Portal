@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 
 const messageRoutes = require('./routes/messageRoutes');
+const roomRoutes = require('./routes/roomRoutes');
+
 
 const app = express();
 
@@ -18,5 +20,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/message', messageRoutes);
+app.use('/api/rooms', roomRoutes);
+
 
 module.exports = app;
