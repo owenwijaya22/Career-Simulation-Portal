@@ -8,18 +8,22 @@ services:
     ports:
       - 3000:3000
     restart: on-failure
+    networks:
+      - gpt-simulation
 
   db:
     container_name: db
     image: mongo
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=chat
-      - MONGO_INITDB_ROOT_PASSWORD=pass
-      - MONGO_INITDB_DATABASE=admin
+      MONGODB_INITDB_ROOT_USERNAME: ${MONGODB_INITDB_ROOT_USERNAME}
+      MONGODB_INITDB_ROOT_PASSWORD: ${MONGODB_INITDB_ROOT_PASSWORD}
+
     volumes:
-      - ./db/initdb.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ./db/initdb.js:/docker-entrypoint-initdb.d/initdb.js
     ports:
       - 27017:27017
+    networks:
+      - gpt-simulation
 
 networks:
   gpt-simulation:
