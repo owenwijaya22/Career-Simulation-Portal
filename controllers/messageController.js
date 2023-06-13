@@ -19,15 +19,14 @@ exports.getAllMessage = async (req, res) => {
 
 exports.addMessage = async (req, res) => {
   try {
-    const { to, from, message, timestamp, roomId } = req.body;
+    const {to, from, message, roomId} = req.body;
+    // Since Message.create() also saves the document, no need to call data.save()
     const data = await Message.create({
       to: to,
       from: from,
       message: message,
-      timestamp: timestamp,
       roomId: roomId,
     });
-    await data.save();
     /**
      * Connecting to Python server
      * The answer returned can be transmitted back to the chat client.
@@ -47,7 +46,7 @@ exports.addMessage = async (req, res) => {
       });
     }
   } catch (err) {
-    res.status(404).json({
+    return res.status(404).json({
       status: 'failed',
       message: 'Failed to retrieve messages: ' + err.message,
     });
