@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const messageModel = mongoose.Schema({
+const messageSchema = new mongoose.Schema({
   to: {
     type: String,
     trim: true,
@@ -14,20 +14,18 @@ const messageModel = mongoose.Schema({
   message: {
     type: String,
     trim: true,
-    required: [true, 'A message must have a content'],
+    required: [true, 'A message must have content'],
   },
-  timestamp: {
-    type: Date,
-    default: Date.now(),
-    select: false,
-  },
+  // will be mongoose.Schema.Types.ObjectId
   roomId: {
     type: String,
-    ref: 'ChatRoom',
-    required: [true, 'A message must have a chat room'],
+    ref: 'Room',
+    required: [true, 'A message must belong to a chat room'],
   },
+}, {
+  timestamps: true
 });
 
-const Message = mongoose.model('Message', messageModel);
+const Message = mongoose.model('Message', messageSchema);
 
 module.exports = Message;
