@@ -17,34 +17,39 @@ exports.getAllMessage = async (req, res) => {
   }
 };
 
-try {
-  const { to, from, message, timestamp, roomId } = req.body;
-
-  // Since Message.create() also saves the document, no need to call data.save()
-  const data = await Message.create({ to, from, message, timestamp, roomId });
-
-  /**
-   * Connecting to Python server
-   * The answer returned can be transmitted back to the chat client.
-   * This message can then be rendered successfully.
-   */
-  if (data) {
-    return res.status(200).json({
-      status: 'success',
-      data: {
-        message: 'Chat Added Successfully',
-      },
+exports.addMessage = async (req, res) => {
+  try {
+    const { to, from, message, timestamp, roomId } = req.body;
+    const data = await Message.create({
+      to: to,
+      from: from,
+      message: message,
+      timestamp: timestamp,
+      roomId: roomId,
     });
-  } else {
-    return res.status(400).json({
+    await data.save();
+    /**
+     * Connecting to Python server
+     * The answer returned can be transmitted back to the chat client.
+     * This message can then be rendered successfully.
+     */
+    if (data) {
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          message: 'Chat Added Successfully',
+        },
+      });
+    } else {
+      return res.status(400).json({
+        status: 'failed',
+        message: 'Chat was not added into the database',
+      });
+    }
+  } catch (err) {
+    res.status(404).json({
       status: 'failed',
-      message: 'Chat was not added into the database',
+      message: 'Failed to retrieve messages: ' + err.message,
     });
   }
-
-} catch (err) {
-  return res.status(404).json({
-    status: 'failed',
-    message: 'Failed to retrieve messages: ' + err.message,
-  });
-}
+};
