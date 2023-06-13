@@ -2,29 +2,19 @@ const mongoose = require('mongoose');
 
 const roomSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'User',
     required: true
-  },
-  chatName: {
-    type: String,
-    required: true
-  },
-  latestMessage: {
-    type: String,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
   },
   prompt: {
     type: String,
     required: true
   },
   members: [{
+    // will be mongoose.Schema.Types.ObjectId
     // keep track of which users are in which room
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    type: String,
+    required: true
   }]
 });
 
