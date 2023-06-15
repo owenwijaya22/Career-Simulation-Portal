@@ -43,24 +43,17 @@ db.createCollection('rooms', {
           bsonType: 'string',
           description: 'must be a string and is required',
         },
-        chatName: {
-          bsonType: 'string',
-          description: 'must be a string and is required',
-        },
-        latestMessage: {
-          bsonType: 'string',
-          description: 'must be a string',
-        },
-        createdAt: {
-          bsonType: 'date',
-          description: 'must be a date and is required',
-        },
         prompt: {
           bsonType: 'string',
           description: 'must be a string and is required',
         },
-      },
-    },
-  },
+        members: {
+          bsonType: 'array',
+          description: 'must be an array and is required',
+        }
+      }
+    }
+  }
 });
+
 
