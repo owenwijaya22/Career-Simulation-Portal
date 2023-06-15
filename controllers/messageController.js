@@ -37,6 +37,7 @@ exports.addMessage = async (req, res) => {
         status: 'success',
         data: {
           message: 'Chat Added Successfully',
+          data
         },
       });
     } else {
