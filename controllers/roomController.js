@@ -57,3 +57,38 @@ exports.leaveRoom = async (req, res) => {
     });
   }
 };
+
+exports.getAllRooms = async (req, res) => {
+  try {
+    const rooms = await Room.find();
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        rooms,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'failed',
+      message: err,
+    });
+  }
+}
+
+exports.getRoom = async (req, res) => {
+  try {
+    const room = await Room.findById(req.params.roomId);
+    res.status(200).json({
+      status: 'success',
+      data: {
+        room,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'failed',
+      message: err,
+    });
+  }
+}
