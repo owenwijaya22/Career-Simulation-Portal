@@ -22,6 +22,7 @@ services:
       - ./db/initdb.js:/docker-entrypoint-initdb.d/initdb.js
     ports:
       - 27017:27017
+    restart: on-failure
     networks:
       - gpt-simulation
 
