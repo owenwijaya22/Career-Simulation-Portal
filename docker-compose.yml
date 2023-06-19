@@ -17,6 +17,7 @@ services:
     environment:
       MONGODB_INITDB_ROOT_USERNAME: ${MONGODB_INITDB_ROOT_USERNAME}
       MONGODB_INITDB_ROOT_PASSWORD: ${MONGODB_INITDB_ROOT_PASSWORD}
+      # MONGODB_INITDB_DATABASE: ${MONGODB_INITDB_DATABASE}
 
     volumes:
       - ./db/initdb.js:/docker-entrypoint-initdb.d/initdb.js

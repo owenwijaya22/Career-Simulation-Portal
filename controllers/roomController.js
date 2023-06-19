@@ -92,3 +92,27 @@ exports.getRoom = async (req, res) => {
     });
   }
 }
+
+// exports.joinRoom = async (req, res) => {
+//   try {
+//     const room = await Room.findById(req.params.roomId);
+//     const userIndex = room.users.indexOf(req.user.id);
+
+//     if (userIndex === -1) {
+//       room.members.push(req.user.id);
+//       await room.save();
+//     }
+
+//     res.status(200).json({
+//       status: 'success',
+//       data: {
+//         room,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       status: 'failed',
+//       message: err,
+//     });
+//   }
+// };
