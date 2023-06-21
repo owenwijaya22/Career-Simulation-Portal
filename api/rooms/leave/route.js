@@ -1,17 +1,15 @@
 // pages/api/room/[roomId]/leave.js
 import { leaveRoom } from '../../../controllers/roomController';
+import { NextResponse } from 'next/server';
 
-export default async function handler(req, res) {
-  const { roomId } = req.query;
+export async function PATCH(request, { params }) {
+  const { roomId } = params;
 
-  if (req.method === 'PATCH') {
-    try {
-      const updatedRoom = await leaveRoom(roomId);
-      res.status(200).json(updatedRoom);
-    } catch (err) {
-      res.status(500).json({ error: err.message });
-    }
-  } else {
-    res.status(405).json({ error: "Method not allowed" });
+  try {
+    const updatedRoom = await leaveRoom(roomId);
+    return NextResponse.json(updatedRoom);
+  } catch (err) {
+    console.error(err);
+    return new NextResponse('Internal Server Error', { status: 500 });
   }
 }

@@ -1,28 +1,23 @@
 // pages/api/room/[roomId].js
 import { getRoom, deleteRoom } from '../../../controllers/roomController';
+import { NextResponse } from 'next/server';
 
-export default async function handler(req, res) {
-  const { roomId } = req.query;
-  const { method } = req;
+export async function GET(request, { params }) {
+  try {
+    const room = await getRoom(params.roomId);
+    return NextResponse.json(room);
+  } catch (err) {
+    console.error(err);
+    return new NextResponse('Internal Server Error', { status: 500 });
+  }
+}
 
-  switch (method) {
-    case 'GET':
-      try {
-        const room = await getRoom(roomId);
-        res.status(200).json(room);
-      } catch (err) {
-        res.status(500).json({ error: err.message });
-      }
-      break;
-    case 'DELETE':
-      try {
-        const deletedRoom = await deleteRoom(roomId);
-        res.status(200).json(deletedRoom);
-      } catch (err) {
-        res.status(500).json({ error: err.message });
-      }
-      break;
-    default:
-      res.status(405).json({ error: "Method not allowed" });
+export async function DELETE(request, { params }) {
+  try {
+    const deletedRoom = await deleteRoom(params.roomId);
+    return NextResponse.json(deletedRoom);
+  } catch (err) {
+    console.error(err);
+    return new NextResponse('Internal Server Error', { status: 500 });
   }
 }
