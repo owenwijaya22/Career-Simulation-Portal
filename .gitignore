@@ -1,2 +1,4 @@
 node_modules
 .vscode
+/gpt-simulation.pem
+/ap-southeast-1-bundle.pem
