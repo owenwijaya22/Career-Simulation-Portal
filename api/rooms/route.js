@@ -2,7 +2,7 @@
 import { getAllUsers, createUser } from '../../../controllers/userController';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(request) {
   try {
     const users = await getAllUsers();
     return NextResponse.json(users);
