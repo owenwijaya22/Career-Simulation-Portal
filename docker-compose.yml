@@ -1,0 +1,31 @@
+version: '3.0'
+services:
+  node:
+    container_name: node
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    restart: on-failure
+    networks:
+      - gpt-simulation
+
+  db:
+    container_name: db
+    image: mongo
+    environment:
+      MONGODB_INITDB_ROOT_USERNAME: ${MONGODB_INITDB_ROOT_USERNAME}
+      MONGODB_INITDB_ROOT_PASSWORD: ${MONGODB_INITDB_ROOT_PASSWORD}
+      # MONGODB_INITDB_DATABASE: ${MONGODB_INITDB_DATABASE}
+
+    volumes:
+      - ./db/initdb.js:/docker-entrypoint-initdb.d/initdb.js
+    ports:
+      - 27017:27017
+    restart: on-failure
+    networks:
+      - gpt-simulation
+
+networks:
+  gpt-simulation:
