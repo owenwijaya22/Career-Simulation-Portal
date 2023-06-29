@@ -29,11 +29,11 @@ exports.getAllUsers = async (req, res) => {
     const users = await User.find();
 
     return res.status(200).json({
-        status: 'success',
-        results: users.length,
-        data: {
-          users,
-        },
+      status: 'success',
+      results: users.length,
+      data: {
+        users,
+      },
     });
   } catch (error) {
     return res.status(404).json({ message: 'Error' });
@@ -46,11 +46,11 @@ exports.getUsers = async (req, res) => {
     const users = await User.find({ roomId });
 
     return res.status(200).json({
-        status: 'success',
-        results: users.length,
-        data: {
-          users,
-        },
+      status: 'success',
+      results: users.length,
+      data: {
+        users,
+      },
     });
   } catch (error) {
     return res.status(404).json({ message: 'Error' });
@@ -82,11 +82,15 @@ exports.updateUser = async (req, res) => {
     const { id } = req.params;
     const { email, password } = req.body;
 
-    const updatedUser = await User.findByIdAndUpdate(id, {
-      email,
-      password,
-    }, { new: true });
-    
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      {
+        email,
+        password,
+      },
+      { new: true }
+    );
+
     if (!updatedUser) {
       return res.status(404).json({ message: 'No user found with that ID' });
     }
