@@ -74,6 +74,7 @@ exports.updateCompany = async (req, res) => {
         .status(404)
         .json({ status: 'error', message: 'No company found with that ID' });
     }
+    req.body.modifiedAt = Date.now();
     const updatedCompany = await Company.findByIdAndUpdate({ id }, req.body, {
       new: true,
       runValidators: true,
