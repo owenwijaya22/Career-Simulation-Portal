@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 

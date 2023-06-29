@@ -1,13 +1,13 @@
 const roomRouter = require('express').Router();
 
 const {
-  createRoom,
-  deleteRoom,
-  leaveRoom,
-  getAllRooms,
-  getRoom,
-} = require('../controllers/roomController');
-
+    createRoom,
+    deleteRoom,
+    leaveRoom,
+    getAllRooms,
+    getRoom
+  } = require('../controllers/roomController');
+  
 // Room Routes for the frontend to create buttons that make requests to the endpoints
 roomRouter.route('/').get(getAllRooms); // Get all rooms (for testing purposes
 roomRouter.route('/room').post(createRoom); // Create a new room
