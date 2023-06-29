@@ -3,10 +3,13 @@ const mongoose = require('mongoose');
 
 dotenv.config({ path: './.env' });
 
-// const dbUri = process.env.MONGODB_URI.replace('<password>', process.env.MONGODB_PASSWORD);
+const dbUri = process.env.MONGODB_URI.replace(
+  '<password>',
+  process.env.MONGODB_PASSWORD
+);
 
 mongoose
-  .connect('mongodb://db:27017/chats?authSource=admin', {
+  .connect(dbUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
