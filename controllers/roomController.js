@@ -9,7 +9,7 @@ exports.createRoom = async (req, res) => {
       data: {
         room: newRoom,
       },
-    });     
+    });
   } catch (err) {
     res.status(400).json({
       status: 'failed',
@@ -74,7 +74,7 @@ exports.getAllRooms = async (req, res) => {
       message: err,
     });
   }
-}
+};
 
 exports.getRoom = async (req, res) => {
   try {
@@ -91,7 +91,7 @@ exports.getRoom = async (req, res) => {
       message: err,
     });
   }
-}
+};
 
 // exports.joinRoom = async (req, res) => {
 //   try {
