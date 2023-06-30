@@ -12,18 +12,18 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  //to be added later
-  // chatrooms: {
-  //     type: Schema.Types.ObjectId,
-  // },
-  // prompts: {
-  //     type: Schema.Types.ObjectId,
-  //   },
-  // tasks: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //   }
-  // ]
+  // to be added later
+  chatrooms: {
+      type: Schema.Types.ObjectId,
+  },
+  messages: {
+      type: Schema.Types.ObjectId,
+    },
+  tasks: [
+    {
+      type: Schema.Types.ObjectId,
+    }
+  ]
 });
 
 const User = mongoose.model('User', userSchema);
