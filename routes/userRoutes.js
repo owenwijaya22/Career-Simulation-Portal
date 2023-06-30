@@ -1,4 +1,4 @@
-const userRouter = require('express').Router();
+const router = require('express').Router();
 const {
   createUser,
   getAllUsers,
@@ -9,16 +9,16 @@ const {
 } = require('../controllers/userController');
 
 // create a new user
-userRouter.post('/', createUser);
+router.post('/', createUser);
 // fetch all users
-userRouter.get('/', getAllUsers);
+router.get('/', getAllUsers);
 // fetch users by roomId
-userRouter.get('/:roomId', getUsers);
+router.get('/:roomId', getUsers);
 // fetch a user by ID
-userRouter.get('/:id', getUserById);
+router.get('/:id', getUserById);
 // update a user by ID
-userRouter.put('/:id', updateUser);
+router.put('/:id', updateUser);
 // delete a user by ID
-userRouter.delete('/:id', deleteUser);
+router.delete('/:id', deleteUser);
 
 module.exports = userRouter;
