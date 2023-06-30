@@ -1,11 +1,11 @@
-const express = require('express');
-const morgan = require('morgan');
+import express from 'express';
+import morgan from 'morgan';
 
-const messageRoutes = require('./routes/messageRoutes');
-const roomRoutes = require('./routes/roomRoutes');
-const userRouter = require('./routes/userRoutes');
-const companyRouter = require('./routes/companyRoutes');
-const aiRouter = require('./routes/aiRoutes');
+import messageRouter from './routes/messageRoutes.js';
+import roomRouter from './routes/roomRoutes.js';
+import userRouter from './routes/userRoutes.js';
+import companyRouter from './routes/companyRoutes.js';
+import aiRouter from './routes/aiRoutes.js';
 
 const app = express();
 
@@ -21,10 +21,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/message', messageRoutes);
-app.use('/api/rooms', roomRoutes);
+app.use('/api/message', messageRouter);
+app.use('/api/rooms', roomRouter);
 app.use('/api/users', userRouter);
 app.use('/api/company', companyRouter);
 app.use('/api/ai-user', aiRouter);
 
-module.exports = app;
+export default app;

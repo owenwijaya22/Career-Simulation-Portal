@@ -1,11 +1,10 @@
-const messageRouter = require('express').Router();
+import { Router } from 'express';
 
-const {
-  getAllMessage,
-  addMessage,
-} = require('../controllers/messageController');
+import { getAllMessage, addMessage } from '../controllers/messageController.js';
+
+const messageRouter = Router();
 
 messageRouter.route('/:roomId').get(getAllMessage);
 messageRouter.route('/').post(addMessage);
 
-module.exports = messageRouter;
+export default messageRouter;

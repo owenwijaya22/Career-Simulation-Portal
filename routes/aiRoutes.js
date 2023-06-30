@@ -1,14 +1,15 @@
-const router = require('express').Router();
-
-const {
+import { Router } from 'express';
+import {
   createAI,
   getAllAIs,
   getAIById,
   updateAI,
   deleteAI,
-} = require('../controllers/aiController');
+} from '../controllers/aiController.js';
 
-router.route('/').get(getAllAIs).post(createAI);
-router.route('/:id').get(getAIById).put(updateAI).delete(deleteAI);
+const airouter = Router();
 
-module.exports = router;
+airouter.route('/').get(getAllAIs).post(createAI);
+airouter.route('/:id').get(getAIById).put(updateAI).delete(deleteAI);
+
+export default airouter;

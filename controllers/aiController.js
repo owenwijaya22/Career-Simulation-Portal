@@ -1,6 +1,6 @@
-const AI = require('../models/aiModel');
+import AI from '../models/aiModel.js';
 
-exports.createAI = async (req, res) => {
+export async function createAI(req, res) {
   try {
     if (!req.body.name || !req.body.image || !req.body.prompt) {
       return res.status(400).json({ message: 'Missing Fields' });
@@ -19,9 +19,9 @@ exports.createAI = async (req, res) => {
       message: error.message,
     });
   }
-};
+}
 
-exports.getAllAIs = async (req, res) => {
+export async function getAllAIs(req, res) {
   try {
     const ais = await AI.find();
     if (!ais) {
@@ -40,9 +40,9 @@ exports.getAllAIs = async (req, res) => {
       message: error.message,
     });
   }
-};
+}
 
-exports.getAIById = async (req, res) => {
+export async function getAIById(req, res) {
   try {
     const { id } = req.params;
     const ai = await AI.findById(id);
@@ -60,9 +60,9 @@ exports.getAIById = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ status: 'error', message: error.message });
   }
-};
+}
 
-exports.updateAI = async (req, res) => {
+export async function updateAI(req, res) {
   try {
     const { id } = req.params;
     const ai = await AI.findById(id);
@@ -83,9 +83,9 @@ exports.updateAI = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ status: 'error', message: error.message });
   }
-};
+}
 
-exports.deleteAI = async (req, res) => {
+export async function deleteAI(req, res) {
   try {
     const { id } = req.params;
     const ai = await AI.findById(id);
@@ -102,4 +102,4 @@ exports.deleteAI = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ status: 'error', message: error.message });
   }
-};
+}

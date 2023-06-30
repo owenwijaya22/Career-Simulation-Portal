@@ -1,6 +1,6 @@
-const Company = require('../models/companyModel');
+import Company from '../models/companyModel.js';
 
-exports.getAllCompanies = async (req, res) => {
+export async function getAllCompanies(req, res) {
   try {
     const companies = await Company.find();
     if (!companies) {
@@ -17,9 +17,9 @@ exports.getAllCompanies = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ status: 'error', message: error.message });
   }
-};
+}
 
-exports.getCompanyById = async (req, res) => {
+export async function getCompanyById(req, res) {
   try {
     const { id } = req.params;
     const company = await Company.findById(id);
@@ -37,9 +37,9 @@ exports.getCompanyById = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ status: 'error', message: error.message });
   }
-};
+}
 
-exports.createCompany = async (req, res) => {
+export async function createCompany(req, res) {
   try {
     // const { name, address, phone, email } = req.body;
     if (
@@ -63,9 +63,9 @@ exports.createCompany = async (req, res) => {
   } catch (error) {
     return res.status(400).json({ status: 'error', message: error.message });
   }
-};
+}
 
-exports.updateCompany = async (req, res) => {
+export async function updateCompany(req, res) {
   try {
     const { id } = req.params;
     const company = await Company.findById(id);
@@ -85,9 +85,9 @@ exports.updateCompany = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ status: 'error', message: error.message });
   }
-};
+}
 
-exports.deleteCompany = async (req, res) => {
+export async function deleteCompany(req, res) {
   try {
     const { id } = req.params;
     const company = await Company.findById(id);
@@ -101,4 +101,4 @@ exports.deleteCompany = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ status: 'error', message: error.message });
   }
-};
+}

@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const aiSchema = new mongoose.Schema({
+const aiSchema = new Schema({
   name: {
     type: String,
     required: [true, 'An AI must have a name'],
@@ -24,6 +24,6 @@ const aiSchema = new mongoose.Schema({
   },
 });
 
-const AI = mongoose.model('AI', aiSchema);
+const AI = model('AI', aiSchema);
 
-module.exports = AI;
+export default AI;

@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const companyScheme = new mongoose.Schema({
+const companyScheme = new Schema({
   name: {
     type: String,
     required: [true, 'A company must have a name'],
@@ -33,6 +33,6 @@ const companyScheme = new mongoose.Schema({
   },
 });
 
-const Company = mongoose.model('Company', companyScheme);
+const Company = model('Company', companyScheme);
 
-module.exports = Company;
+export default Company;

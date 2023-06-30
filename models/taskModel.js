@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose, { Schema as _Schema, model } from 'mongoose';
+
+const { Schema } = mongoose;
 
 // represents each individual steps in one task
 const TaskTemplateSchema = new Schema({
@@ -20,40 +21,41 @@ const TaskTemplateSchema = new Schema({
 });
 
 // each task contains an array of TaskTemplate objects; a sequence of steps
-const TaskSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
-    trim: true,
+const TaskSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      trim: true,
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+    user: {
+      type: _Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
+    company: {
+      type: _Schema.Types.ObjectId,
+      required: true,
+      ref: 'Company',
+    },
+    taskType: {
+      type: String,
+      required: true,
+    },
+    templates: [TaskTemplateSchema], // an array of TaskTemplate objects
   },
-  description: {
-    type: String,
-    trim: true,
-  },
-  completed: {
-    type: Boolean,
-    default: false,
-  },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'User',
-  },
-  company: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'Company',
-  },
-  taskType: {
-    type: String,
-    required: true,
-  },
-  templates: [TaskTemplateSchema], // an array of TaskTemplate objects
-}, {
-  timestamps: true,
-});
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = {
-  Task: mongoose.model('Task', TaskSchema),
-  TaskTemplate: mongoose.model('TaskTemplate', TaskTemplateSchema),
-};
+export const Task = model('Task', TaskSchema);
+export const TaskTemplate = model('TaskTemplate', TaskTemplateSchema);

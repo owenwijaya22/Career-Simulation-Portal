@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose, { model } from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -14,18 +14,18 @@ const userSchema = new Schema({
   },
   // to be added later
   chatrooms: {
-      type: Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
   },
   messages: {
-      type: Schema.Types.ObjectId,
-    },
+    type: Schema.Types.ObjectId,
+  },
   tasks: [
     {
       type: Schema.Types.ObjectId,
-    }
-  ]
+    },
+  ],
 });
 
-const User = mongoose.model('User', userSchema);
+const User = model('User', userSchema);
 
-module.exports = User;
+export default User;

@@ -1,8 +1,8 @@
-const Room = require('../models/roomModel');
+import Rooms from '../models/roomModel.js';
 
-exports.createRoom = async (req, res) => {
+export async function createRoom(req, res) {
   try {
-    const newRoom = await Room.create(req.body);
+    const newRoom = await Rooms.create(req.body);
 
     res.status(201).json({
       status: 'success',
@@ -16,11 +16,11 @@ exports.createRoom = async (req, res) => {
       message: err,
     });
   }
-};
+}
 
-exports.deleteRoom = async (req, res) => {
+export async function deleteRoom(req, res) {
   try {
-    await Room.findByIdAndDelete(req.params.roomId);
+    await Rooms.findByIdAndDelete(req.params.roomId);
 
     res.status(204).json({
       status: 'success',
@@ -32,11 +32,11 @@ exports.deleteRoom = async (req, res) => {
       message: err,
     });
   }
-};
+}
 
-exports.leaveRoom = async (req, res) => {
+export async function leaveRoom(req, res) {
   try {
-    const room = await Room.findById(req.params.roomId);
+    const room = await Rooms.findById(req.params.roomId);
     const userIndex = room.users.indexOf(req.user.id);
 
     if (userIndex > -1) {
@@ -56,11 +56,11 @@ exports.leaveRoom = async (req, res) => {
       message: err,
     });
   }
-};
+}
 
-exports.getAllRooms = async (req, res) => {
+export async function getAllRooms(req, res) {
   try {
-    const rooms = await Room.find();
+    const rooms = await Rooms.find();
 
     res.status(200).json({
       status: 'success',
@@ -74,11 +74,11 @@ exports.getAllRooms = async (req, res) => {
       message: err,
     });
   }
-};
+}
 
-exports.getRoom = async (req, res) => {
+export async function getRoom(req, res) {
   try {
-    const room = await Room.findById(req.params.roomId);
+    const room = await Rooms.findById(req.params.roomId);
     res.status(200).json({
       status: 'success',
       data: {
@@ -91,7 +91,7 @@ exports.getRoom = async (req, res) => {
       message: err,
     });
   }
-};
+}
 
 // exports.joinRoom = async (req, res) => {
 //   try {

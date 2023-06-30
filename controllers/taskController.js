@@ -1,6 +1,6 @@
-const Task = require('./models/Task');
+import Task from '../models/taskModel.js';
 
-exports.createTask = async (req, res) => {
+export async function createTask(req, res) {
   try {
     const task = new Task(req.body);
     await task.save();
@@ -8,18 +8,18 @@ exports.createTask = async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
-};
+}
 
-exports.getUserTasks = async (req, res) => {
+export async function getUserTasks(req, res) {
   try {
     const tasks = await Task.find({ user: req.params.userId });
     res.send(tasks);
   } catch (error) {
     res.status(500).send();
   }
-};
+}
 
-exports.getTask = async (req, res) => {
+export async function getTask(req, res) {
   try {
     const task = await Task.findById(req.params.id);
     if (!task) {
@@ -29,11 +29,14 @@ exports.getTask = async (req, res) => {
   } catch (error) {
     res.status(500).send();
   }
-};
+}
 
-exports.updateTask = async (req, res) => {
+export async function updateTask(req, res) {
   try {
-    const task = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
     if (!task) {
       return res.status(404).send();
     }
@@ -41,9 +44,9 @@ exports.updateTask = async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
-};
+}
 
-exports.deleteTask = async (req, res) => {
+export async function deleteTask(req, res) {
   try {
     const task = await Task.findByIdAndDelete(req.params.id);
     if (!task) {
@@ -53,5 +56,4 @@ exports.deleteTask = async (req, res) => {
   } catch (error) {
     res.status(500).send();
   }
-};
-
+}

@@ -1,18 +1,20 @@
-const router = require('express').Router();
+import { Router } from 'express';
 
-const {
+import {
   createCompany,
   getAllCompanies,
   getCompanyById,
   updateCompany,
   deleteCompany,
-} = require('../controllers/companyController');
+} from '../controllers/companyController.js';
 
-router.route('/').get(getAllCompanies).post(createCompany);
-router
+const companyRouter = Router();
+
+companyRouter.route('/').get(getAllCompanies).post(createCompany);
+companyRouter
   .route('/:id')
   .get(getCompanyById)
   .put(updateCompany)
   .delete(deleteCompany);
 
-module.exports = router;
+export default companyRouter;
