@@ -1,10 +1,18 @@
 import mongoose from 'mongoose';
 
 const choiceSchema = new mongoose.Schema({
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: [true, 'A choice must have an id'],
+  },
   value: {
     type: String,
     required: [true, 'A choice must have a value'],
     trim: true,
+  },
+  order: {
+    type: Number,
+    required: [true, 'A choice must have an order'],
   },
 });
 
