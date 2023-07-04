@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import {
   createTask,
-  getUserTasks,
+  getCompanyTasks,
   getTask,
   updateTask,
   deleteTask,
@@ -10,7 +10,7 @@ import {
 const taskRouter = Router();
 
 taskRouter.post('/', createTask);
-taskRouter.get('/user/:userId', getUserTasks);
+taskRouter.get('/company/:companyId', getCompanyTasks);
 taskRouter.get('/:id', getTask);
 taskRouter.patch('/:id', updateTask);
 taskRouter.delete('/:id', deleteTask);
