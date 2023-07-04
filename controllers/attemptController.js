@@ -53,9 +53,10 @@ export async function createAttempt(req, res) {
         }
         const {userId, companyId, startTime, endTime, taskIds} = req.body;
         const newAttempt = new Attempt({ userId, companyId, startTime, endTime });
-        taskIds.forEach((taskId) => {
-            newAttempt.taskIds.push({ taskId, complete: false });
+        taskIds.forEach((task) => {
+            newAttempt.taskIds.push({ taskId: task.taskId, complete: task.complete });
         });
+        
         await newAttempt.save();
 
         // Populate the taskIds field
@@ -103,7 +104,6 @@ export async function completeTask(req, res) {
 }
 
  
-
 export async function deleteAttempt(req, res) {
     try {
         const { id } = req.params;
@@ -124,20 +124,16 @@ export async function deleteAttempt(req, res) {
 
 export async function updateAttempt(req, res) {
     try {
-      // Find the task first
       let task = await Task.findById(req.params.id);
       
       if (!task) {
         return res.status(404).json({ status: 'error', message: 'Task not found.' });
       }
   
-      // Calculate the duration of the current session
       let sessionDuration = Date.now() - task.startTime;
       
-      // Update the total duration of the task
       task.duration += sessionDuration;
   
-      // Save the updated task
       await task.save();
       
       return res.status(200).json({
