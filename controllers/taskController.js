@@ -29,9 +29,9 @@ export async function createTask(req, res) {
   }
 }
 
-export async function getUserTasks(req, res) {
+export async function getCompanyTasks(req, res) {
   try {
-    const tasks = await Task.find({ user: req.params.userId });
+    const tasks = await Task.find({ company: req.params.companyId });
     res.send(tasks);
   } catch (error) {
     res.status(500).send();
