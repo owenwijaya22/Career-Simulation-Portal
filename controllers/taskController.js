@@ -1,18 +1,37 @@
-import Task from '../models/taskModel.js';
+import { Task, TaskTemplate } from '../models/taskModel.js';
+
+import { Types } from 'mongoose';
 
 export async function createTask(req, res) {
   try {
-    const task = new Task(req.body);
-    await task.save();
-    res.status(201).send(task);
+    const { title, description, completed, company, taskType, templates } = req.body;
+    const newTask = new Task({ title, description, completed, company, taskType });
+    
+    templates.forEach((template, index) => {
+      const newTemplate = new TaskTemplate({
+        _id: new Types.ObjectId(),
+        name: template.name,
+        desc : template.desc,
+        order: index+1,
+      });
+      newTask.templates.push(newTemplate);
+    }); 
+    await newTask.save();
+
+    return res.status(200).json({
+      status: 'success',
+      data: {
+        newTask,
+      },
+    });
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(500).json({ status: 'error', message: error.message });
   }
 }
 
-export async function getUserTasks(req, res) {
+export async function getCompanyTasks(req, res) {
   try {
-    const tasks = await Task.find({ user: req.params.userId });
+    const tasks = await Task.find({ company: req.params.companyId });
     res.send(tasks);
   } catch (error) {
     res.status(500).send();

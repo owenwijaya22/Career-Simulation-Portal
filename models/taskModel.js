@@ -10,7 +10,7 @@ const TaskTemplateSchema = new Schema({
     required: true,
     trim: true,
   },
-  description: {
+  desc: {
     type: String,
     trim: true,
   },
@@ -36,11 +36,11 @@ const TaskSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    user: {
-      type: _Schema.Types.ObjectId,
-      required: true,
-      ref: 'User',
-    },
+    // user: {
+    //   type: _Schema.Types.ObjectId,
+    //   required: true,
+    //   ref: 'User',
+    // },
     company: {
       type: _Schema.Types.ObjectId,
       required: true,
