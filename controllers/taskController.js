@@ -1,5 +1,7 @@
 import { Task, TaskTemplate } from '../models/taskModel.js';
 
+import { Types } from 'mongoose';
+
 export async function createTask(req, res) {
   try {
     const { title, description, completed, company, taskType, templates } = req.body;
@@ -7,8 +9,8 @@ export async function createTask(req, res) {
     
     templates.forEach((template, index) => {
       const newTemplate = new TaskTemplate({
-        _id: new mongoose.Types.ObjectId(),
-        title: template.title,
+        _id: new Types.ObjectId(),
+        name: template.name,
         desc : template.desc,
         order: index+1,
       });
