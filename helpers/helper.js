@@ -1,3 +1,6 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-undef */
 import { config } from 'dotenv';
 import { connect } from 'mongoose';
 import fs from 'fs';
@@ -18,7 +21,9 @@ connect(dbUri, {
 const modelName = process.argv[3];
 const Model = require(`../models/${modelName}Model`);
 
-const data = JSON.parse(fs.readFileSync(`${__dirname}/data/${modelName}.json`, 'utf-8'));
+const data = JSON.parse(
+  fs.readFileSync(`${__dirname}/data/${modelName}.json`, 'utf-8')
+);
 
 const importData = async () => {
   try {
