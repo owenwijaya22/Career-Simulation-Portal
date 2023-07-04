@@ -6,6 +6,7 @@ import roomRouter from './routes/roomRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import companyRouter from './routes/companyRoutes.js';
 import aiRouter from './routes/aiRoutes.js';
+import questionRouter from './routes/questionRoutes.js';
 import taskRouter from './routes/taskRoutes.js';
 import attemptRouter from './routes/attemptRoutes.js';
 
@@ -28,6 +29,7 @@ app.use('/api/rooms', roomRouter);
 app.use('/api/users', userRouter);
 app.use('/api/company', companyRouter);
 app.use('/api/ai-user', aiRouter);
+app.use('/api/questions', questionRouter);
 app.use('/api/tasks', taskRouter);
 app.use('/api/attempts', attemptRouter);
 
