@@ -1,4 +1,4 @@
-import mongoose, { Task, TaskTemplate } from '../models/taskModel.js';
+import { Task, TaskTemplate } from '../models/taskModel.js';
 
 export async function createTask(req, res) {
   try {
