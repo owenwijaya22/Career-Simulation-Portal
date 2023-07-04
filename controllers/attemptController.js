@@ -1,4 +1,4 @@
-import Attempt from "../models/attemptModel";
+import Attempt from "../models/attemptModel.js";
 
 export async function getAllAttempts(req, res) {
     try {
@@ -148,3 +148,33 @@ export async function deleteAttempt(req, res) {
         return res.status(500).json({ status: "error", message: error.message });
     }
 }
+
+export async function updateAttempt(req, res) {
+    try {
+      // Find the task first
+      let task = await Task.findById(req.params.id);
+      
+      if (!task) {
+        return res.status(404).json({ status: 'error', message: 'Task not found.' });
+      }
+  
+      // Calculate the duration of the current session
+      let sessionDuration = Date.now() - task.startTime;
+      
+      // Update the total duration of the task
+      task.duration += sessionDuration;
+  
+      // Save the updated task
+      await task.save();
+      
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          task: task
+        }
+      });
+    } catch (error) {
+      return res.status(500).json({ status: 'error', message: error.message });
+    }
+  }
+  
