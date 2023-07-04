@@ -5,7 +5,6 @@ import {
   createAttempt,
   updateAttempt,
   deleteAttempt,
-  updateTask
 } from '../controllers/attemptController.js';
 
 const router = express.Router();
