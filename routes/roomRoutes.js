@@ -1,5 +1,4 @@
 import { Router } from 'express';
-
 import {
   createRoom,
   deleteRoom,
@@ -10,12 +9,47 @@ import {
 
 const roomRouter = Router();
 
-// Room Routes for the frontend to create buttons that make requests to the endpoints
-roomRouter.route('/').get(getAllRooms); // Get all rooms (for testing purposes
-roomRouter.route('/room').post(createRoom); // Create a new room
-roomRouter.route('/room/:roomId').get(getRoom); // Get room info
-roomRouter.route('/room/:roomId').delete(getRoom); // Get a room by its ID
-roomRouter.route('/room/:roomId').delete(deleteRoom); // Delete a room by its ID
-roomRouter.route('/room/:roomId/leave').patch(leaveRoom); // Remove the current user from a room
+/**
+ * GET /api/rooms
+ * @summary This endpoint retrieves all rooms
+ * @tags rooms
+ * @return {object} 200 - Success response - application/json
+ */
+roomRouter.route('/').get(getAllRooms);
+
+/**
+ * POST /api/room
+ * @summary This endpoint creates a new room
+ * @tags rooms
+ * @return {object} 201 - Success response - application/json
+ */
+roomRouter.route('/room').post(createRoom);
+
+/**
+ * GET /api/room/:roomId
+ * @summary This endpoint retrieves a room by ID
+ * @tags rooms
+ * @param {string} roomId.path - required
+ * @return {object} 200 - Success response - application/json
+ */
+roomRouter.route('/room/:roomId').get(getRoom);
+
+/**
+ * DELETE /api/room/:roomId
+ * @summary This endpoint deletes a room by ID
+ * @tags rooms
+ * @param {string} roomId.path - required
+ * @return {object} 204 - Success response - application/json
+ */
+roomRouter.route('/room/:roomId').delete(deleteRoom);
+
+/**
+ * PATCH /api/room/:roomId/leave
+ * @summary This endpoint allows a user to leave a room
+ * @tags rooms
+ * @param {string} roomId.path - required
+ * @return {object} 200 - Success response - application/json
+ */
+roomRouter.route('/room/:roomId/leave').patch(leaveRoom);
 
 export default roomRouter;
