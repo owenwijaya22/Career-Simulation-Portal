@@ -15,13 +15,38 @@ const router = express.Router();
  * @tags attempts
  * @return {object} 200 - Success response - application/json
  */
+router.route('/').get(getAllAttempts)
+
 /**
  * POST /api/attempts
  * @summary This endpoint creates a new attempt
  * @tags attempts
+ * @param {object} request.body.required - attempt info
+ * @param {string} request.body.required.userId - userId 
+ * @param {string} request.body.required.companyId - companyId 
+ * @param {string} request.body.required.startTime - startTime of attempt
+ * @param {string} request.body.endTime - endTime of attempt
+ * @param {array<object>} request.body.required.taskIds - array of taskIds objects
+ * @param {string} request.body.required.taskIds.taskId - taskId 
+ * @param {boolean} request.body.required.taskIds.complete - task completion status
  * @return {object} 201 - Success response - application/json
+ * @return {object} 400 - Bad request response
+ * @return {object} 500 - Unexpected error response
+ * @example request - Example request body
+ * {
+ *   "userId": "60ddc9738541973b9caed209",
+ *   "companyId": "60ddc9738541973b9caed210",
+ *   "startTime": "2023-07-04T10:30:00Z",
+ *   "endTime": "2023-07-04T12:00:00Z",
+ *   "taskIds": [
+ *     {
+ *       "taskId": "64a38f2f863a68a02809c0bc",
+ *       "complete": false
+ *     }
+ *   ]
+ * }
  */
-router.route('/').get(getAllAttempts).post(createAttempt);
+router.route('/').post(createAttempt);
 
 /**
  * GET /api/attempts/:id
