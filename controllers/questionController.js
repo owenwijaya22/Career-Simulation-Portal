@@ -11,7 +11,7 @@ const createQuestion = async (req, res) => {
     choices.forEach((choice, index) => {
       const newChoice = new Choice({
         _id: new mongoose.Types.ObjectId(),
-        choice: choice,
+        value: choice.value,
         order: index + 1,
       });
       newQuestion.choices.push(newChoice);
