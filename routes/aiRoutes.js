@@ -11,104 +11,10 @@ const airouter = Router();
 
 /**
  * GET /api/ai
- * @summary Retrieves all existing AI instances
+ * @summary This endpoint retrieves all AI instances
  * @tags ai
- * @return {object} 200 - Success response containing an array of AI objects in "data.ais" property, and the total number of AI instances in "results" property - application/json
- * @example response - 200 - example response
- * {
- *   "status": "success",
- *   "results": 2,
- *   "data": {
- *     "ais": [
- *       {
- *         "id": "123",
- *         "name": "AI Name",
- *         "image": "AI Image URL",
- *         "prompt": "AI Prompt"
- *       }
- *     ]
- *   }
- * }
- */
-
-/**
- * POST /api/ai
- * @summary Creates a new AI instance
- * @tags ai
- * @param {object} request.body.required - AI information to be created, must contain "name", "image", and "prompt" properties
- * @return {object} 201 - Success response containing the created AI object in "data.ai" property - application/json
- * @example request - application/json
- * {
- *   "name": "New AI",
- *   "image": "AI Image URL",
- *   "prompt": "AI Prompt"
- * }
- * @example response - 201 - example response
- * {
- *   "status": "success",
- *   "data": {
- *     "ai": {
- *       "id": "123",
- *       "name": "New AI",
- *       "image": "AI Image URL",
- *       "prompt": "AI Prompt"
- *     }
- *   }
- * }
- */
-airouter.route('/').get(getAllAIs).post(createAI);
-
-/**
- * GET /api/ai/:id
- * @summary Retrieves a specific AI by its ID
- * @tags ai
- * @param {string} id.path.required - ID of the AI to be retrieved
- * @return {object} 200 - Success response containing the retrieved AI object in "data.ai" property - application/json
- * @example response - 200 - example response
- * {
- *   "status": "success",
- *   "data": {
- *     "ai": {
- *       "id": "123",
- *       "name": "AI Name",
- *       "image": "AI Image URL",
- *       "prompt": "AI Prompt"
- *     }
- *   }
- * }
- */
-/**
- * PUT /api/ai/:id
- * @summary Updates a specific AI by its ID
- * @tags ai
- * @param {string} id.path.required - ID of the AI to be updated
- * @param {object} request.body.required - Updated AI information, "name", "image", and/or "prompt" properties can be included
- * @return {object} 200 - Success response containing the updated AI object in "data.ai" property - application/json
- * @example response - 200 - example response
- * {
- *   "status": "success",
- *   "data": {
- *     "ai": {
- *       "id": "123",
- *       "name": "Updated AI Name",
- *       "image": "Updated AI Image URL",
- *       "prompt": "Updated AI Prompt",
- *       "modifiedAt": "2023-01-01T01:00:00Z"
- *     }
- *   }
- * }
- */
-
-/**
- * DELETE /api/ai/:id
- * @summary DeletesSure, here's the updated documentation using express-jsdoc-swagger formatting:
-
-/**
- * GET /api/ai
- * @summary Retrieves all existing AI instances
- * @tags ai
- * @return {object} 200 - Success response containing an array of AI objects in "data.ais" property, and the total number of AI instances in "results" property - application/json
- * @example response - 200 - example response
+ * @return {object} 200 - Success response containing an array of AI objects - application/json
+ * @example response - 200 - Example response
  * {
  *   "status": "success",
  *   "results": 2,
@@ -118,26 +24,32 @@ airouter.route('/').get(getAllAIs).post(createAI);
  *         "_id": "123",
  *         "name": "AI Name",
  *         "image": "AI Image URL",
- *         "prompt": "AI Prompt"
+ *         "prompt": "AI Prompt",
+ *         "createdAt": "2023-01-01T00:00:00Z",
+ *         "modifiedAt": "2023-01-01T00:00:00Z"
  *       }
  *     ]
  *   }
  * }
  */
+airouter.route('/').get(getAllAIs)
 
 /**
  * POST /api/ai
- * @summary Creates a new AI instance
+ * @summary This endpoint creates a new AI instance
  * @tags ai
- * @param {object} request.body.required - AI information to be created, must contain "name", "image", and "prompt" properties
- * @return {object} 201 - Success response containing the created AI object in "data.ai" property - application/json
+ * @param {object} request.body.required - AI info to be created
+ * @param {string} request.body.name - AI name
+ * @param {string} request.body.image - AI image URL
+ * @param {string} request.body.prompt - AI prompt
+ * @return {object} 201 - Success response containing the created AI object - application/json
  * @example request - application/json
  * {
- *   "name": "New AI",
- *   "image": "AI Image URL",
- *   "prompt": "AI Prompt"
+ *    "name": "New AI",
+ *    "image": "AI Image URL",
+ *    "prompt": "AI Prompt"
  * }
- * @example response - 201 - example response
+ * @example response - 201 - Example response
  * {
  *   "status": "success",
  *   "data": {
@@ -145,20 +57,23 @@ airouter.route('/').get(getAllAIs).post(createAI);
  *       "_id": "123",
  *       "name": "New AI",
  *       "image": "AI Image URL",
- *       "prompt": "AI Prompt"
+ *       "prompt": "AI Prompt",
+ *       "createdAt": "2023-01-01T00:00:00Z",
+ *       "modifiedAt": "2023-01-01T00:00:00Z"
  *     }
  *   }
  * }
  */
-airouter.route('/').get(getAllAIs).post(createAI);
+airouter.route('/').post(createAI);
+
 
 /**
- * GET /api/ai/:id
- * @summary Retrieves a specific AI by its ID
+ *  GET /api/ai/:id
+ * @summary This endpoint retrieves an AI by ID
  * @tags ai
- * @param {string} id.path.required - ID of the AI to be retrieved
- * @return {object} 200 - Success response containing the retrieved AI object in "data.ai" property - application/json
- * @example response - 200 - example response
+ * @param {string} id.path.required - AI ID
+ * @return {object} 200 - Success response containing the retrieved AI object - application/json
+ * @example response - 200 - Example response
  * {
  *   "status": "success",
  *   "data": {
@@ -166,19 +81,24 @@ airouter.route('/').get(getAllAIs).post(createAI);
  *       "_id": "123",
  *       "name": "AI Name",
  *       "image": "AI Image URL",
- *       "prompt": "AI Prompt"
+ *       "prompt": "AI Prompt",
+ *       "createdAt": "2023-01-01T00:00:00Z",
+ *       "modifiedAt": "2023-01-01T00:00:00Z"
  *     }
  *   }
  * }
  */
 /**
- * PUT /api/ai/:id
- * @summary Updates a specific AI by its ID
+ *  PUT /api/ai/:id
+ * @summary This endpoint updates an AI by ID
  * @tags ai
- * @param {string} id.path.required - ID of the AI to be updated
- * @param {object} request.body.required - Updated AI information, "name", "image", and/or "prompt" properties can be included
- * @return {object} 200 - Success response containing the updated AI object in "data.ai" property - application/json
- * @example response - 200 - example response
+ * @param {string} id.path.required - AI ID
+ * @param {object} request.body.required - AI info to be updated
+* @param {string} request.body.name - Updated AI name
+ * @param {string} request.body.image - Updated AI image URL
+ * @param {string} request.body.prompt - Updated AI prompt
+ * @return {object} 200 - Success response containing the updated AI object - application/json
+ * @example response - 200 - Example response
  * {
  *   "status": "success",
  *   "data": {
@@ -187,18 +107,19 @@ airouter.route('/').get(getAllAIs).post(createAI);
  *       "name": "Updated AI Name",
  *       "image": "Updated AI Image URL",
  *       "prompt": "Updated AI Prompt",
+ *       "createdAt": "2023-01-01T00:00:00Z",
  *       "modifiedAt": "2023-01-01T01:00:00Z"
  *     }
  *   }
  * }
  */
 /**
- * DELETE /api/ai/:id
- * @summary Deletesa specific AI by its ID
+ *  DELETE /api/ai/:id
+ * @summary This endpoint deletes an AI by ID
  * @tags ai
- * @param {string} id.path.required - ID of the AI to be deleted
+ * @param {string} id.path.required - AI ID
  * @return {object} 204 - Success response with no content - application/json
- * @example response - 204 - example response
+ * @example response - 204 - Example response
  * {
  *   "status": "success",
  *   "data": null
