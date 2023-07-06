@@ -19,7 +19,7 @@ const AttemptSchema = new Schema({
   endTime: {
     type: Date,
   },
-  taskIds: [
+  tasks: [
     {
       taskId: {
         type: Schema.Types.ObjectId,
