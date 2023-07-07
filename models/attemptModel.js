@@ -4,32 +4,34 @@ const AttemptSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
   },
   companyId: {
     type: Schema.Types.ObjectId,
     ref: 'Company',
-    required: true
+    required: true,
   },
   startTime: {
     type: Date,
     default: Date.now,
-    required: true
+    required: true,
   },
   endTime: {
-    type: Date
+    type: Date,
   },
-  taskIds: [{
-    taskId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Task',
-      required: true
+  tasks: [
+    {
+      taskId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Task',
+        required: true,
+      },
+      complete: {
+        type: Boolean,
+        default: false,
+      },
     },
-    complete: {
-      type: Boolean,
-      default: false
-    }
-  }]
+  ],
 });
 
 const Attempt = model('Attempt', AttemptSchema);

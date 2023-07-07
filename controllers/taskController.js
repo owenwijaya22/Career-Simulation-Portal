@@ -1,21 +1,27 @@
-import { Task, TaskTemplate } from '../models/taskModel.js';
-
 import { Types } from 'mongoose';
+import { Task, TaskTemplate } from '../models/taskModel.js';
 
 export async function createTask(req, res) {
   try {
-    const { title, description, completed, company, taskType, templates } = req.body;
-    const newTask = new Task({ title, description, completed, company, taskType });
-    
+    const { title, description, completed, company, taskType, templates } =
+      req.body;
+    const newTask = new Task({
+      title,
+      description,
+      completed,
+      company,
+      taskType,
+    });
+
     templates.forEach((template, index) => {
       const newTemplate = new TaskTemplate({
         _id: new Types.ObjectId(),
         name: template.name,
-        desc : template.desc,
-        order: index+1,
+        desc: template.desc,
+        order: index + 1,
       });
       newTask.templates.push(newTemplate);
-    }); 
+    });
     await newTask.save();
 
     return res.status(200).json({
