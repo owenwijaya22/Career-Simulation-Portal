@@ -18,7 +18,7 @@ const userRouter = Router();
  * @param {string} request.body.email.required - The email of the user. Must be unique across all users.
  * @param {string} request.body.password.required - The password of the user. Will be hashed before storage.
  * @return {object} 201 - Returns the created user object.
- * @example request - example request body
+ * @example request - application/json
  * {
  *    "email": "johndoe@example.com",
  *    "password": "securepassword123"
@@ -54,14 +54,14 @@ userRouter.get('/:id', getUserById);
 
 /**
  * PUT /api/users/:id
- * @summary This endpoint updates a user by ID. 
+ * @summary This endpoint updates a user by ID.
  * @tags users
  * @param {string} id.path.required - User ID to update.
  * @param {object} request.body.required - The new data for the user.
  * @param {string} request.body.email - The new email for the user.
  * @param {string} request.body.password - The new password for the user.
  * @return {object} 200 - Returns the updated user object.
- * @example request - Example request body
+ * @example request - application/json
  * {
  *    "email": "johndoeupdated@example.com",
  *    "password": "newsecurepassword123"

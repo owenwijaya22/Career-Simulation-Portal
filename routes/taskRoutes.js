@@ -26,7 +26,7 @@ const router = Router();
  * @return {object} 201 - Success response - application/json
  * @return {object} 400 - Bad request response
  * @return {object} 500 - Unexpected error response
- * @example request - Example request body
+ * @example request - application/json
  * {
  *   "title": "Market Research",
  *   "description": "Conduct market research to identify new business opportunities",

@@ -25,7 +25,7 @@ questionRouter.route('/').get(getQuestions);
  * @param {string} request.body.required.choices.value - The choice value
  * @param {number} request.body.required.choices.order - The order of the choice
  * @return {object} 201 - Success response - application/json
- * @example request - Example request body
+ * @example request - application/json
  * {
  *   "question": "What is the color of the sky?",
  *   "task_id": "60e73bdf5b3c593b2c5b191e",
