@@ -15,13 +15,24 @@ const userRouter = Router();
  * @summary This endpoint creates a new user.
  * @tags users
  * @param {object} request.body.required - The user details to create.
- * @param {string} request.body.email.required - The email of the user. Must be unique across all users.
- * @param {string} request.body.password.required - The password of the user. Will be hashed before storage.
  * @return {object} 201 - Returns the created user object.
  * @example request - application/json
  * {
  *    "email": "johndoe@example.com",
  *    "password": "securepassword123"
+ * }
+ * @example response - 201 - Returns the created user object.
+ * {
+ *   "status": "success",
+ *   "data": {
+ *     "user": {
+ *       "email": "johndoe@example.com",
+ *       "password": "securepassword123",
+ *       "tasks": [],
+ *       "_id": "64ab69fb2a7b45ac61819ef3",
+ *       "__v": 0
+ *     }
+ *   }
  * }
  */
 userRouter.post('/', createUser);
