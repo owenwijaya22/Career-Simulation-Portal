@@ -21,7 +21,33 @@ roomRouter.route('/').get(getAllRooms);
  * POST /api/room
  * @summary This endpoint creates a new room
  * @tags rooms
+ * @param {object} request.body.required - The room's data to be created
  * @return {object} 201 - Success response - application/json
+ * @example request - application/json
+ * {
+ *     "user": "648a767797a2f43a47c55cb6",
+ *     "prompt": "greetings",
+ *     "members": [
+ *         "648a767797a2f43a47c55cb6",
+ *         "648a77b697a2f43a47c55cb8"
+ *     ]
+ * }
+ * @example response - 201 - Example response
+ * {
+ *     "status": "success",
+ *     "data": {
+ *         "room": {
+ *             "user": "648a767797a2f43a47c55cb6",
+ *             "prompt": "greetings",
+ *             "members": [
+ *                 "648a767797a2f43a47c55cb6",
+ *                 "648a77b697a2f43a47c5   5cb8"
+ *             ],
+ *             "_id": "64ab6991701d3130a34a563c",
+ *             "__v": 0
+ *         }
+ *     }
+ * }
  */
 roomRouter.route('/room').post(createRoom);
 
