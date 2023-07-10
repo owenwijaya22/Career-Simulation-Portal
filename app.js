@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 app.use('/api/message', messageRouter);
 app.use('/api/rooms', roomRouter);
 app.use('/api/users', userRouter);
-app.use('/api/company', companyRouter);
+app.use('/api/companies', companyRouter);
 app.use('/api/ai-user', aiRouter);
 app.use('/api/questions', questionRouter);
 app.use('/api/tasks', taskRouter);
