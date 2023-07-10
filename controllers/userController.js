@@ -40,6 +40,27 @@ export async function getAllUsers(req, res) {
   }
 }
 
+export async function getUserById(req, res) {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    
+    if (!user) {
+      return res.status(404).json({status: 'error', message: 'No user found with that ID'});
+    }
+
+    return res.status(200).json({
+      status: 'success',
+      data: {
+        user,
+      },
+    });
+  }
+  catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
+
 export async function getUsers(req, res) {
   try {
     const { roomId } = req.params;
