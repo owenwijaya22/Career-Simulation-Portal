@@ -32,7 +32,7 @@ const airouter = Router();
  *   }
  * }
  */
-airouter.route('/').get(getAllAIs)
+airouter.route('/').get(getAllAIs);
 
 /**
  * POST /api/ai-user
@@ -63,9 +63,8 @@ airouter.route('/').get(getAllAIs)
  */
 airouter.route('/').post(createAI);
 
-
 /**
- *  GET /api/ai-user/:id
+ *  GET /api/ai-user/{id}
  * @summary This endpoint retrieves an AI by ID
  * @tags ai
  * @param {string} id.path.required - AI ID
@@ -85,8 +84,9 @@ airouter.route('/').post(createAI);
  *   }
  * }
  */
+
 /**
- *  PUT /api/ai-user/:id
+ *  PUT /api/ai-user/{id}
  * @summary This endpoint updates an AI by ID
  * @tags ai
  * @param {string} id.path.required - AI ID
@@ -107,7 +107,7 @@ airouter.route('/').post(createAI);
  * }
  */
 /**
- *  DELETE /api/ai-user/:id
+ *  DELETE /api/ai-user/{id}
  * @summary This endpoint deletes an AI by ID
  * @tags ai
  * @param {string} id.path.required - AI ID

@@ -60,7 +60,7 @@ const router = Router();
 router.route('/').post(createTask);
 
 /**
- * GET /api/tasks/company/:companyId
+ * GET /api/tasks/company/{companyId}
  * @summary This endpoint retrieves all tasks for a specific company
  * @tags tasks
  * @param {string} companyId.path - required
@@ -69,7 +69,7 @@ router.route('/').post(createTask);
 router.get('/company/:companyId', getCompanyTasks);
 
 /**
- * GET /api/tasks/:id
+ * GET /api/tasks/{id}
  * @summary This endpoint retrieves a task by ID
  * @tags tasks
  * @param {string} id.path - required
@@ -78,7 +78,7 @@ router.get('/company/:companyId', getCompanyTasks);
 router.get('/:id', getTask);
 
 /**
- * PATCH /api/tasks/:id
+ * PATCH /api/tasks/{id}
  * @summary This endpoint updates a task by ID
  * @tags tasks
  * @param {string} id.path - required
@@ -87,7 +87,7 @@ router.get('/:id', getTask);
 router.patch('/:id', updateTask);
 
 /**
- * DELETE /api/tasks/:id
+ * DELETE /api/tasks/{id}
  * @summary This endpoint deletes a task by ID
  * @tags tasks
  * @param {string} id.path - required

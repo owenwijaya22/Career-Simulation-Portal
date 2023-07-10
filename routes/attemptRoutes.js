@@ -42,26 +42,30 @@ router.route('/').get(getAllAttempts);
 router.route('/').post(createAttempt);
 
 /**
- * GET /api/attempts/:id
+ * GET /api/attempts/{id}
  * @summary This endpoint retrieves an attempt by ID
  * @tags attempts
  * @param {string} id.path - required
  * @return {object} 200 - Success response - application/json
  */
 /**
- * PATCH /api/attempts/:id
+ * PATCH /api/attempts/{id}
  * @summary This endpoint updates an attempt by ID
  * @tags attempts
  * @param {string} id.path - required
  * @return {object} 200 - Success response - application/json
  */
 /**
- * DELETE /api/attempts/:id
+ * DELETE /api/attempts/{id}
  * @summary This endpoint deletes an attempt by ID
  * @tags attempts
  * @param {string} id.path - required
  * @return {object} 204 - Success response - application/json
  */
-router.route('/:id').get(getAttemptById).patch(updateAttempt).delete(deleteAttempt);
+router
+  .route('/:id')
+  .get(getAttemptById)
+  .patch(updateAttempt)
+  .delete(deleteAttempt);
 
 export default router;

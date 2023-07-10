@@ -81,14 +81,13 @@ export async function updateUser(req, res) {
   try {
     const { id } = req.params;
     const { email, password } = req.body;
-
+    console.log(id);
     const updatedUser = await User.findByIdAndUpdate(
       id,
       {
         email,
         password,
-      },
-      { new: true }
+      }
     );
 
     if (!updatedUser) {
@@ -102,7 +101,7 @@ export async function updateUser(req, res) {
       },
     });
   } catch (error) {
-    return res.status(404).json({ message: 'Error' });
+    return res.status(500).json({ message: error.message });
   }
 }
 

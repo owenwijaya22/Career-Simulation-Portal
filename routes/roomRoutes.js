@@ -52,7 +52,7 @@ roomRouter.route('/').get(getAllRooms);
 roomRouter.route('/room').post(createRoom);
 
 /**
- * GET /api/room/:roomId
+ * GET /api/room/{roomId}
  * @summary This endpoint retrieves a room by ID
  * @tags rooms
  * @param {string} roomId.path - required
@@ -61,7 +61,7 @@ roomRouter.route('/room').post(createRoom);
 roomRouter.route('/room/:roomId').get(getRoom);
 
 /**
- * DELETE /api/room/:roomId
+ * DELETE /api/room/{roomId}
  * @summary This endpoint deletes a room by ID
  * @tags rooms
  * @param {string} roomId.path - required
@@ -70,7 +70,7 @@ roomRouter.route('/room/:roomId').get(getRoom);
 roomRouter.route('/room/:roomId').delete(deleteRoom);
 
 /**
- * PATCH /api/room/:roomId/leave
+ * PATCH /api/room/{roomId}/leave
  * @summary This endpoint allows a user to leave a room
  * @tags rooms
  * @param {string} roomId.path - required

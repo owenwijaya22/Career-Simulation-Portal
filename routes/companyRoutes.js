@@ -53,7 +53,7 @@ companyRouter.route('/').get(getAllCompanies);
 companyRouter.route('/').post(createCompany);
 
 /**
- * GET /api/companies/:id
+ * GET /api/companies/{id}
  * @summary This endpoint retrieves a company by ID.
  * @tags companies
  * @param {string} id.path.required - The ID of the company to retrieve.
@@ -62,7 +62,7 @@ companyRouter.route('/').post(createCompany);
 companyRouter.route('/:id').get(getCompanyById);
 
 /**
- * PUT /api/companies/:id
+ * PUT /api/companies/{id}
  * @summary This endpoint updates a company by ID. The ID in the URL is required.
  * @tags companies
  * @param {string} id.path.required - The ID of the company to update.
@@ -82,7 +82,7 @@ companyRouter.route('/:id').get(getCompanyById);
 companyRouter.route('/:id').put(updateCompany);
 
 /**
- * DELETE /api/companies/:id
+ * DELETE /api/companies/{id}
  * @summary This endpoint deletes a company by ID.
  * @tags companies
  * @param {string} id.path.required - The ID of the company to delete.

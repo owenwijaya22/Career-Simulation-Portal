@@ -42,11 +42,34 @@ userRouter.post('/', createUser);
  * @summary This endpoint retrieves all users.
  * @tags users
  * @return {object} 200 - An array of user objects.
+ * @example response - 200 - Returns an array of user objects.
+ * {
+ *   "status": "success",
+ *   "results": 2,
+ *   "data": {
+ *     "users": [
+ *       {
+ *         "tasks": [],
+ *         "_id": "64a3c4a23510c42f08bb4344",
+ *         "name": "test",
+ *         "email": "test",
+ *         "password": "test"
+ *       },
+ *       {
+ *         "_id": "64ab69fb2a7b45ac61819ef3",
+ *         "email": "johndoe@example.com",
+ *         "password": "securepassword123",
+ *         "tasks": [],
+ *         "__v": 0
+ *       }
+ *     ]
+ *   }
+ * }
  */
 userRouter.get('/', getAllUsers);
 
 /**
- * GET /api/users/:roomId
+ * GET /api/users/{roomId}
  * @summary This endpoint retrieves users by roomId. It returns the users who are part of the given room.
  * @tags users
  * @param {string} roomId.path.required - Room ID to find users.
@@ -55,22 +78,20 @@ userRouter.get('/', getAllUsers);
 userRouter.get('/:roomId', getUsers);
 
 /**
- * GET /api/users/:id
+ * GET /api/users/{id}
  * @summary This endpoint retrieves a user by ID. It returns the user that matches the given ID.
  * @tags users
- * @param {string} id.path.required - User ID to retrieve.
+ * @param {string} id.path.required - User ID to retrieve. Example: "60df5b8b8c699b22d4d6e314"
  * @return {object} 200 - The user object for the specific ID.
  */
 userRouter.get('/:id', getUserById);
 
 /**
- * PUT /api/users/:id
+ * PUT /api/users/{id}
  * @summary This endpoint updates a user by ID.
  * @tags users
  * @param {string} id.path.required - User ID to update.
- * @param {object} request.body.required - The new data for the user.
- * @param {string} request.body.email - The new email for the user.
- * @param {string} request.body.password - The new password for the user.
+ * @param {object} request.body.required - The new data for the user. Example: "64ab69fb2a7b45ac61819ef3"
  * @return {object} 200 - Returns the updated user object.
  * @example request - application/json
  * {
@@ -81,7 +102,7 @@ userRouter.get('/:id', getUserById);
 userRouter.put('/:id', updateUser);
 
 /**
- * DELETE /api/users/:id
+ * DELETE /api/users/{id}
  * @summary This endpoint deletes a user by ID.
  * @tags users
  * @param {string} id.path.required - User ID to delete.
