@@ -10,6 +10,7 @@ import aiRouter from './routes/aiRoutes.js';
 import questionRouter from './routes/questionRoutes.js';
 import taskRouter from './routes/taskRoutes.js';
 import attemptRouter from './routes/attemptRoutes.js';
+import eventRouter from './routes/eventRoutes.js';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -51,5 +52,6 @@ app.use('/api/ai-user', aiRouter);
 app.use('/api/questions', questionRouter);
 app.use('/api/tasks', taskRouter);
 app.use('/api/attempts', attemptRouter);
+app.use('/api/events', eventRouter);
 
 export default app;
