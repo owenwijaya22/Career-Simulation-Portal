@@ -39,9 +39,6 @@ airouter.route('/').get(getAllAIs)
  * @summary This endpoint creates a new AI instance
  * @tags ai
  * @param {object} request.body.required - AI info to be created
- * @param {string} request.body.name - AI name
- * @param {string} request.body.image - AI image URL
- * @param {string} request.body.prompt - AI prompt
  * @return {object} 201 - Success response containing the created AI object - application/json
  * @example request - application/json
  * {
@@ -93,10 +90,6 @@ airouter.route('/').post(createAI);
  * @summary This endpoint updates an AI by ID
  * @tags ai
  * @param {string} id.path.required - AI ID
- * @param {object} request.body.required - AI info to be updated
-* @param {string} request.body.name - Updated AI name
- * @param {string} request.body.image - Updated AI image URL
- * @param {string} request.body.prompt - Updated AI prompt
  * @return {object} 200 - Success response containing the updated AI object - application/json
  * @example response - 200 - Example response
  * {
