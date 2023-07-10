@@ -60,6 +60,7 @@ export const triggerEvent = async (req, res) => {
     if (next_clue_id) {
       const nextMoveType = 'clue';
       const nextMove = await Clue.findById(next_clue_id);
+      await Clue.findByIdAndUpdate(next_clue_id, { locked: false });
       data.push({ nextMoveType, nextMove });
     }
     return res.status(200).json({
