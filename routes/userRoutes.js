@@ -52,15 +52,17 @@ userRouter.post('/', createUser);
  *         "tasks": [],
  *         "_id": "64a3c4a23510c42f08bb4344",
  *         "name": "test",
- *         "email": "test",
- *         "password": "test"
+ *         "email": "testupdated@example.com",
+ *         "password": "newsecuredpass",
+ *         "roomId": "64a3c4a23510c42f08bb4343"
  *       },
  *       {
  *         "_id": "64ab69fb2a7b45ac61819ef3",
- *         "email": "johndoe@example.com",
- *         "password": "securepassword123",
+ *         "email": "johndoeupdated@example.com",
+ *         "password": "newsecurepassword123",
  *         "tasks": [],
- *         "__v": 0
+ *         "__v": 0,
+ *         "roomId": "64a3c4a23510c42f08bb4343"
  *       }
  *     ]
  *   }
@@ -74,17 +76,33 @@ userRouter.get('/', getAllUsers);
  * @tags users
  * @param {string} roomId.path.required - Room ID to find users.
  * @return {object} 200 - An array of user objects for a specific room.
+ * @example response - 200 - Returns an array of user objects for a specific room.
+ * {
+ *   "status": "success",
+ *   "results": 2,
+ *   "data": {
+ *     "users": [
+ *       {
+ *         "tasks": [],
+ *         "_id": "64a3c4a23510c42f08bb4344",
+ *         "name": "test",
+ *         "email": "testupdated@example.com",
+ *         "password": "newsecuredpass",
+ *         "roomId": "64a3c4a23510c42f08bb4343"
+ *       },
+ *       {
+ *         "_id": "64ab69fb2a7b45ac61819ef3",
+ *         "email": "johndoeupdated@example.com",
+ *         "password": "newsecurepassword123",
+ *         "tasks": [],
+ *         "__v": 0,
+ *         "roomId": "64a3c4a23510c42f08bb4343"
+ *       }
+ *     ]
+ *   }
+ * }
  */
 userRouter.get('/:roomId', getUsers);
-
-/**
- * GET /api/users/{id}
- * @summary This endpoint retrieves a user by ID. It returns the user that matches the given ID.
- * @tags users
- * @param {string} id.path.required - User ID to retrieve. Example: "60df5b8b8c699b22d4d6e314"
- * @return {object} 200 - The user object for the specific ID.
- */
-userRouter.get('/:id', getUserById);
 
 /**
  * PUT /api/users/{id}
