@@ -67,7 +67,7 @@ airouter.route('/').post(createAI);
  *  GET /api/ai-user/{id}
  * @summary This endpoint retrieves an AI by ID
  * @tags ai
- * @param {string} id.path.required - AI ID
+ * @param {string} id.path.required - AI ID. Example: "64abbcc545e847f13209a5d6"
  * @return {object} 200 - Success response containing the retrieved AI object - application/json
  * @example response - 200 - Example response
  * {
@@ -89,7 +89,7 @@ airouter.route('/').post(createAI);
  *  PUT /api/ai-user/{id}
  * @summary This endpoint updates an AI by ID
  * @tags ai
- * @param {string} id.path.required - AI ID
+ * @param {string} id.path.required - AI ID. Example: "64abbcc545e847f13209a5d6"
  * @return {object} 200 - Success response containing the updated AI object - application/json
  * @example response - 200 - Example response
  * {
@@ -110,7 +110,7 @@ airouter.route('/').post(createAI);
  *  DELETE /api/ai-user/{id}
  * @summary This endpoint deletes an AI by ID
  * @tags ai
- * @param {string} id.path.required - AI ID
+ * @param {string} id.path.required - AI ID. Example: "64abbcc545e847f13209a5d6"
  * @return {object} 204 - Success response with no content - application/json
  * @example response - 204 - Example response
  * {
