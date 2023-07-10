@@ -5,6 +5,7 @@ import {
   leaveRoom,
   getAllRooms,
   getRoom,
+  getUsers
 } from '../controllers/roomController.js';
 
 const roomRouter = Router();
@@ -18,7 +19,50 @@ const roomRouter = Router();
 roomRouter.route('/').get(getAllRooms);
 
 /**
- * POST /api/room
+ * GET /api/rooms/{roomId}
+ * @summary This endpoint retrieves users by roomId. It returns the users who are part of the given room. Example: "64a3c4a23510c42f08bb4343"
+ * @tags rooms
+ * @param {string} roomId.path.required - Room ID to find users.
+ * @return {object} 200 - An array of user objects for a specific room.
+ * @example response - 200 - Returns an array of user objects for a specific room.
+ * {
+ *   "status": "success",
+ *   "results": 2,
+ *   "data": {
+ *     "users": [
+ *       {
+ *         "tasks": [],
+ *         "_id": "64a3c4a23510c42f08bb4344",
+ *         "name": "test",
+ *         "email": "testupdated@example.com",
+ *         "password": "newsecuredpass",
+ *         "roomId": "64a3c4a23510c42f08bb4343"
+ *       },
+ *       {
+ *         "_id": "64ab69fb2a7b45ac61819ef3",
+ *         "email": "johndoeupdated@example.com",
+ *         "password": "newsecurepassword123",
+ *         "tasks": [],
+ *         "__v": 0,
+ *         "roomId": "64a3c4a23510c42f08bb4343"
+ *       }
+ *     ]
+ *   }
+ * }
+ */
+roomRouter.route('/:roomId').get(getUsers);
+
+/**
+ * GET /api/rooms/room/{roomId}
+ * @summary This endpoint retrieves a room by ID
+ * @tags rooms
+ * @param {string} roomId.path - required
+ * @return {object} 200 - Success response - application/json
+ */
+roomRouter.route('/room/:roomId').get(getRoom);
+
+/**
+ * POST /api/rooms
  * @summary This endpoint creates a new room
  * @tags rooms
  * @param {object} request.body.required - The room's data to be created
@@ -49,16 +93,7 @@ roomRouter.route('/').get(getAllRooms);
  *     }
  * }
  */
-roomRouter.route('/room').post(createRoom);
-
-/**
- * GET /api/room/{roomId}
- * @summary This endpoint retrieves a room by ID
- * @tags rooms
- * @param {string} roomId.path - required
- * @return {object} 200 - Success response - application/json
- */
-roomRouter.route('/room/:roomId').get(getRoom);
+roomRouter.route('/').post(createRoom);
 
 /**
  * DELETE /api/room/{roomId}
@@ -67,10 +102,10 @@ roomRouter.route('/room/:roomId').get(getRoom);
  * @param {string} roomId.path - required
  * @return {object} 204 - Success response - application/json
  */
-roomRouter.route('/room/:roomId').delete(deleteRoom);
+roomRouter.route('/:roomId').delete(deleteRoom);
 
 /**
- * PATCH /api/room/{roomId}/leave
+ * PATCH /api/rooms/{roomId}/leave
  * @summary This endpoint allows a user to leave a room
  * @tags rooms
  * @param {string} roomId.path - required
