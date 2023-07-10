@@ -61,23 +61,6 @@ export async function getUserById(req, res) {
   }
 }
 
-export async function getUsers(req, res) {
-  try {
-    const { roomId } = req.params;
-    const users = await User.find({ roomId });
-
-    return res.status(200).json({
-      status: 'success',
-      results: users.length,
-      data: {
-        users,
-      },
-    });
-  } catch (error) {
-    return res.status(404).json({ message: 'Error' });
-  }
-}
-
 export async function updateUser(req, res) {
   try {
     const { id } = req.params;

@@ -1,4 +1,5 @@
 import Rooms from '../models/roomModel.js';
+import User from '../models/userModel.js';
 
 export async function createRoom(req, res) {
   try {
@@ -55,6 +56,23 @@ export async function leaveRoom(req, res) {
       status: 'failed',
       message: err,
     });
+  }
+}
+
+export async function getUsers(req, res) {
+  try {
+    const { roomId } = req.params;
+    const users = await User.find({ roomId: roomId });
+
+    return res.status(200).json({
+      status: 'success',
+      results: users.length,
+      data: {
+        users,
+      },
+    });
+  } catch (error) {
+    return res.status(503).json({ message: error.message })
   }
 }
 
