@@ -42,7 +42,7 @@ export const triggerEvent = async (req, res) => {
     if (!event) {
       return res.status(404).json({
         status: 'error',
-        message: 'No event found assoisiated with this choice',
+        message: 'No event found associated with this choice',
       });
     }
     const { next_question_id, next_task_id, next_clue_id } = event;
