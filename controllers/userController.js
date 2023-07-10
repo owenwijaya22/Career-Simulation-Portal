@@ -57,26 +57,6 @@ export async function getUsers(req, res) {
   }
 }
 
-export async function getUserById(req, res) {
-  try {
-    const { id } = req.params;
-    const user = await User.findById(id);
-
-    if (!user) {
-      return res.status(404).json({ message: 'No user found with that ID' });
-    }
-
-    return res.status(200).json({
-      status: 'success',
-      data: {
-        user,
-      },
-    });
-  } catch (error) {
-    return res.status(404).json({ message: 'Error' });
-  }
-}
-
 export async function updateUser(req, res) {
   try {
     const { id } = req.params;
