@@ -20,14 +20,9 @@ companyRouter.route('/').get(getAllCompanies);
 /**
  * POST /api/companies
  * @summary This endpoint creates a new company.
- * @description Requires name, description, image, video, and website in the request body. Returns the newly created company object along with its creation and modification date.
+ * @description Requires name, description, image, wvideo, and website in the request body. Returns the newly created company object along with its creation and modification date.
  * @tags companies
- * @param {object} request.body.required - The company's data
- * @param {string} request.body.name.required - The company's name
- * @param {string} request.body.description.required - The company's description
- * @param {string} request.body.image.required - The company's image/logo URL
- * @param {string} request.body.video.required - The company's promotional video URL
- * @param {string} request.body.website.required - The company's website URL
+ * @param {object} request.body.required - The company's data to be created.
  * @return {object} 201 - Success response containing the created company's data including _id, name, description, image, video, website, createdAt and modifiedAt.
  * @example request - application/json
  * {
@@ -38,7 +33,7 @@ companyRouter.route('/').get(getAllCompanies);
  *    "website": "https://openai.com"
  * }
  *
-  * @example response - 201 - application/json
+ * @example response - 201 - application/json
  * {
  *   "status": "success",
  *   "data": {
