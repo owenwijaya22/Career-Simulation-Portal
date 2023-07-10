@@ -5,6 +5,7 @@ import {
   getUsers,
   updateUser,
   deleteUser,
+  getUserById
 } from '../controllers/userController.js';
 
 const userRouter = Router();
@@ -68,6 +69,29 @@ userRouter.post('/', createUser);
  * }
  */
 userRouter.get('/', getAllUsers);
+
+/** 
+ * GET /api/users/{id}
+ * @summary This endpoint retrieves a user by ID.
+ * @tags users
+ * @param {string} id.path.required - User ID to find user.
+ * @return {object} 200 - Returns the user object.
+ * @example response - 200 - Returns the user object.
+ * {
+ *   "status": "success",
+ *   "data": {
+ *     "user": {
+ *       "tasks": [],
+ *       "_id": "64a3c4a23510c42f08bb4344",
+ *       "name": "test",
+ *       "email": "testupdated@example.com",
+ *       "password": "newsecuredpass",
+ *       "roomId": "64a3c4a23510c42f08bb4343"
+ *     }
+ *   }
+ * }
+ */
+userRouter.get('/:id', getUserById);
 
 /**
  * GET /api/users/{roomId}
