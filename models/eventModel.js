@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const eventSchema = new mongoose.Schema({
-  choice_id: {
+  choiceId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Choice',
     required: [true, 'An event must be related to a choice'],
