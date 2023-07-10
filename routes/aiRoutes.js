@@ -10,7 +10,7 @@ import {
 const airouter = Router();
 
 /**
- * GET /api/ai
+ * GET /api/ai-user
  * @summary This endpoint retrieves all AI instances
  * @tags ai
  * @return {object} 200 - Success response containing an array of AI objects - application/json
@@ -35,7 +35,7 @@ const airouter = Router();
 airouter.route('/').get(getAllAIs)
 
 /**
- * POST /api/ai
+ * POST /api/ai-user
  * @summary This endpoint creates a new AI instance
  * @tags ai
  * @param {object} request.body.required - AI info to be created
@@ -68,7 +68,7 @@ airouter.route('/').post(createAI);
 
 
 /**
- *  GET /api/ai/:id
+ *  GET /api/ai-user/:id
  * @summary This endpoint retrieves an AI by ID
  * @tags ai
  * @param {string} id.path.required - AI ID
@@ -89,7 +89,7 @@ airouter.route('/').post(createAI);
  * }
  */
 /**
- *  PUT /api/ai/:id
+ *  PUT /api/ai-user/:id
  * @summary This endpoint updates an AI by ID
  * @tags ai
  * @param {string} id.path.required - AI ID
@@ -114,7 +114,7 @@ airouter.route('/').post(createAI);
  * }
  */
 /**
- *  DELETE /api/ai/:id
+ *  DELETE /api/ai-user/:id
  * @summary This endpoint deletes an AI by ID
  * @tags ai
  * @param {string} id.path.required - AI ID
