@@ -10,6 +10,7 @@ import questionRouter from './routes/questionRoutes.js';
 import taskRouter from './routes/taskRoutes.js';
 import attemptRouter from './routes/attemptRoutes.js';
 import eventRouter from './routes/eventRoutes.js';
+import clueRouter from './routes/clueRoutes.js';
 
 const app = express();
 
@@ -34,5 +35,6 @@ app.use('/api/questions', questionRouter);
 app.use('/api/tasks', taskRouter);
 app.use('/api/attempts', attemptRouter);
 app.use('/api/events', eventRouter);
+app.use('/api/clue', clueRouter);
 
 export default app;
