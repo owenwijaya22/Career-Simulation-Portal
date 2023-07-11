@@ -10,6 +10,10 @@ const clueSchema = new mongoose.Schema({
     ref: 'Task',
     required: [true, 'A clue must be related to a task'],
   },
+  locked: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const Clue = mongoose.model('Clue', clueSchema);
