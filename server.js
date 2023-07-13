@@ -1,23 +1,21 @@
-const dotenv = require('dotenv');
-const mongoose = require('mongoose');
+import { config } from 'dotenv';
+import { connect } from 'mongoose';
 
-dotenv.config({ path: './.env' });
+import app from './app.js';
+
+config({ path: './.env' });
 
 const dbUri = process.env.MONGODB_URI.replace(
   '<password>',
   process.env.MONGODB_PASSWORD
 );
 
-mongoose
-  .connect(dbUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log('Connected to MongoDB!!');
-  });
-
-const app = require('./app');
+connect(dbUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log('Connected to MongoDB!!');
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

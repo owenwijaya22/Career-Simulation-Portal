@@ -1,6 +1,6 @@
-const User = require('../models/userModel');
+import User from '../models/userModel.js';
 
-exports.createUser = async (req, res) => {
+export async function createUser(req, res) {
   try {
     const { email, password } = req.body;
 
@@ -22,9 +22,9 @@ exports.createUser = async (req, res) => {
   } catch (error) {
     return res.status(400).json({ message: 'Error' });
   }
-};
+}
 
-exports.getAllUsers = async (req, res) => {
+export async function getAllUsers(req, res) {
   try {
     const users = await User.find();
 
@@ -38,32 +38,15 @@ exports.getAllUsers = async (req, res) => {
   } catch (error) {
     return res.status(404).json({ message: 'Error' });
   }
-};
+}
 
-exports.getUsers = async (req, res) => {
-  try {
-    const { roomId } = req.params;
-    const users = await User.find({ roomId });
-
-    return res.status(200).json({
-      status: 'success',
-      results: users.length,
-      data: {
-        users,
-      },
-    });
-  } catch (error) {
-    return res.status(404).json({ message: 'Error' });
-  }
-};
-
-exports.getUserById = async (req, res) => {
+export async function getUserById(req, res) {
   try {
     const { id } = req.params;
     const user = await User.findById(id);
-
+    
     if (!user) {
-      return res.status(404).json({ message: 'No user found with that ID' });
+      return res.status(404).json({status: 'error', message: 'No user found with that ID'});
     }
 
     return res.status(200).json({
@@ -72,23 +55,23 @@ exports.getUserById = async (req, res) => {
         user,
       },
     });
-  } catch (error) {
-    return res.status(404).json({ message: 'Error' });
   }
-};
+  catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
 
-exports.updateUser = async (req, res) => {
+export async function updateUser(req, res) {
   try {
     const { id } = req.params;
     const { email, password } = req.body;
-
+    console.log(id);
     const updatedUser = await User.findByIdAndUpdate(
       id,
       {
         email,
         password,
-      },
-      { new: true }
+      }
     );
 
     if (!updatedUser) {
@@ -102,11 +85,11 @@ exports.updateUser = async (req, res) => {
       },
     });
   } catch (error) {
-    return res.status(404).json({ message: 'Error' });
+    return res.status(500).json({ message: error.message });
   }
-};
+}
 
-exports.deleteUser = async (req, res) => {
+export async function deleteUser(req, res) {
   try {
     const { id } = req.params;
 
@@ -123,4 +106,4 @@ exports.deleteUser = async (req, res) => {
   } catch (error) {
     return res.status(404).json({ message: 'Error' });
   }
-};
+}

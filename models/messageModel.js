@@ -1,21 +1,16 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const messageSchema = new mongoose.Schema(
+const messageSchema = new Schema(
   {
-    to: {
-      type: String,
-      trim: true,
-      required: [true, 'A message must have a recipient'],
-    },
-    from: {
-      type: String,
-      trim: true,
-      required: [true, 'A message must have a sender'],
-    },
     message: {
       type: String,
       trim: true,
       required: [true, 'A message must have content'],
+    },
+    response: {
+      type: String,
+      trim: true,
+      required: [true, 'A message must have a reply'],
     },
     // will be mongoose.Schema.Types.ObjectId
     roomId: {
@@ -29,6 +24,6 @@ const messageSchema = new mongoose.Schema(
   }
 );
 
-const Message = mongoose.model('Message', messageSchema);
+const Message = model('Message', messageSchema);
 
-module.exports = Message;
+export default Message;

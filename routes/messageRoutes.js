@@ -1,11 +1,23 @@
-const messageRouter = require('express').Router();
+import { Router } from 'express';
+import { getAllMessage, addMessage } from '../controllers/messageController.js';
 
-const {
-  getAllMessage,
-  addMessage,
-} = require('../controllers/messageController');
+const messageRouter = Router();
 
-messageRouter.route('/:roomId').get(getAllMessage);
+/**
+ * GET /api/messages/{roomId}
+ * @summary This endpoint retrieves all messages for a specific room
+ * @tags messages
+ * @param {string} roomId.path - required
+ * @return {object} 200 - Success response - application/json
+ */
+messageRouter.route('/:roomId:').get(getAllMessage);
+
+/**
+ * POST /api/messages
+ * @summary This endpoint adds a new message
+ * @tags messages
+ * @return {object} 201 - Success response - application/json
+ */
 messageRouter.route('/').post(addMessage);
 
-module.exports = messageRouter;
+export default messageRouter;

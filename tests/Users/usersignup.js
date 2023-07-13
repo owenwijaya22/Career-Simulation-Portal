@@ -1,15 +1,16 @@
 const axios = require('axios');
-let data = JSON.stringify({
+
+const data = JSON.stringify({
   email: 'talant@gmail.com',
   password: "talant'spass",
 });
 
-let data1 = JSON.stringify({
+const data1 = JSON.stringify({
   email: 'chatgpt@openai.com',
   password: "chatgpt'spass",
 });
 
-let config = {
+const config = {
   method: 'post',
   maxBodyLength: Infinity,
   url: 'http://localhost:3000/api/users/user',
