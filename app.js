@@ -45,9 +45,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', (req, res) => {
-  return res.send("Hello World!");
-});
+// app.use('/', (req, res) => {
+//   return res.send("Hello World!");
+// });
 
 app.use('/api/message', messageRouter);
 app.use('/api/rooms', roomRouter);
