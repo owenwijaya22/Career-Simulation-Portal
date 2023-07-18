@@ -4,6 +4,11 @@ const aiSchema = new Schema({
   name: {
     type: String,
     required: [true, 'An AI must have a name'],
+  },
+  aiType: {
+    type: String,
+    required: [true, 'An AI must have a type'],
+    enum: ['GPT', 'CHOICE'],
     default: 'GPT',
   },
   image: {
