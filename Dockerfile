@@ -1,10 +1,21 @@
 FROM node:18-alpine
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY . .
+
+ENV NODE_ENV=development
+ENV PORT=80
+ENV MONGODB_URI=mongodb+srv://simulation:careerhackers@cluster0.lpznqjr.mongodb.net/?retryWrites=true&w=majority
+
+WORKDIR /app
+
+COPY package.json .
+
 RUN npm install
+
+COPY . .
+
 EXPOSE 80
-# # CMD [ "npm", "start" ]
+
+CMD [ "npm", "start" ]
+
 # FROM public.ecr.aws/lambda/nodejs:16
 
 # # Copy function code
