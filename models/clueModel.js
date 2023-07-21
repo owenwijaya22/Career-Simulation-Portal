@@ -1,20 +1,27 @@
 import mongoose from 'mongoose';
+import clueEnums from '../contants/clueEnums.js';
 
-const clueSchema = new mongoose.Schema({
-  clue: {
-    type: String,
-    required: [true, 'A clue must have a value'],
+const clueSchema = new mongoose.Schema(
+  {
+    company: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Company',
+      required: [true, 'A clue must belong to a company'],
+    },
+    locked: {
+      type: Boolean,
+      default: true,
+    },
+    type: {
+      type: String,
+      enum: clueEnums,
+      required: [true, 'A clue must have a type'],
+    },
   },
-  taskId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Task',
-    required: [true, 'A clue must be related to a task'],
-  },
-  locked: {
-    type: Boolean,
-    default: true,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const Clue = mongoose.model('Clue', clueSchema);
 

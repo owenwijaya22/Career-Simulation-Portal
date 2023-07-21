@@ -8,7 +8,7 @@ const sessionSchema = new Schema({
   unlockedAIs: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'AI',
+      ref: 'NPC',
     },
   ],
   unlockedClues: [
@@ -26,7 +26,7 @@ const sessionSchema = new Schema({
   unlockedChoiceGames: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'AI',
+      ref: 'NPC',
     },
   ],
   questions: [
@@ -56,13 +56,24 @@ const AttemptSchema = new Schema({
   },
   startTime: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
     required: true,
   },
   endTime: {
     type: Date,
     required: true,
   },
+  duration: {
+    type: Number,
+    required: [true, 'An attempt must have a duration in minutes'],
+    default: 60,
+  },
+  completedTime: {
+    type: Number,
+    required: [true, 'An attempt must have a completed time in minutes'],
+    default: 0,
+  },
+  scores: [Number],
   session: sessionSchema,
 });
 
