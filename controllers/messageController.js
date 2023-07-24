@@ -2,7 +2,14 @@ import Message from '../models/messageModel.js';
 
 export async function getAllMessage(req, res) {
   try {
-    const messages = await Message.find({ roomId: req.params.roomId });
+    if (!req.params.roomId) {
+      return res
+        .status(400)
+        .json({ status: 'error', message: 'Missing Fields' });
+    }
+    const messages = await Message.find({ roomId: req.params.roomId }).limit(
+      100
+    );
     res.status(200).json({
       status: 'success',
       data: {
@@ -10,7 +17,7 @@ export async function getAllMessage(req, res) {
       },
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(500).json({
       status: 'failed',
       message: err,
     });
@@ -19,14 +26,15 @@ export async function getAllMessage(req, res) {
 
 export async function addMessage(req, res) {
   try {
-    const { to, from, message, roomId } = req.body;
+    const { message, roomId, senderType, sender } = req.body;
+    if (!message || !roomId || !senderType || !sender) {
+      return res.status(400).json({
+        status: 'failed',
+        message: 'Missing Fields',
+      });
+    }
     // Since Message.create() also saves the document, no need to call data.save()
-    const data = await Message.create({
-      to: to,
-      from: from,
-      message: message,
-      roomId: roomId,
-    });
+    const data = await Message.create({ message, roomId, senderType, sender });
     /**
      * Connecting to Python server
      * The answer returned can be transmitted back to the chat client.

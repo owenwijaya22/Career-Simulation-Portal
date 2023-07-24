@@ -3,8 +3,13 @@ import User from '../models/userModel.js';
 
 export async function createRoom(req, res) {
   try {
-    const newRoom = await Rooms.create(req.body);
-
+    const { userId, prompt, npc, company } = req.body;
+    if (!userId || !prompt || !npc || !company) {
+      return res
+        .status(400)
+        .json({ status: 'error', message: 'Missing Fields' });
+    }
+    const newRoom = await Rooms.create({ userId, prompt, npc, company });
     res.status(201).json({
       status: 'success',
       data: {
@@ -21,6 +26,11 @@ export async function createRoom(req, res) {
 
 export async function deleteRoom(req, res) {
   try {
+    if (!req.params.roomId) {
+      return res
+        .status(400)
+        .json({ status: 'error', message: 'Missing Fields' });
+    }
     await Rooms.findByIdAndDelete(req.params.roomId);
 
     res.status(204).json({
@@ -37,6 +47,11 @@ export async function deleteRoom(req, res) {
 
 export async function leaveRoom(req, res) {
   try {
+    if (!req.params.roomId) {
+      return res
+        .status(400)
+        .json({ status: 'error', message: 'Missing Fields' });
+    }
     const room = await Rooms.findById(req.params.roomId);
     const userIndex = room.users.indexOf(req.user.id);
 
@@ -72,7 +87,7 @@ export async function getUsers(req, res) {
       },
     });
   } catch (error) {
-    return res.status(503).json({ message: error.message })
+    return res.status(503).json({ message: error.message });
   }
 }
 

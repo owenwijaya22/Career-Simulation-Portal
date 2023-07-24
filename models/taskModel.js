@@ -10,7 +10,7 @@ const TaskTemplateSchema = new Schema({
     required: true,
     trim: true,
   },
-  desc: {
+  description: {
     type: String,
     trim: true,
   },
