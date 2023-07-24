@@ -1,6 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
 import expressJSDocSwagger from 'express-jsdoc-swagger';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import helmet from 'helmet';
 
 import messageRouter from './routes/messageRoutes.js';
 import roomRouter from './routes/roomRoutes.js';
@@ -13,9 +16,8 @@ import attemptRouter from './routes/attemptRoutes.js';
 import eventRouter from './routes/eventRoutes.js';
 import clueRouter from './routes/clueRoutes.js';
 import pythonRouter from './routes/pythonRoutes.js';
+// import hpp from 'hpp';
 
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -40,15 +42,14 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
+// app.use(hpp());
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 });
-
-// app.use('/', (req, res) => {
-//   return res.send("Hello World!");
-// });
 
 app.use('/api/message', messageRouter);
 app.use('/api/rooms', roomRouter);

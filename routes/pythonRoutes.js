@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import {handlePostRequest} from '../controllers/pythonController.js';
+import handlePostRequest from '../controllers/pythonController.js';
 
 const pythonRouter = Router();
 
@@ -23,6 +23,5 @@ const pythonRouter = Router();
  * }
  */
 pythonRouter.post('/', handlePostRequest);
-
 
 export default pythonRouter;
