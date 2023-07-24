@@ -1,5 +1,48 @@
 import { Schema, model } from 'mongoose';
 
+const sessionSchema = new Schema({
+  currentTask: {
+    type: Schema.Types.ObjectId,
+    ref: 'Task',
+  },
+  unlockedAIs: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'NPC',
+    },
+  ],
+  unlockedClues: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Clue',
+    },
+  ],
+  unlockedTasks: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Task',
+    },
+  ],
+  unlockedChoiceGames: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'NPC',
+    },
+  ],
+  questions: [
+    {
+      question: {
+        type: Schema.Types.ObjectId,
+        ref: 'Question',
+      },
+      completed: {
+        type: Boolean,
+        default: false,
+      },
+    },
+  ],
+});
+
 const AttemptSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
@@ -13,25 +56,25 @@ const AttemptSchema = new Schema({
   },
   startTime: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
     required: true,
   },
   endTime: {
     type: Date,
+    required: true,
   },
-  tasks: [
-    {
-      taskId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Task',
-        required: true,
-      },
-      complete: {
-        type: Boolean,
-        default: false,
-      },
-    },
-  ],
+  duration: {
+    type: Number,
+    required: [true, 'An attempt must have a duration in minutes'],
+    default: 60,
+  },
+  completedTime: {
+    type: Number,
+    required: [true, 'An attempt must have a completed time in minutes'],
+    default: 0,
+  },
+  scores: [Number],
+  session: sessionSchema,
 });
 
 const Attempt = model('Attempt', AttemptSchema);

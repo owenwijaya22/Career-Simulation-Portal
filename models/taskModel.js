@@ -36,11 +36,6 @@ const TaskSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    // user: {
-    //   type: _Schema.Types.ObjectId,
-    //   required: true,
-    //   ref: 'User',
-    // },
     company: {
       type: _Schema.Types.ObjectId,
       required: true,

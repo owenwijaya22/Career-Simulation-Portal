@@ -3,6 +3,59 @@ import Event from '../models/eventModel.js';
 import Question from '../models/questionModel.js';
 import { Task } from '../models/taskModel.js';
 import Clue from '../models/clueModel.js';
+import Attempt from '../models/attemptModel.js';
+
+export const requestHandler = async (req, res) => {
+  try {
+    const { nextEventType } = req.body;
+    if (!nextEventType) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Missing next event type',
+      });
+    }
+    const data = {};
+    if (nextEventType.inclueds('NEXT_QUESTION')) {
+      data.question = await getNextQuestion(req.body);
+    }
+    if (nextEventType.inclueds('NEW_TASK')) {
+      data.question = await getNextQuestion(req.body);
+    }
+    if (nextEventType.inclueds('UNLOCK_CLUE')) {
+      data.question = await getNextQuestion(req.body);
+    }
+    if (nextEventType.inclueds('COMPLETE_TASK')) {
+      data.question = await getNextQuestion(req.body);
+    }
+    if (nextEventType.inclueds('UNLOCK_AI')) {
+      data.question = await getNextQuestion(req.body);
+    }
+    if (Object.keys(data).length === 0) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Invalid next event type',
+      });
+    }
+    return res.status(200).json({
+      status: 'success',
+      data,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      status: 'error',
+      message: err.message,
+    });
+  }
+};
+
+// const getNextQuestion = async (body) => {
+//   const { attemptId, currentQuestion } = body;
+//   const currentAttempt = await Attempt.findById(attemptId);
+//   if (!currentAttempt) {
+//     throw new Error('No attempt found with that ID');
+//   }
+//   const { questions } = currentAttempt.session;
+// };
 
 export const createEvent = async (req, res) => {
   try {

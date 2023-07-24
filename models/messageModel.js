@@ -7,16 +7,18 @@ const messageSchema = new Schema(
       trim: true,
       required: [true, 'A message must have content'],
     },
-    response: {
-      type: String,
-      trim: true,
-      required: [true, 'A message must have a reply'],
-    },
-    // will be mongoose.Schema.Types.ObjectId
     roomId: {
-      type: String,
+      type: Schema.Types.ObjectId,
       ref: 'Room',
       required: [true, 'A message must belong to a chat room'],
+    },
+    senderType: {
+      type: String,
+      enum: ['USER', 'NPC'],
+    },
+    sender: {
+      type: Schema.Types.ObjectId,
+      required: true,
     },
   },
   {

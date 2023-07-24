@@ -1,4 +1,4 @@
-import AI from '../models/aiModel.js';
+import AI from '../models/npcModel.js';
 
 export async function createAI(req, res) {
   try {
