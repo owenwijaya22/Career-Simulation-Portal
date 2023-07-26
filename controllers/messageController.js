@@ -1,4 +1,8 @@
 import Message from '../models/messageModel.js';
+import Rooms from '../models/roomModel.js';
+import axios from 'axios';
+import { config } from 'dotenv';
+config({ path: './.env' });
 
 export async function getAllMessage(req, res) {
   try {
@@ -27,36 +31,50 @@ export async function getAllMessage(req, res) {
 export async function addMessage(req, res) {
   try {
     const { message, roomId, senderType, sender } = req.body;
+
     if (!message || !roomId || !senderType || !sender) {
       return res.status(400).json({
         status: 'failed',
         message: 'Missing Fields',
       });
     }
-    // Since Message.create() also saves the document, no need to call data.save()
-    const data = await Message.create({ message, roomId, senderType, sender });
-    /**
-     * Connecting to Python server
-     * The answer returned can be transmitted back to the chat client.
-     * This message can then be rendered successfully.
-     */
-    if (data) {
-      return res.status(200).json({
-        status: 'success',
-        data: {
-          message: 'Chat Added Successfully',
-          data,
-        },
+    const userMessage = await Message.create({ message, roomId, senderType, sender });
+    if (senderType === 'user') {
+      const port = process.env.PORT || 3000;
+      const pythonResponse = await axios.post(
+        `http://localhost:${port}/api/python`,
+        { input: message }
+      );
+      const pythonOutput = pythonResponse.data;
+
+      const room = await Rooms.findById(roomId);
+
+      const aiMessage = await Message.create({
+        message: pythonOutput,
+        roomId: roomId,
+        senderType: 'NPC',
+        sender: room.npc,
+      });
+      if (aiMessage) {
+        return res.status(200).json({
+          status: 'success',
+          data: {
+            message: 'Chats Added Successfully',
+            userMessage,
+            aiMessage
+          },
+        });
+      }
+      return res.status(400).json({
+        status: 'failed',
+        message: 'Chat was not added into the database',
       });
     }
-    return res.status(400).json({
-      status: 'failed',
-      message: 'Chat was not added into the database',
-    });
   } catch (err) {
-    return res.status(404).json({
-      status: 'failed',
-      message: `Failed to retrieve messages: ${err.message}`,
-    });
+      return res.status(404).json({
+        status: 'failed',
+        message: `Failed to retrieve messages: ${err.message}`,
+      });
+    }
   }
-}
+
