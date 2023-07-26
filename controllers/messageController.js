@@ -33,16 +33,16 @@ export async function addMessage(req, res) {
     const { message, roomId, senderType, sender } = req.body;
 
     if (!message || !roomId || !senderType || !sender) {
-      return res.status(400).json({
+      return res.status(400).json({ 
         status: 'failed',
         message: 'Missing Fields',
       });
     }
     const userMessage = await Message.create({ message, roomId, senderType, sender });
-    if (senderType === 'user') {
+    if (senderType === 'USER') {
       const port = process.env.PORT || 3000;
       const pythonResponse = await axios.post(
-        `http://localhost:${port}/api/python`,
+        `http://localhost:${port}/api/python/chatroom_1`, // just for now use chatroom_1
         { input: message }
       );
       const pythonOutput = pythonResponse.data;
