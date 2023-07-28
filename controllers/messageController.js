@@ -41,10 +41,13 @@ export async function addMessage(req, res) {
     const userMessage = await Message.create({ message, roomId, senderType, sender });
     if (senderType === 'USER') {
       const port = process.env.PORT || 3000;
-      const pythonResponse = await axios.post(
-        `http://localhost:${port}/api/python/chatroom_1`, // just for now use chatroom_1
-        { input: message }
-      );
+      const pythonResponse = await fetch(`http://localhost:${port}/api/python/chatroom_1`, { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ input: message })
+      });
       const pythonOutput = pythonResponse.data;
 
       const room = await Rooms.findById(roomId);
