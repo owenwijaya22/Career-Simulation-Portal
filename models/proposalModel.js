@@ -1,18 +1,27 @@
 import { Schema, model } from 'mongoose';
 
 const slidesSchema = new Schema({
-  order: {
+  id: {
     type: Number,
     required: [true, 'A slide must have an order'],
   },
-  slideItems: [String],
+  thumbnailUrl: {
+    type: String,
+  },
+  items: [{}],
 });
 
 const proposalSchema = new Schema({
+  // attempt: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Attempt',
+  //   required: [true, 'A proposal must have an attempt'],
+  //   unique: true,
+  // },
   attempt: {
-    type: Schema.Types.ObjectId,
-    ref: 'Attempt',
+    type: String,
     required: [true, 'A proposal must have an attempt'],
+    unique: true,
   },
   slides: [slidesSchema],
 });

@@ -8,6 +8,7 @@ import { createServer } from 'http';
 
 import { Server } from 'socket.io';
 import app from './app.js';
+import proposalSave from './sockets/proposalSave.js';
 // import { Server } from 'socket.io';
 
 config({ path: './.env' });
@@ -33,7 +34,8 @@ const httpServer = createServer(app);
 const io = new Server(httpServer);
 
 io.on('connection', (socket) => {
-  console.log('Connection Succesful to: ', socket);
+  console.log('Succesfully connected to sockets!');
+  socket.on('proposal-save', proposalSave);
 });
 
 if (process.env.NODE_ENV === 'development') {
