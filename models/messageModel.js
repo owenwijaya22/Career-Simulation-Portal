@@ -20,6 +20,10 @@ const messageSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
     },
+    npcId: {
+      type: Schema.Types.ObjectId,
+      ref: 'NPC',
+    },
   },
   {
     timestamps: true,
