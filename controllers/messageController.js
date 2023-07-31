@@ -1,5 +1,6 @@
-import axios from 'axios';
 import { config } from 'dotenv';
+import axios from 'axios';
+import NPC from '../models/npcModel.js';
 import Message from '../models/messageModel.js';
 import Rooms from '../models/roomModel.js';
 
@@ -31,8 +32,7 @@ export async function getAllMessage(req, res) {
 
 export async function addMessage(req, res) {
   try {
-    const { message, roomId, senderType, sender } = req.body;
-
+    const { message, roomId, senderType, sender, npcId } = req.body;
     if (!message || !roomId || !senderType || !sender) {
       return res.status(400).json({
         status: 'failed',
@@ -46,23 +46,32 @@ export async function addMessage(req, res) {
       sender,
     });
     if (senderType === 'USER') {
-      const port = process.env.PORT || 3000;
-      const pythonResponse = await fetch(
-        `http://localhost:${port}/api/python/chatroom_1`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ input: message }),
-        }
-      );
-      const pythonOutput = pythonResponse.data;
+      const npc = await NPC.findById(npcId);
+      let chatroom;
+      if (npc.name === 'Justin') {
+        chatroom = 'chatroom_1';
+      } else if (npc.name === 'Noel') {
+        chatroom = 'chatroom_2';
+      }
 
+      let data = JSON.stringify({
+        input: 'is it hard to be a technical consultant',
+      });
+      let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: `https://mitsuki.software/chat/${chatroom}`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: data,
+      };
+
+      const response = await axios.request(config);
+      const aiResponse = response.data;
       const room = await Rooms.findById(roomId);
-
       const aiMessage = await Message.create({
-        message: pythonOutput,
+        message: aiResponse,
         roomId: roomId,
         senderType: 'NPC',
         sender: room.npc,
