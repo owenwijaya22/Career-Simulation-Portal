@@ -16,6 +16,9 @@ const npcSchema = new Schema(
       type: String,
       required: [true, 'An AI must have an image'],
     },
+    prompt: {
+      type: String,
+    },
   },
   {
     timestamps: true,

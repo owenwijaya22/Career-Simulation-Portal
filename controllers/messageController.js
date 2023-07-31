@@ -1,7 +1,8 @@
-import Message from '../models/messageModel.js';
-import Rooms from '../models/roomModel.js';
 import axios from 'axios';
 import { config } from 'dotenv';
+import Message from '../models/messageModel.js';
+import Rooms from '../models/roomModel.js';
+
 config({ path: './.env' });
 
 export async function getAllMessage(req, res) {
@@ -33,21 +34,29 @@ export async function addMessage(req, res) {
     const { message, roomId, senderType, sender } = req.body;
 
     if (!message || !roomId || !senderType || !sender) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         status: 'failed',
         message: 'Missing Fields',
       });
     }
-    const userMessage = await Message.create({ message, roomId, senderType, sender });
+    const userMessage = await Message.create({
+      message,
+      roomId,
+      senderType,
+      sender,
+    });
     if (senderType === 'USER') {
       const port = process.env.PORT || 3000;
-      const pythonResponse = await fetch(`http://localhost:${port}/api/python/chatroom_1`, { 
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ input: message })
-      });
+      const pythonResponse = await fetch(
+        `http://localhost:${port}/api/python/chatroom_1`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ input: message }),
+        }
+      );
       const pythonOutput = pythonResponse.data;
 
       const room = await Rooms.findById(roomId);
@@ -64,7 +73,7 @@ export async function addMessage(req, res) {
           data: {
             message: 'Chats Added Successfully',
             userMessage,
-            aiMessage
+            aiMessage,
           },
         });
       }
@@ -74,10 +83,9 @@ export async function addMessage(req, res) {
       });
     }
   } catch (err) {
-      return res.status(404).json({
-        status: 'failed',
-        message: `Failed to retrieve messages: ${err.message}`,
-      });
-    }
+    return res.status(404).json({
+      status: 'failed',
+      message: `Failed to retrieve messages: ${err.message}`,
+    });
   }
-
+}
