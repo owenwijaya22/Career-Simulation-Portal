@@ -43,41 +43,10 @@ export async function getAttemptById(req, res) {
 
 export async function createAttempt(req, res) {
   try {
-    if (!req.body.userId || !req.body.companyId) {
-      return res
-        .status(400)
-        .json({ status: 'error', message: 'Missing Fields' });
-    }
     const { userId, companyId } = req.body;
-
-    // retrieve all tasks for the company
-    const tasks = await Task.find({
-      company: new mongoose.Types.ObjectId(companyId),
-    });
-    if (!tasks || tasks.length === 0) {
-      return res
-        .status(404)
-        .json({ status: 'error', message: 'No tasks found for this company' });
-    }
-
-    // create a new attempt
     const startTime = new Date();
-    const endTime = new Date(startTime.getTime() + 30 * 60000);
-    const newAttempt = new Attempt({ userId, companyId, startTime, endTime });
-    tasks.forEach((task) => {
-      newAttempt.tasks.push({ taskId: task._id, complete: false });
-    });
-
-    await newAttempt.save();
-
-    // Create the response to send the attempt data to frontend
-    return res.status(201).json({
-      status: 'success',
-      data: {
-        attempt: newAttempt,
-        tasks,
-      },
-    });
+    const endTime = new Date(startTime.getTime() + 60 * 60000);
+    const duration = endTime.getMinutes() - startTime.getMinutes();
   } catch (error) {
     return res.status(500).json({ status: 'error', message: error.message });
   }

@@ -7,6 +7,7 @@ import { connect } from 'mongoose';
 import { createServer } from 'http';
 
 import { Server } from 'socket.io';
+import helmet from 'helmet';
 import app from './app.js';
 import proposalSave from './sockets/proposalSave.js';
 // import { Server } from 'socket.io';
@@ -32,6 +33,8 @@ connect(dbUri, {
 // const io = new Server();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
+
+io.engine.use(helmet());
 
 io.on('connection', (socket) => {
   console.log('Succesfully connected to sockets!');
