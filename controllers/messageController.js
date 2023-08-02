@@ -55,7 +55,7 @@ export async function addMessage(req, res) {
       }
 
       let data = JSON.stringify({
-        input: 'is it hard to be a technical consultant',
+        input: message,
       });
       let config = {
         method: 'post',
