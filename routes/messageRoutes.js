@@ -10,7 +10,7 @@ const messageRouter = Router();
  * @param {string} roomId.path - required
  * @return {object} 200 - Success response - application/json
  */
-messageRouter.route('/:roomId:').get(getAllMessage);
+messageRouter.route('/:roomId').get(getAllMessage);
 
 /**
  * POST /api/messages
