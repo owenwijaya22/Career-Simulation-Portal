@@ -50,7 +50,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/message', messageRouter);
+app.use('/api/messages', messageRouter);
 app.use('/api/rooms', roomRouter);
 app.use('/api/users', userRouter);
 app.use('/api/companies', companyRouter);
