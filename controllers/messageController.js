@@ -63,6 +63,7 @@ export async function addMessage(req, res) {
       const response = await axios.request(config);
       const aiResponse = response.data;
       const room = await Rooms.findById(roomId);
+      await room.updateOne({ lastMessage: aiResponse })
 
       const aiMessage = await Message.create({
         message: aiResponse,
@@ -71,7 +72,6 @@ export async function addMessage(req, res) {
         sender: room.npc,
       });
       if (aiMessage) {
-        await room.updateOne({ lastMessage: aiMessage._id })
         return res.status(200).json({
           message: 'Chats Added Successfully',
           userMessage,

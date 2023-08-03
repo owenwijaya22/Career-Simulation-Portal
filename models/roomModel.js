@@ -17,9 +17,8 @@ const roomSchema = new Schema(
       required: true,
     },
     lastMessage: {
-      type: Schema.Types.ObjectId,
-      ref: 'Message',
-      default: null
+      type: String,
+      default: ''
     },
     company: {
       type: Schema.Types.ObjectId,
