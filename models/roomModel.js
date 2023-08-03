@@ -11,7 +11,7 @@ const roomSchema = new Schema(
       type: String,
       required: true,
     },
-    npc: {
+    npcId: {
       type: Schema.Types.ObjectId,
       ref: 'NPC',
       required: true,
