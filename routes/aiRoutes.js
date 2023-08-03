@@ -16,7 +16,7 @@ const airouter = Router();
  * @return {object} 200 - Success response containing an array of AI objects - application/json
  * @example response - 200 - Example response
  * {
- *   "status": "success",
+
  *   "results": 2,
  *   "data": {
  *     "ais": [
@@ -48,7 +48,6 @@ airouter.route('/').get(getAllAIs);
  * }
  * @example response - 201 - Example response
  * {
- *   "status": "success",
  *   "data": {
  *     "ai": {
  *       "_id": "123",
@@ -71,7 +70,6 @@ airouter.route('/').post(createAI);
  * @return {object} 200 - Success response containing the retrieved AI object - application/json
  * @example response - 200 - Example response
  * {
- *   "status": "success",
  *   "data": {
  *     "ai": {
  *       "_id": "123",
@@ -93,7 +91,6 @@ airouter.route('/').post(createAI);
  * @return {object} 200 - Success response containing the updated AI object - application/json
  * @example response - 200 - Example response
  * {
- *   "status": "success",
  *   "data": {
  *     "ai": {
  *       "_id": "123",
@@ -114,7 +111,7 @@ airouter.route('/').post(createAI);
  * @return {object} 204 - Success response with no content - application/json
  * @example response - 204 - Example response
  * {
- *   "status": "success",
+
  *   "data": null
  * }
  */

@@ -35,7 +35,7 @@ companyRouter.route('/').get(getAllCompanies);
  *
  * @example response - 201 - application/json
  * {
- *   "status": "success",
+
  *   "data": {
  *     "company": {
  *       "_id": "6141f93c5120a6289c850431",

@@ -5,7 +5,7 @@ import {
   leaveRoom,
   getAllRooms,
   getRoom,
-  getUsers
+  getUsers,
 } from '../controllers/roomController.js';
 
 const roomRouter = Router();
@@ -26,7 +26,7 @@ roomRouter.route('/').get(getAllRooms);
  * @return {object} 200 - An array of user objects for a specific room.
  * @example response - 200 - Returns an array of user objects for a specific room.
  * {
- *   "status": "success",
+
  *   "results": 2,
  *   "data": {
  *     "users": [
@@ -78,7 +78,6 @@ roomRouter.route('/room/:roomId').get(getRoom);
  * }
  * @example response - 201 - Example response
  * {
- *     "status": "success",
  *     "data": {
  *         "room": {
  *             "user": "648a767797a2f43a47c55cb6",

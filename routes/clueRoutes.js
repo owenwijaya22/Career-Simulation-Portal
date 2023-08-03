@@ -16,7 +16,6 @@ const clueRouter = Router();
  * }
  * @example response - 201 - Example response
  * {
- *   "status": "success",
  *   "message": "Clue Created",
  *   "data": {
  *     "clue": {
@@ -40,11 +39,9 @@ clueRouter.route('/').post(createClue);
  * @return {object} 200 - Success response indicating the Clue is unlocked - application/json
  * @example response - 200 - Example response
  * {
- *   "status": "success",
  *   "message": "Clue unlocked",
  * }
  */
 clueRouter.route('/:id').get(unlockClue);
-
 
 export default clueRouter;

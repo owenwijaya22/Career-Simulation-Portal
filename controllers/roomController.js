@@ -5,20 +5,14 @@ export async function createRoom(req, res) {
   try {
     const { userId, prompt, npc, company } = req.body;
     if (!userId || !prompt || !npc || !company) {
-      return res
-        .status(400)
-        .json({ status: 'error', message: 'Missing Fields' });
+      return res.status(400).json({ message: 'Missing Fields' });
     }
     const newRoom = await Rooms.create({ userId, prompt, npc, company });
     res.status(201).json({
-      status: 'success',
-      data: {
-        room: newRoom,
-      },
+      room: newRoom,
     });
   } catch (err) {
     res.status(400).json({
-      status: 'failed',
       message: err,
     });
   }
@@ -27,19 +21,15 @@ export async function createRoom(req, res) {
 export async function deleteRoom(req, res) {
   try {
     if (!req.params.roomId) {
-      return res
-        .status(400)
-        .json({ status: 'error', message: 'Missing Fields' });
+      return res.status(400).json({ message: 'Missing Fields' });
     }
     await Rooms.findByIdAndDelete(req.params.roomId);
 
     res.status(204).json({
-      status: 'success',
-      data: null,
+      message: 'Room deleted succesfully',
     });
   } catch (err) {
     res.status(404).json({
-      status: 'failed',
       message: err,
     });
   }
@@ -48,9 +38,7 @@ export async function deleteRoom(req, res) {
 export async function leaveRoom(req, res) {
   try {
     if (!req.params.roomId) {
-      return res
-        .status(400)
-        .json({ status: 'error', message: 'Missing Fields' });
+      return res.status(400).json({ message: 'Missing Fields' });
     }
     const room = await Rooms.findById(req.params.roomId);
     const userIndex = room.users.indexOf(req.user.id);
@@ -61,14 +49,10 @@ export async function leaveRoom(req, res) {
     }
 
     res.status(200).json({
-      status: 'success',
-      data: {
-        room,
-      },
+      room,
     });
   } catch (err) {
     res.status(404).json({
-      status: 'failed',
       message: err,
     });
   }
@@ -80,11 +64,8 @@ export async function getUsers(req, res) {
     const users = await User.find({ roomId: roomId });
 
     return res.status(200).json({
-      status: 'success',
       results: users.length,
-      data: {
-        users,
-      },
+      users,
     });
   } catch (error) {
     return res.status(503).json({ message: error.message });
@@ -96,14 +77,10 @@ export async function getAllRooms(req, res) {
     const rooms = await Rooms.find();
 
     res.status(200).json({
-      status: 'success',
-      data: {
-        rooms,
-      },
+      rooms,
     });
   } catch (err) {
     res.status(404).json({
-      status: 'failed',
       message: err,
     });
   }
@@ -113,14 +90,10 @@ export async function getRoom(req, res) {
   try {
     const room = await Rooms.findById(req.params.roomId);
     res.status(200).json({
-      status: 'success',
-      data: {
-        room,
-      },
+      room,
     });
   } catch (err) {
     res.status(404).json({
-      status: 'failed',
       message: err,
     });
   }
@@ -144,7 +117,7 @@ export async function getRoom(req, res) {
 //     });
 //   } catch (err) {
 //     res.status(404).json({
-//       status: 'failed',
+//
 //       message: err,
 //     });
 //   }

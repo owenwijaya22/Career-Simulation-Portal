@@ -9,22 +9,16 @@ config({ path: './.env' });
 export async function getAllMessage(req, res) {
   try {
     if (!req.params.roomId) {
-      return res
-        .status(400)
-        .json({ status: 'error', message: 'Missing Fields' });
+      return res.status(400).json({ message: 'Missing Fields' });
     }
     const messages = await Message.find({ roomId: req.params.roomId }).limit(
       100
     );
     res.status(200).json({
-      status: 'success',
-      data: {
-        messages,
-      },
+      messages,
     });
   } catch (err) {
     res.status(500).json({
-      status: 'failed',
       message: err,
     });
   }
@@ -35,7 +29,6 @@ export async function addMessage(req, res) {
     const { message, roomId, senderType, sender, npcId } = req.body;
     if (!message || !roomId || !senderType || !sender) {
       return res.status(400).json({
-        status: 'failed',
         message: 'Missing Fields',
       });
     }
@@ -78,19 +71,17 @@ export async function addMessage(req, res) {
       });
       if (aiMessage) {
         return res.status(200).json({
-            message: 'Chats Added Successfully',
-            userMessage,
-            aiMessage
-          });
+          message: 'Chats Added Successfully',
+          userMessage,
+          aiMessage,
+        });
       }
       return res.status(400).json({
-        status: 'failed',
         message: 'Chat was not added into the database',
       });
     }
   } catch (err) {
     return res.status(404).json({
-      status: 'failed',
       message: `Failed to retrieve messages: ${err.message}`,
     });
   }

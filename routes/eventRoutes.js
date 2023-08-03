@@ -19,7 +19,7 @@ const eventRouter = Router();
  * }
  * @example response - 201 - Example response
  * {
- *   "status": "success",
+
  *   "message": "Event Created",
  *   "data": {
  *     "event": {
@@ -46,7 +46,6 @@ eventRouter.post('/', createEvent);
  * }
  * @example response - 200 - Example response
  *   {
- *       "status": "success",
  *       "message": "Event triggered",
  *       "data": [
  *           {

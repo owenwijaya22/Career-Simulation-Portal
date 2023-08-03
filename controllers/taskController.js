@@ -25,13 +25,10 @@ export async function createTask(req, res) {
     await newTask.save();
 
     return res.status(200).json({
-      status: 'success',
-      data: {
-        newTask,
-      },
+      newTask,
     });
   } catch (error) {
-    return res.status(500).json({ status: 'error', message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 }
 

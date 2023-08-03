@@ -4,7 +4,7 @@ import {
   getAllUsers,
   updateUser,
   deleteUser,
-  getUserById
+  getUserById,
 } from '../controllers/userController.js';
 
 const userRouter = Router();
@@ -22,7 +22,7 @@ const userRouter = Router();
  * }
  * @example response - 201 - Returns the created user object.
  * {
- *   "status": "success",
+
  *   "data": {
  *     "user": {
  *       "email": "johndoe@example.com",
@@ -43,7 +43,7 @@ userRouter.post('/', createUser);
  * @return {object} 200 - An array of user objects.
  * @example response - 200 - Returns an array of user objects.
  * {
- *   "status": "success",
+
  *   "results": 2,
  *   "data": {
  *     "users": [
@@ -77,7 +77,7 @@ userRouter.get('/', getAllUsers);
  * @return {object} 200 - Returns the user object.
  * @example response - 200 - Returns the user object.
  * {
- *   "status": "success",
+
  *   "data": {
  *     "user": {
  *       "tasks": [],

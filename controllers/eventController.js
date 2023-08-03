@@ -10,7 +10,6 @@ export const requestHandler = async (req, res) => {
     const { nextEventType } = req.body;
     if (!nextEventType) {
       return res.status(400).json({
-        status: 'error',
         message: 'Missing next event type',
       });
     }
@@ -32,17 +31,14 @@ export const requestHandler = async (req, res) => {
     }
     if (Object.keys(data).length === 0) {
       return res.status(400).json({
-        status: 'error',
         message: 'Invalid next event type',
       });
     }
     return res.status(200).json({
-      status: 'success',
       data,
     });
   } catch (err) {
     return res.status(400).json({
-      status: 'error',
       message: err.message,
     });
   }
@@ -62,7 +58,6 @@ export const createEvent = async (req, res) => {
     const { choiceId, next_question_id, next_task_id, next_clue_id } = req.body;
     if (!choiceId && (next_clue_id || next_question_id || next_task_id)) {
       return res.status(400).json({
-        status: 'error',
         message:
           'An event must be related to a choice, and only one of next_clue_id, next_question_id, next_task_id can be specified',
       });
@@ -74,15 +69,11 @@ export const createEvent = async (req, res) => {
       next_clue_id,
     });
     res.status(201).json({
-      status: 'success',
       message: 'Event Created',
-      data: {
-        event: newEvent,
-      },
+      event: newEvent,
     });
   } catch (err) {
     res.status(500).json({
-      status: 'error',
       message: err.message,
     });
   }
@@ -94,7 +85,6 @@ export const triggerEvent = async (req, res) => {
     const event = await Event.findOne({ choiceId });
     if (!event) {
       return res.status(404).json({
-        status: 'error',
         message: 'No event found associated with this choice',
       });
     }
@@ -117,13 +107,11 @@ export const triggerEvent = async (req, res) => {
       data.push({ nextMoveType, nextMove });
     }
     return res.status(200).json({
-      status: 'success',
       message: 'Event triggered',
       data,
     });
   } catch (err) {
     res.status(500).json({
-      status: 'error',
       message: err.message,
     });
   }

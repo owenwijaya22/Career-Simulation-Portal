@@ -8,14 +8,10 @@ export async function createAI(req, res) {
     const newAI = await AI.create(req.body);
 
     res.status(201).json({
-      status: 'success',
-      data: {
-        ai: newAI,
-      },
+      ai: newAI,
     });
   } catch (error) {
     res.status(500).json({
-      status: 'error',
       message: error.message,
     });
   }
@@ -25,18 +21,13 @@ export async function getAllAIs(req, res) {
   try {
     const ais = await AI.find();
     if (!ais) {
-      return res.status(404).json({ status: 'error', message: 'No ais found' });
+      return res.status(404).json({ message: 'No ais found' });
     }
     res.status(200).json({
-      status: 'success',
-      results: ais.length,
-      data: {
-        ais,
-      },
+      ais,
     });
   } catch (error) {
     res.status(500).json({
-      status: 'error',
       message: error.message,
     });
   }
@@ -47,18 +38,13 @@ export async function getAIById(req, res) {
     const { id } = req.params;
     const ai = await AI.findById(id);
     if (!ai) {
-      return res
-        .status(404)
-        .json({ status: 'error', message: 'No ai found with that ID' });
+      return res.status(404).json({ message: 'No ai found with that ID' });
     }
     return res.status(200).json({
-      status: 'success',
-      data: {
-        ai,
-      },
+      ai,
     });
   } catch (error) {
-    return res.status(500).json({ status: 'error', message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 }
 
@@ -67,9 +53,7 @@ export async function updateAI(req, res) {
     const { id } = req.params;
     const ai = await AI.findById(id);
     if (!ai) {
-      return res
-        .status(404)
-        .json({ status: 'error', message: 'No ai found with that ID' });
+      return res.status(404).json({ message: 'No ai found with that ID' });
     }
     req.body.modifiedAt = Date.now();
     const updatedAI = await AI.findByIdAndUpdate(id, req.body, {
@@ -77,11 +61,10 @@ export async function updateAI(req, res) {
       runValidators: true,
     });
     return res.status(200).json({
-      status: 'success',
-      data: { ai: updatedAI },
+      ai: updatedAI,
     });
   } catch (error) {
-    return res.status(500).json({ status: 'error', message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 }
 
@@ -90,16 +73,13 @@ export async function deleteAI(req, res) {
     const { id } = req.params;
     const ai = await AI.findById(id);
     if (!ai) {
-      return res
-        .status(404)
-        .json({ status: 'error', message: 'No ai found with that ID' });
+      return res.status(404).json({ message: 'No ai found with that ID' });
     }
     await AI.findByIdAndDelete(id);
     return res.status(204).json({
-      status: 'success',
-      data: null,
+      message: 'AI deleted',
     });
   } catch (error) {
-    return res.status(500).json({ status: 'error', message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 }
