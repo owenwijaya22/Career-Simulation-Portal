@@ -78,13 +78,10 @@ export async function addMessage(req, res) {
       });
       if (aiMessage) {
         return res.status(200).json({
-          status: 'success',
-          data: {
             message: 'Chats Added Successfully',
             userMessage,
-            aiMessage,
-          },
-        });
+            aiMessage
+          });
       }
       return res.status(400).json({
         status: 'failed',

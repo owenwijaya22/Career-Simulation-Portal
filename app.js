@@ -15,7 +15,6 @@ import taskRouter from './routes/taskRoutes.js';
 import attemptRouter from './routes/attemptRoutes.js';
 import eventRouter from './routes/eventRoutes.js';
 import clueRouter from './routes/clueRoutes.js';
-import pythonRouter from './routes/pythonRoutes.js';
 import proposalRouter from './routes/proposalRoute.js';
 // import hpp from 'hpp';
 
@@ -62,7 +61,6 @@ app.use('/api/tasks', taskRouter);
 app.use('/api/attempts', attemptRouter);
 app.use('/api/events', eventRouter);
 app.use('/api/clue', clueRouter);
-app.use('/api/python', pythonRouter);
 app.use('/api/proposal', proposalRouter);
 
 export default app;
