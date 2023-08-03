@@ -63,6 +63,7 @@ export async function addMessage(req, res) {
       const response = await axios.request(config);
       const aiResponse = response.data;
       const room = await Rooms.findById(roomId);
+
       const aiMessage = await Message.create({
         message: aiResponse,
         roomId: roomId,
@@ -70,6 +71,7 @@ export async function addMessage(req, res) {
         sender: room.npc,
       });
       if (aiMessage) {
+        await room.updateOne({ lastMessage: aiMessage._id })
         return res.status(200).json({
           message: 'Chats Added Successfully',
           userMessage,
@@ -82,7 +84,7 @@ export async function addMessage(req, res) {
     }
   } catch (err) {
     return res.status(404).json({
-      message: `Failed to retrieve messages: ${err.message}`,
+      message: `${err.message}`,
     });
   }
 }
