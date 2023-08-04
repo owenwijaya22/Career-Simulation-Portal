@@ -71,10 +71,8 @@ roomRouter.route('/room/:roomId').get(getRoom);
  * {
  *     "user": "648a767797a2f43a47c55cb6",
  *     "prompt": "greetings",
- *     "members": [
- *         "648a767797a2f43a47c55cb6",
- *         "648a77b697a2f43a47c55cb8"
- *     ]
+ *     "npcId": "64c730f72a2eb9b761071dc1",
+ *     "company": "64a3c5123510c42f08bb4345"
  * }
  * @example response - 201 - Example response
  * {
