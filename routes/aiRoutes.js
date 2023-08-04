@@ -16,9 +16,7 @@ const airouter = Router();
  * @return {object} 200 - Success response containing an array of AI objects - application/json
  * @example response - 200 - Example response
  * {
-
  *   "results": 2,
- *   "data": {
  *     "ais": [
  *       {
  *         "_id": "123",
@@ -29,7 +27,6 @@ const airouter = Router();
  *         "modifiedAt": "2023-01-01T00:00:00Z"
  *       }
  *     ]
- *   }
  * }
  */
 airouter.route('/').get(getAllAIs);
@@ -109,11 +106,6 @@ airouter.route('/').post(createAI);
  * @tags ai
  * @param {string} id.path.required - AI ID. Example: "64abbcc545e847f13209a5d6"
  * @return {object} 204 - Success response with no content - application/json
- * @example response - 204 - Example response
- * {
-
- *   "data": null
- * }
  */
 airouter.route('/:id').get(getAIById).put(updateAI).delete(deleteAI);
 
