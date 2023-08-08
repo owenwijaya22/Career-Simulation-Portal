@@ -44,7 +44,7 @@ export const createProposal = async (req, res) => {
 
 export const getProposal = async (req, res) => {
   try {
-    const { attemptId } = req.params;
+    const { attemptId } = req.query; //for GET request, query is recommended
     if (!attemptId) {
       return res.status(400).json({
         message: 'Missing attemptId in request parameters',
