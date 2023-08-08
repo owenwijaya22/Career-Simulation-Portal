@@ -41,3 +41,28 @@ export const createProposal = async (req, res) => {
     });
   }
 };
+
+export const getProposal = async (req, res) => {
+  try {
+    const { attemptId } = req.params;
+    if (!attemptId) {
+      return res.status(400).json({
+        message: 'Missing attemptId in request parameters',
+      });
+    }
+    const proposal = await Proposal.findOne({ attempt: attemptId });
+    if (!proposal) {
+      return res.status(404).json({
+        message: 'Proposal not found',
+      });
+    }
+    return res.status(200).json({
+      message: 'Proposal Found',
+      proposal,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};
