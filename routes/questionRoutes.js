@@ -27,24 +27,20 @@ questionRouter.route('/').get(getQuestions);
  * @return {object} 201 - Success response - application/json
  * @example request - application/json
  * {
- *   "question": "What is the color of the sky?",
- *   "task_id": "60e73bdf5b3c593b2c5b191e",
+ *   "question": "What are the unmet needs or pain points of the target market?",
+ *   "npcId": "64c7308c2a2eb9b761071dbf",
  *   "choices": [
  *     {
- *       "value": "Blue",
- *       "order": 1
+ *       "value": "Managing inventory efficiently",
+ *       "rating": 1
  *     },
  *     {
- *       "value": "Green",
- *       "order": 2
+ *       "value": "Finding reliable freelance professionals",
+ *       "rating": 2
  *     },
  *     {
- *       "value": "Red",
- *       "order": 3
- *     },
- *     {
- *       "value": "Yellow",
- *       "order": 4
+ *       "value": "Having an app that integrates personalized recommendations",
+ *       "rating": 3
  *     }
  *   ]
  * }
