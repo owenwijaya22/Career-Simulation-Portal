@@ -19,7 +19,7 @@ const questionSchema = new mongoose.Schema({
     required: [true, 'A question must have a question'],
     trim: true,
   },
-  npc: {
+  npcId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'NPC',
     required: [true, 'A question must be related to an NPC'],
