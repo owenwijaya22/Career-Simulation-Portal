@@ -6,13 +6,13 @@ import Question, { Choice } from '../models/questionModel.js';
 
 const createQuestion = async (req, res) => {
   try {
-    const { question, choices, task_id } = req.body;
-    const newQuestion = new Question({ question, task_id });
-    choices.forEach((choice, index) => {
+    const { question, npcId, choices } = req.body;
+    const newQuestion = new Question({ question, npcId });
+    choices.forEach((choice) => {
       const newChoice = new Choice({
         _id: new mongoose.Types.ObjectId(),
         value: choice.value,
-        order: index + 1,
+        rating: choice.rating,
       });
       newQuestion.choices.push(newChoice);
     });
