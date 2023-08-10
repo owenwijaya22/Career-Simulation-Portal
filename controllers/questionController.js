@@ -14,6 +14,7 @@ const createQuestion = async (req, res) => {
         value: choice.value,
         rating: choice.rating,
       });
+      newChoice.save();
       newQuestion.choices.push(newChoice);
     });
     // console.log(newQuestion);
