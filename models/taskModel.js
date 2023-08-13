@@ -32,17 +32,17 @@ const TaskSchema = new Schema(
       type: String,
       trim: true,
     },
-    completed: {
-      type: Boolean,
-      default: false,
-    },
     company: {
-      type: _Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       required: true,
       ref: 'Company',
     },
     taskType: {
       type: String,
+      required: true,
+    },
+    order: {
+      type: Number,
       required: true,
     },
     templates: [TaskTemplateSchema], // an array of TaskTemplate objects
