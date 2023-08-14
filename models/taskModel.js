@@ -32,7 +32,7 @@ const TaskSchema = new Schema(
       type: String,
       trim: true,
     },
-    company: {
+    companyId: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'Company',

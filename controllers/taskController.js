@@ -3,16 +3,31 @@ import { Task, TaskTemplate } from '../models/taskModel.js';
 
 export async function createTask(req, res) {
   try {
-    const { title, description, completed, company, taskType, templates } =
+    const { title, description, companyId, taskType, templates } =
       req.body;
     const newTask = new Task({
       title,
       description,
-      completed,
-      company,
+      companyId,
       taskType,
     });
-
+    const existingTasks=await Task.find({companyId:companyId}).sort({order:-1});
+    // if(!existingTasks){
+    //   newTask.order.push(1);
+    // }
+    // else{
+    //   const existingTasksdesc=existingTasks.sort((a, b) => b.order - a.order);
+    //   const currentTask=existingTasksdesc[0].order;
+    //   newTask.order.push(currentTask);
+    // }     
+    
+    if(existingTasks.length>0){
+      const currentTask=existingTasks[0].order+1;
+      newTask.order=currentTask;
+    }     
+    else{
+      newTask.order=1;
+    }
     templates.forEach((template, index) => {
       const newTemplate = new TaskTemplate({
         _id: new Types.ObjectId(),
@@ -34,7 +49,7 @@ export async function createTask(req, res) {
 
 export async function getCompanyTasks(req, res) {
   try {
-    const tasks = await Task.find({ company: req.params.companyId });
+    const tasks = await Task.find({ companyId: req.params.companyId });
     res.send(tasks);
   } catch (error) {
     res.status(500).send();
