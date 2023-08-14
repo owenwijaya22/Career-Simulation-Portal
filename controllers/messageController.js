@@ -45,8 +45,14 @@ export async function addMessage(req, res) {
         chatroom = 'chatroom_1';
       } else if (npc.name === 'Noel') {
         chatroom = 'chatroom_2';
+      } else if (npc.name === 'Desmond Tan') {
+        chatroom = 'chatroom_3';
+      } else if (npc.name === 'David Lam') {
+        chatroom = 'chatroom_4';
+      } else if (npc.name === 'Adrian Chui') {
+        chatroom = 'chatroom_5'
       }
-
+      
       let data = JSON.stringify({
         input: message,
       });
