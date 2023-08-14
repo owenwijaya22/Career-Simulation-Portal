@@ -39,9 +39,10 @@ airouter.route('/').get(getAllAIs);
  * @return {object} 201 - Success response containing the created AI object - application/json
  * @example request - application/json
  * {
- *    "name": "New AI",
- *    "image": "AI Image URL",
- *    "prompt": "AI Prompt"
+ *    "name": "Desmond",
+ *    "aiType": "GPT",
+ *    "image": "https://randomuser.me/api/portraits/men/7.jpg",
+ *    "prompt": "sample prompt"
  * }
  * @example response - 201 - Example response
  * {
@@ -67,9 +68,7 @@ airouter.route('/').post(createAI);
  * @return {object} 200 - Success response containing the retrieved AI object - application/json
  * @example response - 200 - Example response
  * {
- *   "data": {
  *     "ai": {
- *       "_id": "123",
  *       "name": "AI Name",
  *       "image": "AI Image URL",
  *       "prompt": "AI Prompt",
