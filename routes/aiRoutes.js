@@ -46,7 +46,6 @@ airouter.route('/').get(getAllAIs);
  * }
  * @example response - 201 - Example response
  * {
- *   "data": {
  *     "ai": {
  *       "_id": "123",
  *       "name": "New AI",
@@ -55,7 +54,6 @@ airouter.route('/').get(getAllAIs);
  *       "createdAt": "2023-01-01T00:00:00Z",
  *       "modifiedAt": "2023-01-01T00:00:00Z"
  *     }
- *   }
  * }
  */
 airouter.route('/').post(createAI);
@@ -75,7 +73,6 @@ airouter.route('/').post(createAI);
  *       "createdAt": "2023-01-01T00:00:00Z",
  *       "modifiedAt": "2023-01-01T00:00:00Z"
  *     }
- *   }
  * }
  */
 
@@ -87,7 +84,6 @@ airouter.route('/').post(createAI);
  * @return {object} 200 - Success response containing the updated AI object - application/json
  * @example response - 200 - Example response
  * {
- *   "data": {
  *     "ai": {
  *       "_id": "123",
  *       "name": "Updated AI Name",
@@ -96,7 +92,6 @@ airouter.route('/').post(createAI);
  *       "createdAt": "2023-01-01T00:00:00Z",
  *       "modifiedAt": "2023-01-01T01:00:00Z"
  *     }
- *   }
  * }
  */
 /**
