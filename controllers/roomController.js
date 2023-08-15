@@ -3,11 +3,11 @@ import User from '../models/userModel.js';
 
 export async function createRoom(req, res) {
   try {
-    const { userId, prompt, npcId, company } = req.body;
-    if (!userId || !prompt || !npcId || !company) {
+    const { userId, npcId, company } = req.body;
+    if (!userId || !npcId || !company) {
       return res.status(400).json({ message: 'Missing Fields' });
     }
-    const newRoom = await Rooms.create({ userId, prompt, npcId, company });
+    const newRoom = await Rooms.create({ userId, npcId, company });
     res.status(201).json({
       room: newRoom,
     });
