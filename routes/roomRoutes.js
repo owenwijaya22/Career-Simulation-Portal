@@ -69,16 +69,14 @@ roomRouter.route('/room/:roomId').get(getRoom);
  * @return {object} 201 - Success response - application/json
  * @example request - application/json
  * {
- *     "user": "648a767797a2f43a47c55cb6",
- *     "prompt": "greetings",
- *     "npcId": "64c730f72a2eb9b761071dc1",
+ *     "userId": "64a3c4a23510c42f08bb4344",
+ *     "npcId": "64c7308c2a2eb9b761071dbf",
  *     "company": "64a3c5123510c42f08bb4345"
  * }
  * @example response - 201 - Example response
  * {
- *     "data": {
  *         "room": {
- *             "user": "648a767797a2f43a47c55cb6",
+ *             "userId": "648a767797a2f43a47c55cb6",
  *             "prompt": "greetings",
  *             "members": [
  *                 "648a767797a2f43a47c55cb6",
@@ -88,7 +86,6 @@ roomRouter.route('/room/:roomId').get(getRoom);
  *             "__v": 0
  *         }
  *     }
- * }
  */
 roomRouter.route('/').post(createRoom);
 
