@@ -36,3 +36,39 @@ export const unlockClue = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+export const getClue = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const clue = await Clue.findById(id);
+    if (!clue) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'No clue found with that ID',
+      });
+    }
+    return res.status(200).json({
+      status: 'success',
+      data: {
+        clue,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ status: 'error', message: error.message });
+  }
+};
+
+export const getAllClues = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const clues = await Clue.find();
+    return res.status(200).json({
+      status: 'success',
+      data: {
+        clues,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ status: 'error', message: error.message });
+  }
+};

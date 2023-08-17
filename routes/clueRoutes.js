@@ -1,5 +1,10 @@
 import { Router } from 'express';
-import { createClue, unlockClue } from '../controllers/clueController.js';
+import {
+  createClue,
+  unlockClue,
+  getClue,
+  getAllClues,
+} from '../controllers/clueController.js';
 
 const clueRouter = Router();
 
@@ -43,5 +48,34 @@ clueRouter.route('/').post(createClue);
  * }
  */
 clueRouter.route('/:id').get(unlockClue);
+
+/**
+ * GET /
+ * @summary This endpoint sends a Clue instance
+ * @tags Clue
+ * @param {string} id.path.required - Clue ID to be sent
+ * @return {object} 200 - Success response indicating the Clue is sent - application/json
+ * @example response - 200 - Example response
+ * {
+ *   "status": "success",
+ *   "message": "Clue sent",
+ * }
+ */
+clueRouter.route('/get/:id').get(getClue);
+
+/**
+ * GET /
+ * @summary This endpoint sends  Clue instance
+ * @tags Clue
+ * @param {string} id.path.required - Clue Company ID to be sent
+ * @return {object} 200 - Success response indicating all the Clues are sent - application/json
+ * @example response - 200 - Example response
+ * {
+ *   "status": "success",
+ *   "message": "Clue sent",
+ * }
+ */
+
+clueRouter.route('/getAll/:id').get(getAllClues);
 
 export default clueRouter;
