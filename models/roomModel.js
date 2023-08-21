@@ -21,6 +21,10 @@ const roomSchema = new Schema(
       ref: 'Company',
       required: true,
     },
+    locked: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
