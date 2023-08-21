@@ -69,7 +69,13 @@ export const getProposal = async (req, res) => {
 
 export const getProposals = async (req, res) => {
   try {
-    const proposals = await Proposal.find();
+    const { attemptId } = req.query; //for GET request, query is recommended
+    if (!attemptId) {
+      return res.status(400).json({
+        message: 'Missing attemptId in request parameters',
+      });
+    }
+    const proposals = await Proposal.find({ attempt: attemptId });
     if (!proposals) {
       return res.status(404).json({
         message: 'Proposals not found',

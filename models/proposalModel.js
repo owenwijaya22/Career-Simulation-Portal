@@ -26,7 +26,6 @@ const proposalSchema = new Schema({
   attempt: {
     type: String,
     required: [true, 'A proposal must have an attempt'],
-    unique: true,
   },
   slides: [slidesSchema],
 });
