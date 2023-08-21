@@ -2,13 +2,13 @@ import Proposal from '../models/proposalModel.js';
 
 export const saveProposal = async (req, res) => {
   try {
-    const { attemptId, slides } = req.body;
-    if (!attemptId || !slides) {
+    const { proposalId, slides } = req.body;
+    if (!proposalId || !slides) {
       return res.status(400).json({
         message: 'Missing Fields',
       });
     }
-    await Proposal.findOneAndUpdate({ attempt: attemptId }, { slides });
+    await Proposal.findOneAndUpdate({ _id: proposalId }, { slides });
     return res.status(204).json({
       message: 'Proposal Saved Successfully',
     });
@@ -69,7 +69,13 @@ export const getProposal = async (req, res) => {
 
 export const getProposals = async (req, res) => {
   try {
-    const proposals = await Proposal.find();
+    const { attemptId } = req.query; //for GET request, query is recommended
+    if (!attemptId) {
+      return res.status(400).json({
+        message: 'Missing attemptId in request parameters',
+      });
+    }
+    const proposals = await Proposal.find({ attempt: attemptId });
     if (!proposals) {
       return res.status(404).json({
         message: 'Proposals not found',
