@@ -6,6 +6,10 @@ const npcSchema = new Schema(
       type: String,
       required: [true, 'An AI must have a name'],
     },
+    position: {
+      type: String,
+      required: [true, 'An AI must have a position'],
+    },
     aiType: {
       type: String,
       required: [true, 'An AI must have a type'],
@@ -15,9 +19,6 @@ const npcSchema = new Schema(
     image: {
       type: String,
       required: [true, 'An AI must have an image'],
-    },
-    prompt: {
-      type: String,
     },
   },
   {
