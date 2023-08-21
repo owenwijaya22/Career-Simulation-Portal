@@ -9,43 +9,39 @@ const jobSchema = new Schema({
     type: String,
     required: [true, 'A job must have a description'],
   },
-  requirements: {
-    type: String,
-    required: [true, 'A job must have requirements'],
-  },
-  video: {
-    type: String,
-    required: false,
-  },
+  // requirements: {
+  //   type: String,
+  //   required: [true, 'A job must have requirements'],
+  // },
 });
 
-const companyScheme = new Schema(
+const companySchema = new Schema(
   {
     name: {
       type: String,
       required: [true, 'A company must have a name'],
       unique: true,
     },
-    description: {
-      type: String,
-      required: [true, 'A company must have a description'],
-    },
     image: {
       type: String,
       required: [true, 'A company must have an image/logo'],
     },
-    website: {
+    jobs: jobSchema,
+    video: {
       type: String,
-      required: [true, 'A company must have a website'],
-      unique: true,
+      required: false,
     },
-    jobs: [jobSchema],
+    // website: {
+    //   type: String,
+    //   required: [true, 'A company must have a website'],
+    //   unique: true,
+    // },
   },
   {
     timestamps: true,
   }
 );
 
-const Company = model('Company', companyScheme);
+const Company = model('Company', companySchema);
 
 export default Company;

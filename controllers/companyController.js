@@ -34,10 +34,10 @@ export async function createCompany(req, res) {
     // const { name, address, phone, email } = req.body;
     if (
       !req.body.name ||
-      !req.body.description ||
+      // !req.body.description ||
       !req.body.image ||
-      !req.body.video ||
-      !req.body.website
+      !req.body.video
+      // !req.body.website
     ) {
       return res.status(400).json({ message: 'Missing Fields' });
     }

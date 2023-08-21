@@ -4,7 +4,7 @@ import {
   getAllCompanies,
   getCompanyById,
   updateCompany,
-  deleteCompany,
+  deleteCompany
 } from '../controllers/companyController.js';
 
 const companyRouter = Router();
@@ -89,5 +89,4 @@ companyRouter.route('/:id').put(updateCompany);
  * @return {object} 204 - Returns success status with no content.
  */
 companyRouter.route('/:id').delete(deleteCompany);
-
 export default companyRouter;
