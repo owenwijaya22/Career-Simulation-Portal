@@ -66,3 +66,42 @@ export const getProposal = async (req, res) => {
     });
   }
 };
+
+export const getProposals = async (req, res) => {
+  try {
+    const proposals = await Proposal.find();
+    if (!proposals) {
+      return res.status(404).json({
+        message: 'Proposals not found',
+      });
+    }
+    return res.status(200).json({
+      message: 'Proposals Found',
+      proposals,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+export const unlockProposal = async (req, res) => {
+  try {
+    const { proposalId } = req.params;
+    const proposal = Proposal.findById(proposalId);
+    if (!proposal) {
+      return res.status(400).json({
+        message: 'Missing proposal',
+      });
+    }
+    await Proposal.findOneAndUpdate({ _id: proposalId }, { unlocked: true });
+    return res.status(204).json({
+      message: 'Proposal Unlocked Successfully',
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};
