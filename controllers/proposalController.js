@@ -2,13 +2,13 @@ import Proposal from '../models/proposalModel.js';
 
 export const saveProposal = async (req, res) => {
   try {
-    const { attemptId, slides } = req.body;
-    if (!attemptId || !slides) {
+    const { proposalId, slides } = req.body;
+    if (!proposalId || !slides) {
       return res.status(400).json({
         message: 'Missing Fields',
       });
     }
-    await Proposal.findOneAndUpdate({ attempt: attemptId }, { slides });
+    await Proposal.findOneAndUpdate({ _id: proposalId }, { slides });
     return res.status(204).json({
       message: 'Proposal Saved Successfully',
     });
