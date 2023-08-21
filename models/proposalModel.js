@@ -18,6 +18,10 @@ const proposalSchema = new Schema({
   //   required: [true, 'A proposal must have an attempt'],
   //   unique: true,
   // },
+  title: {
+    type: String,
+    required: [true, 'A proposal must have a title'],
+  },
   unlocked: {
     type: Boolean,
     default: false,
