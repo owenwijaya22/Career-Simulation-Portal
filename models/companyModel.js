@@ -30,12 +30,7 @@ const companySchema = new Schema(
     video: {
       type: String,
       required: false,
-    },
-    // website: {
-    //   type: String,
-    //   required: [true, 'A company must have a website'],
-    //   unique: true,
-    // },
+    }
   },
   {
     timestamps: true,
