@@ -17,6 +17,12 @@ const sessionSchema = new Schema({
       ref: 'Clue',
     },
   ],
+  unlockedRooms: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Room',
+    }
+  ],
   unlockedTasks: [
     {
       type: Schema.Types.ObjectId,
