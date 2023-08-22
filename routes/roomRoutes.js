@@ -14,6 +14,7 @@ const roomRouter = Router();
  * GET /api/rooms
  * @summary This endpoint retrieves all rooms
  * @tags rooms
+ * @param {string} attemptId.path - required
  * @return {object} 200 - Success response - application/json
  */
 roomRouter.route('/:attemptId').get(getAllRooms);
