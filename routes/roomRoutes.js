@@ -16,7 +16,7 @@ const roomRouter = Router();
  * @tags rooms
  * @return {object} 200 - Success response - application/json
  */
-roomRouter.route('/').get(getAllRooms);
+roomRouter.route('/:attemptId').get(getAllRooms);
 
 /**
  * GET /api/rooms/{roomId}
