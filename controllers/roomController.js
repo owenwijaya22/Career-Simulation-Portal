@@ -1,5 +1,7 @@
 import Rooms from '../models/roomModel.js';
 import User from '../models/userModel.js';
+import Attempt from '../models/attemptModel.js';
+import mongoose from 'mongoose';
 
 export async function createRoom(req, res) {
   try {
@@ -75,7 +77,7 @@ export async function getUsers(req, res) {
 
 export async function getAllRooms(req, res) {
   try {
-    const attemptId = req.params.id;
+    const attemptId = req.params.attemptId;
 
     if (!mongoose.Types.ObjectId.isValid(attemptId)) {
       return res.status(400).json({ message: 'Invalid attempt ID' });
