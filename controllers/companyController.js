@@ -31,14 +31,7 @@ export async function getCompanyById(req, res) {
 
 export async function createCompany(req, res) {
   try {
-    // const { name, address, phone, email } = req.body;
-    if (
-      !req.body.name ||
-      // !req.body.description ||
-      !req.body.image ||
-      !req.body.video
-      // !req.body.website
-    ) {
+    if (!req.body.name || !req.body.image ||  !req.body.video || !req.body.jobs) {
       return res.status(400).json({ message: 'Missing Fields' });
     }
     const company = await Company.create(req.body);
