@@ -33,10 +33,24 @@ export async function getAttemptById(req, res) {
 
 export async function createAttempt(req, res) {
   try {
-    const { userId, companyId } = req.body;
+    const { userId, companyId, completedTime, scores, session} = req.body;
     const startTime = new Date();
     const endTime = new Date(startTime.getTime() + 60 * 60000);
     const duration = endTime.getMinutes() - startTime.getMinutes();
+    const attempt = await Attempt.create({
+      userId,
+      companyId,
+      startTime,
+      endTime,
+      duration,
+      completedTime,
+      scores,
+      session
+    });
+    return res.status(201).json({
+      attempt,
+    });
+    
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
