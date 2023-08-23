@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
 import Attempt from '../models/attemptModel.js';
+import Proposal from '../models/proposalModel.js';
 import { Task } from '../models/taskModel.js';
 import Company from '../models/companyModel.js';
 import Rooms from '../models/roomModel.js';
+import templateProposal from '../contants/proposalTemplate.js';
 
 export async function getAllAttempts(req, res) {
   try {
@@ -69,6 +71,12 @@ export async function createAttempt(req, res) {
         });
       })
     );
+
+    await Proposal.create({
+      title: 'Task 1 template',
+      attemptId: attempt._id,
+      slides: templateProposal,
+    });
 
     return res.status(201).json({
       attempt,

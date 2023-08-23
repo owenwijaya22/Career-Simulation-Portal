@@ -27,8 +27,8 @@ const proposalSchema = new Schema({
     default: false,
     required: [true, 'A proposal must have a boolean'],
   },
-  attempt: {
-    type: String,
+  attemptId: {
+    type: Schema.Types.ObjectId,
     required: [true, 'A proposal must have an attempt'],
   },
   slides: [slidesSchema],
