@@ -1,4 +1,6 @@
 import { Schema, model } from 'mongoose';
+import officeSessionType from '../contants/officeEnums.js';
+import systemSessionType from '../contants/systemEnums.js';
 
 const AttemptSchema = new Schema({
   userId: {
@@ -34,89 +36,61 @@ const AttemptSchema = new Schema({
 
   // FOR FUTURE IMPLMENTATION
 
-  // systemSession: {
-  //   type: {
-  //     taskId: Schema.Types.ObjectId,
-  //     simStarted: Boolean,
-  //     taskDescription: String,
-  //     status: {
-  //       dashboard: { locked: Boolean, alert: Boolean },
-  //       office: { locked: Boolean, alert: Boolean },
-  //       chat: { locked: Boolean, alert: Boolean },
-  //       clue: {},
-  //       proposal: {
-  //         locked: Boolean,
-  //         alert: Boolean,
-  //       },
-  //     },
-  //     modal: {
-  //       mode: String,
-  //       open: String,
-  //     },
-  //   },
-  //   default: {
-  //     taskId: 0,
-  //     simStarted: false,
-  //     taskDescription: 'No Task',
-  //     status: {
-  //       dashboard: {
-  //         locked: false,
-  //         alert: false,
-  //       },
-  //       office: {
-  //         locked: true,
-  //         alert: false,
-  //       },
-  //       chat: {
-  //         locked: true,
-  //         alert: false,
-  //       },
-  //       clue: {
-  //         locked: true,
-  //         alert: false,
-  //       },
-  //       proposal: {
-  //         locked: false,
-  //         alert: false,
-  //       },
-  //     },
-  //     modal: {
-  //       mode: '',
-  //       open: false,
-  //     },
-  //   },
-  // },
-  // officeSession: {
-  //   type: {
-  //     status: {
-  //       boss: {
-  //         locked: Boolean,
-  //         alert: Boolean,
-  //         ping: Boolean,
-  //         visible: Boolean,
-  //         templateId: String, // TODO: change to Schema.Types.ObjectId when migrating event flow
-  //       },
-  //     },
-  //   },
-  //   default: {
-  //     status: {
-  //       boss: {
-  //         templateId: 'boss1',
-  //         visible: false,
-  //         alert: false,
-  //         ping: false,
-  //         active: false,
-  //       },
-  //       group: {
-  //         templateId: 'group',
-  //         visible: false,
-  //         alert: false,
-  //         ping: false,
-  //         active: false,
-  //       },
-  //     },
-  //   },
-  // },
+  systemSession: {
+    type: systemSessionType,
+    default: {
+      taskId: 0,
+      simStarted: false,
+      taskDescription: 'No Task',
+      status: {
+        dashboard: {
+          locked: false,
+          alert: false,
+        },
+        office: {
+          locked: true,
+          alert: false,
+        },
+        chat: {
+          locked: true,
+          alert: false,
+        },
+        clue: {
+          locked: true,
+          alert: false,
+        },
+        proposal: {
+          locked: false,
+          alert: false,
+        },
+      },
+      modal: {
+        mode: '',
+        open: false,
+      },
+    },
+  },
+  officeSession: {
+    type: officeSessionType,
+    default: {
+      status: {
+        boss: {
+          templateId: 'boss1',
+          visible: false,
+          alert: false,
+          ping: false,
+          active: false,
+        },
+        group: {
+          templateId: 'group',
+          visible: false,
+          alert: false,
+          ping: false,
+          active: false,
+        },
+      },
+    },
+  },
 });
 
 const Attempt = model('Attempt', AttemptSchema);
