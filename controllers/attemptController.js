@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import Attempt from '../models/attemptModel.js';
 import { Task } from '../models/taskModel.js';
 import Company from '../models/companyModel.js';
+import Rooms from '../models/roomModel.js';
 
 export async function getAllAttempts(req, res) {
   try {
@@ -48,20 +49,26 @@ export async function createAttempt(req, res) {
       scores,
       // session
     });
-
+    const placeholderUserId = '64a3c4a23510c42f08bb4344';
     // from req
     const companyPlaceholderId = '64e44676c2cdfcdaf88d0aec';
-    
-    const company = await Company.findById(companyPlaceholderId);
-    const companyNPCs = company.NPCs;
-    companyNPCs.forEach(element => {
-      
-    });
 
     // create an attempt
     // get the npcs of the company
-    // ['64e44676c2cdfcdaf88d0aec', '64d9a5c9dc8df46458b6e874', '64d9a716dc8df46458b6e878']
+    // ['64d9a4c5dc8df46458b6e872', '64d9a5c9dc8df46458b6e874', '64d9a716dc8df46458b6e878']
+    const company = await Company.findById(companyPlaceholderId);
+    const companyNPCs = company.NPCs;
+
     // make chatrooms from the npcs and attach attemptId to it
+    await Promise.all(
+      companyNPCs.map(async (_npcId) => {
+        await Rooms.create({
+          attemptId: attempt._id,
+          npcId: _npcId,
+          company: companyPlaceholderId,
+        });
+      })
+    );
 
     return res.status(201).json({
       attempt,

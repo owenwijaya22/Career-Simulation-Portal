@@ -7,11 +7,6 @@ const roomSchema = new Schema(
       ref: 'Attempt',
       required: true,
     },
-    // userId: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'User',
-    //   required: true,
-    // },
     npcId: {
       type: Schema.Types.ObjectId,
       ref: 'NPC',

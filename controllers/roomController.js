@@ -74,24 +74,29 @@ export async function getUsers(req, res) {
   }
 }
 
-
 export async function getAllRooms(req, res) {
   try {
-    const attemptId = req.params.attemptId;
+    const { attemptId } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(attemptId)) {
       return res.status(400).json({ message: 'Invalid attempt ID' });
     }
 
-    const attempt = await Attempt.findById(attemptId).populate('session.unlockedRooms');
+    // const attempt = await Attempt.findById(attemptId).populate(
+    //   'session.unlockedRooms'
+    // );
 
-    if (!attempt) {
-      return res.status(404).json({ message: 'Attempt not found' });
-    }
+    // if (!attempt) {
+    //   return res.status(404).json({ message: 'Attempt not found' });
+    // }
 
-    const unlockedRooms = attempt.session.unlockedRooms;
+    const rooms = await Rooms.find({ attemptId: attemptId });
+
+    console.log(rooms);
+
+    // const unlockedRooms = attempt.session.unlockedRooms;
     res.status(200).json({
-      unlockedRooms,
+      rooms: rooms,
     });
   } catch (err) {
     res.status(500).json({
