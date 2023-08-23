@@ -30,7 +30,12 @@ const companySchema = new Schema(
     video: {
       type: String,
       required: false,
-    }
+    },
+    NPCs: {
+      type: [Schema.Types.ObjectId],
+      ref: 'NPC',
+      required: true,
+    },
   },
   {
     timestamps: true,

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import Attempt from '../models/attemptModel.js';
 import { Task } from '../models/taskModel.js';
+import Company from '../models/companyModel.js';
 
 export async function getAllAttempts(req, res) {
   try {
@@ -33,7 +34,7 @@ export async function getAttemptById(req, res) {
 
 export async function createAttempt(req, res) {
   try {
-    const { userId, companyId, completedTime, scores, session} = req.body;
+    const { userId, companyId, completedTime, scores } = req.body;
     const startTime = new Date();
     const endTime = new Date(startTime.getTime() + 60 * 60000);
     const duration = endTime.getMinutes() - startTime.getMinutes();
@@ -45,12 +46,26 @@ export async function createAttempt(req, res) {
       duration,
       completedTime,
       scores,
-      session
+      // session
     });
+
+    // from req
+    const companyPlaceholderId = '64e44676c2cdfcdaf88d0aec';
+    
+    const company = await Company.findById(companyPlaceholderId);
+    const companyNPCs = company.NPCs;
+    companyNPCs.forEach(element => {
+      
+    });
+
+    // create an attempt
+    // get the npcs of the company
+    // ['64e44676c2cdfcdaf88d0aec', '64d9a5c9dc8df46458b6e874', '64d9a716dc8df46458b6e878']
+    // make chatrooms from the npcs and attach attemptId to it
+
     return res.status(201).json({
       attempt,
     });
-    
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

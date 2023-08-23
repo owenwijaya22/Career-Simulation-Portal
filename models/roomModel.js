@@ -2,11 +2,16 @@ import { Schema, model } from 'mongoose';
 
 const roomSchema = new Schema(
   {
-    userId: {
+    attemptId: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'Attempt',
       required: true,
     },
+    // userId: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'User',
+    //   required: true,
+    // },
     npcId: {
       type: Schema.Types.ObjectId,
       ref: 'NPC',
@@ -14,7 +19,7 @@ const roomSchema = new Schema(
     },
     lastMessage: {
       type: String,
-      default: ''
+      default: '',
     },
     company: {
       type: Schema.Types.ObjectId,
