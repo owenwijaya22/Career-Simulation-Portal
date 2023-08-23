@@ -52,8 +52,8 @@ export async function createAttempt(req, res) {
       // session
     });
     const placeholderUserId = '64a3c4a23510c42f08bb4344';
-    // from req
-    const companyPlaceholderId = '64e44676c2cdfcdaf88d0aec';
+
+    const companyPlaceholderId = '64e44676c2cdfcdaf88d0aec'; // from req
 
     // create an attempt
     // get the npcs of the company
