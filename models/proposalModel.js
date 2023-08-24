@@ -5,9 +5,6 @@ const slidesSchema = new Schema({
     type: Number,
     required: [true, 'A slide must have an order'],
   },
-  thumbnailUrl: {
-    type: String,
-  },
   items: [{}],
 });
 
@@ -32,6 +29,9 @@ const proposalSchema = new Schema({
     required: [true, 'A proposal must have an attempt'],
   },
   slides: [slidesSchema],
+  thumbnailUrl: {
+    type: String,
+  },
 });
 
 const Proposal = model('Proposal', proposalSchema);

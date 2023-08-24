@@ -73,9 +73,11 @@ export async function createAttempt(req, res) {
     );
 
     await Proposal.create({
-      title: 'Task 1 template',
+      title: 'Amazing Apparel Customer Service Proposal',
       attemptId: attempt._id,
       slides: templateProposal,
+      thumbnailUrl:
+        'https://d2cgute8qahbr9.cloudfront.net/accenture/accenture-template-1.png',
     });
 
     return res.status(201).json({
