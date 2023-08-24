@@ -37,7 +37,7 @@ export async function getAttemptById(req, res) {
 
 export async function createAttempt(req, res) {
   try {
-    const { userId, companyId, completedTime, scores } = req.body;
+    const { userId, companyId } = req.body;
     const startTime = new Date();
     const endTime = new Date(startTime.getTime() + 60 * 60000);
     const duration = endTime.getMinutes() - startTime.getMinutes();
@@ -47,8 +47,8 @@ export async function createAttempt(req, res) {
       startTime,
       endTime,
       duration,
-      completedTime,
-      scores,
+      // completedTime,
+      // scores,
       // session
     });
     const placeholderUserId = '64a3c4a23510c42f08bb4344';

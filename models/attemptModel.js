@@ -36,61 +36,61 @@ const AttemptSchema = new Schema({
 
   // FOR FUTURE IMPLMENTATION
 
-  systemSession: {
-    type: systemSessionType,
-    default: {
-      taskId: 0,
-      simStarted: false,
-      taskDescription: 'No Task',
-      status: {
-        dashboard: {
-          locked: false,
-          alert: false,
-        },
-        office: {
-          locked: true,
-          alert: false,
-        },
-        chat: {
-          locked: true,
-          alert: false,
-        },
-        clue: {
-          locked: true,
-          alert: false,
-        },
-        proposal: {
-          locked: false,
-          alert: false,
-        },
-      },
-      modal: {
-        mode: '',
-        open: false,
-      },
-    },
-  },
-  officeSession: {
-    type: officeSessionType,
-    default: {
-      status: {
-        boss: {
-          templateId: 'boss1',
-          visible: false,
-          alert: false,
-          ping: false,
-          active: false,
-        },
-        group: {
-          templateId: 'group',
-          visible: false,
-          alert: false,
-          ping: false,
-          active: false,
-        },
-      },
-    },
-  },
+  // systemSession: {
+  //   type: systemSessionType,
+  //   default: {
+  //     taskId: 0,
+  //     simStarted: false,
+  //     taskDescription: 'No Task',
+  //     status: {
+  //       dashboard: {
+  //         locked: false,
+  //         alert: false,
+  //       },
+  //       office: {
+  //         locked: true,
+  //         alert: false,
+  //       },
+  //       chat: {
+  //         locked: true,
+  //         alert: false,
+  //       },
+  //       clue: {
+  //         locked: true,
+  //         alert: false,
+  //       },
+  //       proposal: {
+  //         locked: false,
+  //         alert: false,
+  //       },
+  //     },
+  //     modal: {
+  //       mode: '',
+  //       open: false,
+  //     },
+  //   },
+  // },
+  // officeSession: {
+  //   type: officeSessionType,
+  //   default: {
+  //     status: {
+  //       boss: {
+  //         templateId: 'boss1',
+  //         visible: false,
+  //         alert: false,
+  //         ping: false,
+  //         active: false,
+  //       },
+  //       group: {
+  //         templateId: 'group',
+  //         visible: false,
+  //         alert: false,
+  //         ping: false,
+  //         active: false,
+  //       },
+  //     },
+  //   },
+  // },
 });
 
 const Attempt = model('Attempt', AttemptSchema);

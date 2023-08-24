@@ -8,13 +8,13 @@ import { createServer } from 'http';
 import express from 'express';
 import { Server } from 'socket.io';
 import helmet from 'helmet';
-// import app from './app.js';
+import app from './app.js';
 import proposalSave from './sockets/proposalSave.js';
 // import { Server } from 'socket.io';
 
-const app = express();
+// const app = express();
 
-app.use(express.json());
+// app.use(express.json());
 // app.use(cors());
 // app.use(router);
 
@@ -36,8 +36,9 @@ connect(dbUri, {
 //   return awsServerlessExpress.proxy(server, event, context, 'PROMISE').promise;
 // };
 
+const httpServer = createServer(app);
+
 // const io = new Server();
-// const httpServer = createServer(app);
 // const io = new Server(httpServer);
 
 // io.engine.use(helmet());
@@ -49,14 +50,12 @@ connect(dbUri, {
 
 if (process.env.NODE_ENV === 'development') {
   const port = process.env.PORT || 3000;
-  // httpServer.listen(port, () => {
-  //   console.log(`App running on port ${port}...`);
-  // });
-  app.listen(port, () => {
+  httpServer.listen(port, () => {
     console.log(`App running on port ${port}...`);
   });
+  // app.listen(port, () => {
+  //   console.log(`App running on port ${port}...`);
+  // });
 }
-
-export default app;
 
 // export const handler = ServerlessHttp(app);
