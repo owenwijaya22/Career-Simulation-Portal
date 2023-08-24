@@ -1,7 +1,6 @@
 export const accentureTemplate = [
   {
     id: 0.021131248472106456,
-    thumbnailUrl: '',
     items: [
       {
         id: 'zh74t26s2',
@@ -67,7 +66,6 @@ export const accentureTemplate = [
   },
   {
     id: 0.46171865345304375,
-    thumbnailUrl: '',
     items: [
       {
         id: 'tu6ps4pmc',
@@ -147,7 +145,6 @@ export const accentureTemplate = [
   },
   {
     id: 0.5559629424108914,
-    thumbnailUrl: '',
     items: [
       {
         id: 'eo8ktatwp',
@@ -226,7 +223,6 @@ export const accentureTemplate = [
   },
   {
     id: 0.635288927659214,
-    thumbnailUrl: '',
     items: [
       {
         id: '0iwvevl7a',
@@ -305,7 +301,6 @@ export const accentureTemplate = [
   },
   {
     id: 0.22692572256867738,
-    thumbnailUrl: '',
     items: [
       {
         id: 'h080ibud0',
@@ -384,7 +379,6 @@ export const accentureTemplate = [
   },
   {
     id: 0.6305812558023285,
-    thumbnailUrl: '',
     items: [
       {
         id: 'h080ibud0',
@@ -463,7 +457,6 @@ export const accentureTemplate = [
   },
   {
     id: 0.10085873925431388,
-    thumbnailUrl: '',
     items: [
       {
         id: 'zh74t26s2',
