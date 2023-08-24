@@ -4,8 +4,13 @@
 import { config } from 'dotenv';
 import { connect } from 'mongoose';
 // import awsServerlessExpress from 'aws-serverless-express';
-import { createServer } from 'http';
+// import { createServer } from 'http';
+
+// import { Server } from 'socket.io';
+// import helmet from 'helmet';
 import app from './app.js';
+// import proposalSave from './sockets/proposalSave.js';
+// import { Server } from 'socket.io';
 
 config({ path: './.env' });
 
@@ -25,11 +30,27 @@ connect(dbUri, {
 //   return awsServerlessExpress.proxy(server, event, context, 'PROMISE').promise;
 // };
 
-const httpServer = createServer(app);
+// const io = new Server();
+// const httpServer = createServer(app);
+// const io = new Server(httpServer);
+
+// io.engine.use(helmet());
+
+// io.on('connection', (socket) => {
+//   console.log('Succesfully connected to sockets!');
+//   socket.on('proposal-save', proposalSave);
+// });
 
 // if (process.env.NODE_ENV === 'development') {
-const port = process.env.PORT || 3000;
-httpServer.listen(port, () => {
-  console.log(`App running on port ${port}...`);
-});
+//   const port = process.env.PORT || 3000;
+//   httpServer.listen(port, () => {
+//     console.log(`App running on port ${port}...`);
+//   });
+// }
+if (process.env.NODE_ENV === 'development') {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`App running on port ${port}...`);
+  });
+}
 // export const handler = ServerlessHttp(app);
