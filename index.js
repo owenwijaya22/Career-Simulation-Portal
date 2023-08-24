@@ -5,18 +5,7 @@ import { config } from 'dotenv';
 import { connect } from 'mongoose';
 // import awsServerlessExpress from 'aws-serverless-express';
 import { createServer } from 'http';
-import express from 'express';
-import { Server } from 'socket.io';
-import helmet from 'helmet';
 import app from './app.js';
-import proposalSave from './sockets/proposalSave.js';
-// import { Server } from 'socket.io';
-
-// const app = express();
-
-// app.use(express.json());
-// app.use(cors());
-// app.use(router);
 
 config({ path: './.env' });
 
@@ -38,26 +27,9 @@ connect(dbUri, {
 
 const httpServer = createServer(app);
 
-// const io = new Server();
-// const io = new Server(httpServer);
-
-// io.engine.use(helmet());
-
-// io.on('connection', (socket) => {
-//   console.log('Succesfully connected to sockets!');
-//   socket.on('proposal-save', proposalSave);
-// });
-
 // if (process.env.NODE_ENV === 'development') {
 const port = process.env.PORT || 3000;
 httpServer.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
-// app.listen(port, () => {
-//   console.log(`App running on port ${port}...`);
-// });
-// }
-
-export default httpServer;
-
 // export const handler = ServerlessHttp(app);
