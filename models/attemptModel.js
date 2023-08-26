@@ -1,6 +1,11 @@
 import { Schema, model } from 'mongoose';
-import officeSessionType from '../contants/officeEnums.js';
-import systemSessionType from '../contants/systemEnums.js';
+import officeSessionType from '../constants/officeEnums.js';
+import systemSessionType from '../constants/systemEnums.js';
+import AttemptModulesSchema from './schemas/AttemptModulesSchema.js';
+import AttemptTaskSchema from './schemas/AttemptTaskSchema.js';
+import AttemptOfficeSchema from './schemas/AttemptOfficeSchema.js';
+import AttemptChatSchema from './schemas/AttemptChatSchema.js';
+import AttemptClueSchema from './schemas/AttemptClueSchema.js';
 
 const AttemptSchema = new Schema({
   userId: {
@@ -32,6 +37,39 @@ const AttemptSchema = new Schema({
     required: [true, 'An attempt must have a completed time in minutes'],
     default: 0,
   },
+  isStarted: {
+    type: Schema.Types.Boolean,
+    default: false,
+  },
+  modules: {
+    type: AttemptModulesSchema,
+    required: false,
+  },
+  tasks: {
+    type: [AttemptTaskSchema],
+    required: false,
+  },
+  currentMainTaskId: {
+    type: Number,
+    default: false,
+  },
+  offices: {
+    type: [AttemptOfficeSchema],
+    required: false,
+  },
+  chats: {
+    type: [AttemptChatSchema],
+    required: false,
+  },
+  clues: {
+    type: [AttemptClueSchema],
+    required: false,
+  },
+  // tasks: {
+  //   type: Schema.Types.Object,
+  //   required: false,
+  //   default: {},
+  // },
   // scores: [Number],
 
   // FOR FUTURE IMPLMENTATION

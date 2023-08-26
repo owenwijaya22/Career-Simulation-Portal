@@ -1,24 +1,22 @@
-import mongoose from 'mongoose';
-import eventEnums from '../contants/eventEnums.js';
+import mongoose, { Schema } from 'mongoose';
+import eventEnums from '../constants/eventEnums.js';
 
-const useEventTypeEnum = new mongoose.Schema({
-  nextEventType: {
+const userEvent = new Schema({
+  companyId: {
+    type: String,
+    required: [true, 'An event must have a companyId'],
+  },
+  eventType: {
     type: String,
     enum: eventEnums,
     required: [true, 'An event must have a type'],
   },
-});
-
-const userEvent = new mongoose.Schema({
-  choiceId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Choice',
-    required: [true, 'An event must be related to a choice'],
+  systemEvents: {
+    type: [Schema.Types.Object],
+    required: false,
   },
-  nextEventType: [useEventTypeEnum],
-  nextEventId: {
-    type: [mongoose.Schema.Types.ObjectId],
-    required: true,
+  customId: {
+    type: String,
   },
 });
 

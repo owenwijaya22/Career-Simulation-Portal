@@ -3,6 +3,9 @@ const START_GAME_EVENT = {
   companyId: '',
   userId: '',
   conditions: [
+    {
+      //current taskId === "348765sjgkn"
+    }
     //check the attempt is marked as started
   ],
   systemEvents: [
@@ -21,6 +24,12 @@ const START_GAME_EVENT = {
         active: true,
       },
     },
+    {
+      eventType: 'UPDATE_TASKS',
+      taskId: 1,
+      
+    },
+    
     // mark event as started
   ],
 };
@@ -29,3 +38,43 @@ const START_GAME_EVENT = {
 //CHAT
 //CLUE
 //PROPOSAL
+
+
+const taskState = [
+  {
+    id: "sdfsd",
+    type: "MAIN",
+    active: false,
+    completed: true,
+    taskDescription: ""
+  },
+  {
+    id: 'sgds',
+    type: "MAIN",
+    active: false,
+    completed: true
+  },
+  {
+    id: 3,
+    type: "MAIN",
+    active: true,
+    completed: true
+  },
+  {
+    id: 1,
+    type: "SIDE",
+    active: false,
+    completed: true
+  },{
+    id: 1,
+    type: "MAIN",
+    active: false,
+    completed: true
+  }
+  {
+    id: 1,
+    type: "SIDE",
+    active: false,
+    completed: true
+  }
+]

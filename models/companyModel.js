@@ -1,4 +1,9 @@
 import { Schema, model } from 'mongoose';
+import AttemptModulesSchema from './schemas/AttemptModulesSchema.js';
+import AttemptTaskSchema from './schemas/AttemptTaskSchema.js';
+import AttemptOfficeSchema from './schemas/AttemptOfficeSchema.js';
+import AttemptChatSchema from './schemas/AttemptChatSchema.js';
+import AttemptClueSchema from './schemas/AttemptClueSchema.js';
 
 const jobSchema = new Schema({
   title: {
@@ -35,6 +40,26 @@ const companySchema = new Schema(
       type: [Schema.Types.ObjectId],
       ref: 'NPC',
       required: true,
+    },
+    tasks: {
+      type: [AttemptTaskSchema],
+      required: false,
+    },
+    initialModules: {
+      type: AttemptModulesSchema,
+      required: false,
+    },
+    initialOffices: {
+      type: [AttemptOfficeSchema],
+      required: false,
+    },
+    initialChats: {
+      type: [AttemptChatSchema],
+      required: false,
+    },
+    initialClues: {
+      type: [AttemptClueSchema],
+      required: false,
     },
   },
   {

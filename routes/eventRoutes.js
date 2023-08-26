@@ -1,6 +1,9 @@
 import { Router } from 'express';
 
-import { triggerEvent, createEvent } from '../controllers/eventController.js';
+import {
+  triggerEvent,
+  // createEvent,
+} from '../controllers/eventController/index.js';
 
 const eventRouter = Router();
 
@@ -32,7 +35,7 @@ const eventRouter = Router();
  *   }
  * }
  */
-eventRouter.post('/', createEvent);
+eventRouter.post('/', triggerEvent);
 
 /**
  * GET /api/events
@@ -91,6 +94,6 @@ eventRouter.post('/', createEvent);
  *       ]
  *   }
  */
-eventRouter.get('/', triggerEvent);
+// eventRouter.get('/', triggerEvent);
 
 export default eventRouter;

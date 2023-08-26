@@ -4,7 +4,7 @@ import Proposal from '../models/proposalModel.js';
 import { Task } from '../models/taskModel.js';
 import Company from '../models/companyModel.js';
 import Rooms from '../models/roomModel.js';
-import templateProposal from '../contants/proposalTemplate.js';
+import templateProposal from '../constants/proposalTemplate.js';
 
 export async function getAllAttempts(req, res) {
   try {
@@ -23,12 +23,16 @@ export async function getAllAttempts(req, res) {
 export async function getAttemptById(req, res) {
   try {
     const { id } = req.params;
-    const attempt = await Attempt.findById(id);
-    if (!attempt) {
+    const attempt = (await Attempt.findById(id)).toJSON();
+    const processedAttempt = {
+      ...attempt,
+      tasks: attempt.tasks.filter((task) => task.sendToClient),
+    };
+    if (!processedAttempt) {
       return res.status(404).json({ message: 'No attempt found with that ID' });
     }
     return res.status(200).json({
-      attempt,
+      attempt: processedAttempt,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -47,6 +51,8 @@ export async function createAttempt(req, res) {
       startTime,
       endTime,
       duration,
+      isStarted: false,
+      currentMainTaskId: 0,
       // completedTime,
       // scores,
       // session
@@ -60,6 +66,21 @@ export async function createAttempt(req, res) {
     // ['64d9a4c5dc8df46458b6e872', '64d9a5c9dc8df46458b6e874', '64d9a716dc8df46458b6e878']
     const company = await Company.findById(companyPlaceholderId);
     const companyNPCs = company.NPCs;
+
+    //copy tasks from company to attempt
+    attempt.tasks = company.tasks.map((task) => ({
+      ...task,
+      sendToClient: false,
+      active: false,
+      completed: false,
+    }));
+
+    attempt.modules = company.initialModules;
+    attempt.offices = company.initialOffices;
+    attempt.chats = company.initialChats;
+    attempt.clues = company.initialClues;
+
+    attempt.save();
 
     // make chatrooms from the npcs and attach attemptId to it
     await Promise.all(

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import clueEnums from '../contants/clueEnums.js';
+import clueEnums from '../constants/clueEnums.js';
 
 const clueSchema = new mongoose.Schema(
   {
