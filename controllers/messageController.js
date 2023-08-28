@@ -27,7 +27,7 @@ export async function getAllMessage(req, res) {
 export async function addMessage(req, res) {
   try {
     const { message, roomId, senderType, sender, npcId } = req.body;
-    if (!message || !roomId || !senderType || !sender) {
+    if (!message || !roomId || !senderType || !sender || !npcId) {
       return res.status(400).json({
         message: 'Missing Fields',
       });
@@ -38,28 +38,14 @@ export async function addMessage(req, res) {
       senderType,
       sender,
     });
-    if (senderType === 'USER') {
-      const npc = await NPC.findById(npcId);
-      let chatroom;
-      if (npc.name === 'Justin') {
-        chatroom = 'chatroom_1';
-      } else if (npc.name === 'Noel') {
-        chatroom = 'chatroom_2';
-      } else if (npc.name === 'Desmond Tan') {
-        chatroom = 'chatroom_3';
-      } else if (npc.name === 'David Lam') {
-        chatroom = 'chatroom_4';
-      } else if (npc.name === 'Adrian Chui') {
-        chatroom = 'chatroom_5'
-      }
-      
+    if (senderType === 'USER') {   
       let data = JSON.stringify({
         input: message,
       });
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: `https://mitsuki.software/chat/${chatroom}`,
+        url: `https://mitsuki.software/chat/${npcId}`,
         headers: {
           'Content-Type': 'application/json',
         },
