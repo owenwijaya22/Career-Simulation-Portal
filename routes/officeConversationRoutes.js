@@ -10,16 +10,23 @@ const officeConvoRouter = Router();
 
 /**
  * GET /api/officeconvo
- * @summary This endpoint retrieves all chats
- * @tags chats
+ * @summary This endpoint retrieves all conversations
+ * @tags conversations
  * @return {object} 200 - Success response - application/json
  */
 officeConvoRouter.route('/').get(getAllConversations);
+/**
+ * GET /api/officeconvo/{name}
+ * @summary This endpoint retrieves all conversations for a specific name eg. boss1, boss2 etc.
+ * @tags conversations
+ * @param {string} name.path - required
+ * @return {object} 200 - Success response - application/json
+ */
 officeConvoRouter.route('/:name').get(getConversationsByName);
 /**
- * POST /api/chats
- * @summary This endpoint creates a new chat
- * @tags chats
+ * POST /api/officeconvo
+ * @summary This endpoint creates a new conversation
+ * @tags conversation
  * @param {object} request.body.required - Chat info
  * @param {string} request.body.required.chat - The Chat
  * @param {array<object>} request.body.required.choices - Array of choices

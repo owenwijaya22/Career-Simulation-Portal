@@ -92,4 +92,4 @@ const getConversationsByName = async (req, res) => {
 };
 
 
-export { createChat, getChats, saveChat };
+export { createConversation, getAllConversations, saveConvervation,getConversationsByName };
