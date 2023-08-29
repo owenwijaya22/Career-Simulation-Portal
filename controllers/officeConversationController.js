@@ -92,8 +92,4 @@ const getConversationsByName = async (req, res) => {
 };
 
 
-<<<<<<< HEAD
-export { createConversation, getAllConversations, saveConvervation,getConversationsByName };
-=======
 export { createConversation, getAllConversations, getConversationsByName,saveConversation };
->>>>>>> 9753b6e1739645a81b02c03a3489b823f0126ee3
