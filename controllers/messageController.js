@@ -48,11 +48,11 @@ export async function addMessage(req, res) {
         url: `https://mitsuki.software/chat/${npcId}`,
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.AUTH_KEY}`,
         },
         data: data,
       };
-
-
+      
       const response = await axios.request(config);
       const aiResponse = response.data;
 
