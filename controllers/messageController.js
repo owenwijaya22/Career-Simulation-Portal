@@ -39,32 +39,19 @@ export async function addMessage(req, res) {
       sender,
     });
     if (senderType === 'USER') {
-      const npc = await NPC.findById(npcId);
-      let chatroom;
-      if (npc.name === 'Justin') {
-        chatroom = 'chatroom_1';
-      } else if (npc.name === 'Karl') {
-        chatroom = 'chatroom_2';
-      } else if (npc.name === 'Desmond Tan') {
-        chatroom = 'chatroom_3';
-      } else if (npc.name === 'David Lam') {
-        chatroom = 'chatroom_4';
-      } else if (npc.name === 'Adrian Chui') {
-        chatroom = 'chatroom_5'
-      }
-      
       let data = JSON.stringify({
         input: message,
       });
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: `https://owen.pythonanywhere.com/chat/${chatroom}`,
+        url: `https://chatbot-host-3f6w30ft5-owenwijaya22.vercel.app/chat/${npcId}`,
         headers: {
           'Content-Type': 'application/json',
         },
         data: data,
       };
+
 
       const response = await axios.request(config);
       const aiResponse = response.data;
