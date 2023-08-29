@@ -38,14 +38,28 @@ export async function addMessage(req, res) {
       senderType,
       sender,
     });
-    if (senderType === 'USER') {   
+    if (senderType === 'USER') {
+      const npc = await NPC.findById(npcId);
+      let chatroom;
+      if (npc.name === 'Justin') {
+        chatroom = 'chatroom_1';
+      } else if (npc.name === 'Karl') {
+        chatroom = 'chatroom_2';
+      } else if (npc.name === 'Desmond Tan') {
+        chatroom = 'chatroom_3';
+      } else if (npc.name === 'David Lam') {
+        chatroom = 'chatroom_4';
+      } else if (npc.name === 'Adrian Chui') {
+        chatroom = 'chatroom_5'
+      }
+      
       let data = JSON.stringify({
         input: message,
       });
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: `https://mitsuki.software/chat/${npcId}`,
+        url: `https://owen.pythonanywhere.com/chat/${chatroom}`,
         headers: {
           'Content-Type': 'application/json',
         },
