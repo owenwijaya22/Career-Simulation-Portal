@@ -45,7 +45,7 @@ export async function addMessage(req, res) {
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: `https://chatbot-host-3f6w30ft5-owenwijaya22.vercel.app/chat/${npcId}`,
+        url: `https://mitsuki.software/chat/${npcId}`,
         headers: {
           'Content-Type': 'application/json',
         },
