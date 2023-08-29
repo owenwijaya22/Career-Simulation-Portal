@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import Convo, { Choice } from '../models/officeConversationModel.js';
 
-const saveConvervation = async (req, res) => {
+const saveConversation = async (req, res) => {
   try {
     const { _id, choiceId, nextId, redirectId } = req.body;
     if (!_id ||(!nextId && !redirectId)) {
@@ -92,4 +92,8 @@ const getConversationsByName = async (req, res) => {
 };
 
 
+<<<<<<< HEAD
 export { createConversation, getAllConversations, saveConvervation,getConversationsByName };
+=======
+export { createConversation, getAllConversations, getConversationsByName,saveConversation };
+>>>>>>> 9753b6e1739645a81b02c03a3489b823f0126ee3
