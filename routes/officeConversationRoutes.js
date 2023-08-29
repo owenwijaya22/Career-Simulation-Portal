@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import {
-  getConversationsByName,
+  getConversationsByNameAndCompanyId,
   createConversation,
   getAllConversations,
-  saveConversation
+  saveConversation,
+  updateCompanyId
 } from '../controllers/officeConversationController.js';
 
 const officeConvoRouter = Router();
@@ -22,7 +23,7 @@ officeConvoRouter.route('/').get(getAllConversations);
  * @param {string} name.path - required
  * @return {object} 200 - Success response - application/json
  */
-officeConvoRouter.route('/:name').get(getConversationsByName);
+officeConvoRouter.route('/:name/:companyId').get(getConversationsByNameAndCompanyId);
 /**
  * POST /api/officeconvo
  * @summary This endpoint creates a new conversation
@@ -37,5 +38,6 @@ officeConvoRouter.route('/:name').get(getConversationsByName);
  */
 officeConvoRouter.route('/').post(createConversation);
 officeConvoRouter.route('/').patch(saveConversation);
+officeConvoRouter.route('/:companyId').patch(updateCompanyId);
 
 export default officeConvoRouter;

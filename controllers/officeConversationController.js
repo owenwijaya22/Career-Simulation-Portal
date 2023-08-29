@@ -82,9 +82,24 @@ const getAllConversations = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-const getConversationsByName = async (req, res) => {
+const getConversationsByNameAndCompanyId = async (req, res) => {
   try {
-    const chats = await Convo.find({name:req.params.name});
+    const {name,companyId}=req.params;
+    const chats = await Convo.find({name,companyId});
+    res.status(200).json(chats);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+const updateCompanyId=async(req,res)=>{
+  try {
+    const{companyId}=req.params
+    const chats = await Convo.find();
+    for(var i=0;i<chats.length;i++){
+      const chat=chats[i]
+      chat.companyId=companyId
+      await chat.save()
+    }
     res.status(200).json(chats);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -92,4 +107,4 @@ const getConversationsByName = async (req, res) => {
 };
 
 
-export { createConversation, getAllConversations, getConversationsByName,saveConversation };
+export { createConversation, getAllConversations, getConversationsByNameAndCompanyId,saveConversation,updateCompanyId };
