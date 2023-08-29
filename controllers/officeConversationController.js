@@ -47,8 +47,8 @@ const saveConversation = async (req, res) => {
 
 const createConversation = async (req, res) => {
   try {
-    const {name, messages, npcId, choices,isFinal,redirectId } = req.body;
-    const newChat = new Convo({ name, messages, npcId });
+    const {companyId,name, messages, npcId, choices,isFinal,redirectId } = req.body;
+    const newChat = new Convo({companyId, name, messages, npcId });
     if(choices){
       choices.forEach((choice) => {
         const newChoice = new Choice({
@@ -91,20 +91,20 @@ const getConversationsByNameAndCompanyId = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-const updateCompanyId=async(req,res)=>{
-  try {
-    const{companyId}=req.params
-    const chats = await Convo.find();
-    for(var i=0;i<chats.length;i++){
-      const chat=chats[i]
-      chat.companyId=companyId
-      await chat.save()
-    }
-    res.status(200).json(chats);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+// const updateCompanyId=async(req,res)=>{
+//   try {
+//     const{companyId}=req.params
+//     const chats = await Convo.find();
+//     for(var i=0;i<chats.length;i++){
+//       const chat=chats[i]
+//       chat.companyId=companyId
+//       await chat.save()
+//     }
+//     res.status(200).json(chats);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
 
 
-export { createConversation, getAllConversations, getConversationsByNameAndCompanyId,saveConversation,updateCompanyId };
+export { createConversation, getAllConversations, getConversationsByNameAndCompanyId,saveConversation };

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Company from "./companyModel";
+import Company from "./companyModel.js";
 const choiceSchema = new mongoose.Schema({
     message: {
       type: String,
@@ -17,7 +17,7 @@ const chatSchema = new mongoose.Schema({
   companyId:{
     type:mongoose.Schema.Types.ObjectId,
     ref:Company,
-    // required:[true,'A conversation must belong to a company']
+    required:[true,'A conversation must belong to a company']
   },
   name:{
     type:String,

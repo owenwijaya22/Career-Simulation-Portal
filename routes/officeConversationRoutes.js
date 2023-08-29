@@ -3,8 +3,7 @@ import {
   getConversationsByNameAndCompanyId,
   createConversation,
   getAllConversations,
-  saveConversation,
-  updateCompanyId
+  saveConversation
 } from '../controllers/officeConversationController.js';
 
 const officeConvoRouter = Router();
@@ -38,6 +37,6 @@ officeConvoRouter.route('/:name/:companyId').get(getConversationsByNameAndCompan
  */
 officeConvoRouter.route('/').post(createConversation);
 officeConvoRouter.route('/').patch(saveConversation);
-officeConvoRouter.route('/:companyId').patch(updateCompanyId);
+// officeConvoRouter.route('/:companyId').patch(updateCompanyId);
 
 export default officeConvoRouter;
