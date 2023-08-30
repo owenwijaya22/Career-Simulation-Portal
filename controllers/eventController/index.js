@@ -5,6 +5,7 @@ import { Task } from '../../models/taskModel.js';
 import Clue from '../../models/clueModel.js';
 import Attempt from '../../models/attemptModel.js';
 import { updateObject } from '../../utils/index.js';
+// import updateTaskIdEvent from "./eventController/helper";
 
 export const triggerEvent = async (req, res) => {
   try {
@@ -69,6 +70,77 @@ export const triggerEvent = async (req, res) => {
     });
   }
 };
+  const createEvent=async(req,res)=>{
+  try{
+    const {companyId,eventType,systemEvents}=req.body
+    const newEvent=new Event({companyId,eventType,systemEvents});
+    await newEvent.save();
+    res.status(201).json(newEvent);
+  }catch(error){
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+const updateEvent = async (req, res) => {
+  try{
+    const { eventType, companyId } = req.body;
+
+    const event = await Event.findOne({ companyId, eventType });
+    // const { systemEvents } = event;
+    // const resData = {}
+    // for(var i=0;i<systemEvents.length;i++){
+    //   const eventType=systemEvents[i];
+    //   if(eventType=="UPDATE_TASKID"){
+    //     const task = await updateTaskIdEvent(companyId,element.newTaskId);
+    //     resData["task"] = task;
+    //   }
+    //   else if(eventType=="UPDATE_STATES"){
+    //     await updateStateEvent(element);
+    //   }
+    // }
+    // const newState={
+    //   "modules":{
+    //     "office":{
+    //       "alert":true
+    //     }
+    //   },
+    //   "offices":[
+    //     {
+    //       id:"boss",
+    //       templateId:"boss2",
+    //       visible:true,
+    //       alert: true,
+    //       ping: true,
+    //       active: true,
+    //     }
+    //   ],
+    //   "tasks":[
+    //     {
+    //       id:"M1",
+    //       sendToClient:true,
+    //       active:false
+    //     },
+    //     {
+    //       id:"M2",
+    //       sendToClient:true,
+    //       active:false
+    //     },
+    //     {
+    //       id:"M3",
+    //       sendToClient:true,
+    //       active:true
+    //     }
+    //   ]
+    // }
+    // event.systemEvents[1].newState=newState;
+    await event.save();
+    res.status(201).json(event);
+  }catch (error) {
+    res.status(500).json({ message: error.message });
+}
+};
+export {createEvent,updateEvent}
 
 // const getNextQuestion = async (body) => {
 //   const { attemptId, currentQuestion } = body;

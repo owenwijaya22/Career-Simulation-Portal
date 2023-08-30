@@ -22,7 +22,7 @@ officeConvoRouter.route('/').get(getAllConversations);
  * @param {string} name.path - required
  * @return {object} 200 - Success response - application/json
  */
-officeConvoRouter.route('/:name/:companyId').get(getConversationsByNameAndCompanyId);
+officeConvoRouter.route('/:name/:companyId').post(getConversationsByNameAndCompanyId);
 /**
  * POST /api/officeconvo
  * @summary This endpoint creates a new conversation
