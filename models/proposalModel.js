@@ -9,12 +9,6 @@ const slidesSchema = new Schema({
 });
 
 const proposalSchema = new Schema({
-  // attempt: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'Attempt',
-  //   required: [true, 'A proposal must have an attempt'],
-  //   unique: true,
-  // },
   title: {
     type: String,
     required: [true, 'A proposal must have a title'],

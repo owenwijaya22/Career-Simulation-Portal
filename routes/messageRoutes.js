@@ -21,7 +21,7 @@ messageRouter.route('/:roomId').get(getAllMessage);
  * @example request - application/json
  * {
  *    "message": "give me some advice now",
- *    "roomId": "64cb553c7a1492c125357877",
+ *    "roomId": "64e70cc28cacb4b8d94ec889",
  *    "senderType": "USER",
  *    "sender": "64a3c4a23510c42f08bb4344",
  *    "npcId": "64c7308c2a2eb9b761071dbf"

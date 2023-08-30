@@ -4,6 +4,7 @@ import AttemptTaskSchema from './schemas/AttemptTaskSchema.js';
 import AttemptOfficeSchema from './schemas/AttemptOfficeSchema.js';
 import AttemptChatSchema from './schemas/AttemptChatSchema.js';
 import AttemptClueSchema from './schemas/AttemptClueSchema.js';
+import AttemptProposalSchema from './schemas/AttemptProposalSchema.js';
 
 const jobSchema = new Schema({
   title: {
@@ -61,6 +62,10 @@ const companySchema = new Schema(
       type: [AttemptClueSchema],
       required: false,
     },
+    initialProposals: {
+      type: [AttemptProposalSchema],
+      required: false,
+    }
   },
   {
     timestamps: true,

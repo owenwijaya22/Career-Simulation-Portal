@@ -6,6 +6,7 @@ import AttemptTaskSchema from './schemas/AttemptTaskSchema.js';
 import AttemptOfficeSchema from './schemas/AttemptOfficeSchema.js';
 import AttemptChatSchema from './schemas/AttemptChatSchema.js';
 import AttemptClueSchema from './schemas/AttemptClueSchema.js';
+import AttemptProposalSchema from './schemas/AttemptProposalSchema.js';
 
 const AttemptSchema = new Schema({
   userId: {
@@ -65,6 +66,10 @@ const AttemptSchema = new Schema({
     type: [AttemptClueSchema],
     required: false,
   },
+  proposals: {
+    type: [AttemptProposalSchema],
+    required: false,
+  }
   // tasks: {
   //   type: Schema.Types.Object,
   //   required: false,

@@ -8,7 +8,7 @@ const userEvent = new Schema({
   },
   eventType: {
     type: String,
-    enum: eventEnums,
+    // enum: eventEnums,
     required: [true, 'An event must have a type'],
   },
   systemEvents: {

@@ -23,6 +23,10 @@ const npcSchema = new Schema(
     description: {
       type: String,
     },
+    prompt: {
+      type: String,
+      required: [true, 'An AI must have a prompt'],
+    },
   },
   {
     timestamps: true,

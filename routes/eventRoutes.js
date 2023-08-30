@@ -2,7 +2,8 @@ import { Router } from 'express';
 
 import {
   triggerEvent,
-  // createEvent,
+  createEvent,
+  updateEvent,
 } from '../controllers/eventController/index.js';
 
 const eventRouter = Router();
@@ -36,6 +37,8 @@ const eventRouter = Router();
  * }
  */
 eventRouter.post('/', triggerEvent);
+eventRouter.post('/create',createEvent);
+eventRouter.post('/update',updateEvent);
 
 /**
  * GET /api/events
