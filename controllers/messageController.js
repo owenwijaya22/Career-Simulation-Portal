@@ -45,7 +45,7 @@ export async function addMessage(req, res) {
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: `https://www.mitsuki.software/chat/${npcId}`,
+        url: `https://chatbot-host.vercel.app/chat/${npcId}`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${process.env.AUTH_KEY}`,
@@ -55,7 +55,6 @@ export async function addMessage(req, res) {
 
       const response = await axios.request(config);
       const aiResponse = response.data;
-
       const room = await Rooms.findById(roomId);
       await room.updateOne({ lastMessage: aiResponse });
       const aiMessage = await Message.create({
