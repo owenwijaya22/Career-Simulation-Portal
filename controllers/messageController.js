@@ -45,14 +45,14 @@ export async function addMessage(req, res) {
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: `https://mitsuki.software/chat/${npcId}`,
+        url: `https://www.mitsuki.software/chat/${npcId}`,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.AUTH_KEY}`,
+          Authorization: `Bearer ${process.env.AUTH_KEY}`,
         },
         data: data,
       };
-      
+
       const response = await axios.request(config);
       const aiResponse = response.data;
 
@@ -63,7 +63,7 @@ export async function addMessage(req, res) {
         roomId: roomId,
         senderType: 'NPC',
         sender: room.npcId,
-	  });
+      });
       if (aiMessage) {
         return res.status(200).json({
           message: 'Chats Added Successfully',
