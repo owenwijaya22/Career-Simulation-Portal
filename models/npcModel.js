@@ -12,7 +12,7 @@ const npcSchema = new Schema(
     },
     aiType: {
       type: String,
-      required: [true, 'An AI must have a type'],
+      required: [true, 'Choose GPT or CHOICE as aiType'],
       enum: ['GPT', 'CHOICE'],
       default: 'GPT',
     },
